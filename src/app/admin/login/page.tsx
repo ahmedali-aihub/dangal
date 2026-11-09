@@ -32,13 +32,33 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   // Is the database set up? (video_settings is publicly readable, so the anon key can check.)
   const { error: dbError } = await supabase.from("video_settings").select("id").limit(1);
   if (dbError) {
+    // Tables genuinely missing (PostgREST PGRST205 / Postgres 42P01) vs. a connection/key problem — say which.
+    const tablesMissing = dbError.code === "PGRST205" || dbError.code === "42P01";
     return (
-      <AuthShell title="Database not set up yet" subtitle="The Supabase project is connected, but the tables haven't been created.">
-        <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed opacity-85">
-          <li>Supabase Dashboard → <strong>SQL Editor</strong> → New query.</li>
-          <li>Paste the contents of <code className="rounded bg-navy/5 px-1.5 py-0.5">supabase/setup.sql</code> and press <strong>Run</strong>.</li>
-          <li>Refresh this page.</li>
-        </ol>
+      <AuthShell
+        title={tablesMissing ? "Database not set up yet" : "Can't reach the database"}
+        subtitle={tablesMissing ? "The Supabase project is connected, but the tables haven't been created." : "The site couldn't connect to Supabase with the settings it was given."}
+      >
+        {tablesMissing ? (
+          <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed opacity-85">
+            <li>Supabase Dashboard → <strong>SQL Editor</strong> → New query.</li>
+            <li>Paste the contents of <code className="rounded bg-navy/5 px-1.5 py-0.5">supabase/setup.sql</code> and press <strong>Run</strong>.</li>
+            <li>Refresh this page.</li>
+          </ol>
+        ) : (
+          <div className="space-y-4 text-sm leading-relaxed opacity-85">
+            <p className="rounded-xl bg-navy/5 p-3 font-mono text-xs">
+              {dbError.message}
+              {dbError.hint ? ` — ${dbError.hint}` : ""}
+            </p>
+            <p>
+              Check the environment variables in your host (Vercel → Settings → Environment Variables):{" "}
+              <code>NEXT_PUBLIC_SUPABASE_URL</code> must be exactly your project address with no trailing slash or spaces, and{" "}
+              <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> must be the <strong>publishable</strong> key (starts with <code>sb_publishable_</code>).
+              After changing them, redeploy.
+            </p>
+          </div>
+        )}
       </AuthShell>
     );
   }
