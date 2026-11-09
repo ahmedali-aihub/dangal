@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { AuthShell } from "@/components/admin/AuthShell";
 import { LoginForm } from "@/components/admin/AuthForms";
 import { isAdminDemo } from "@/lib/auth";
-import { isSupabaseConfigured } from "@/lib/env";
+import { SUPABASE_ANON_KEY, SUPABASE_URL, isSupabaseConfigured } from "@/lib/env";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = { title: "Sign in" };
@@ -34,6 +34,17 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   if (dbError) {
     // Tables genuinely missing (PostgREST PGRST205 / Postgres 42P01) vs. a connection/key problem — say which.
     const tablesMissing = dbError.code === "PGRST205" || dbError.code === "42P01";
+    let probe = "";
+    if (!tablesMissing) {
+      // Diagnose from the server itself: what address/key is it using, and why does the connection fail?
+      try {
+        const r = await fetch(`${SUPABASE_URL}/auth/v1/health`, { headers: { apikey: SUPABASE_ANON_KEY }, cache: "no-store", signal: AbortSignal.timeout(5000) });
+        probe = `health check → HTTP ${r.status}`;
+      } catch (e) {
+        const err = e as Error & { cause?: { code?: string; message?: string } };
+        probe = `${err.message}${err.cause ? ` (${err.cause.code ?? ""} ${err.cause.message ?? ""})` : ""}`.trim();
+      }
+    }
     return (
       <AuthShell
         title={tablesMissing ? "Database not set up yet" : "Can't reach the database"}
@@ -51,6 +62,11 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
               {dbError.message}
               {dbError.hint ? ` — ${dbError.hint}` : ""}
             </p>
+            <ul className="space-y-1 rounded-xl bg-navy/5 p-3 font-mono text-xs break-all">
+              <li>address in use: {JSON.stringify(SUPABASE_URL)}</li>
+              <li>key: {SUPABASE_ANON_KEY ? `${SUPABASE_ANON_KEY.slice(0, 15)}… (${SUPABASE_ANON_KEY.length} chars)` : "(empty)"}</li>
+              <li>connection test: {probe}</li>
+            </ul>
             <p>
               Check the environment variables in your host (Vercel → Settings → Environment Variables):{" "}
               <code>NEXT_PUBLIC_SUPABASE_URL</code> must be exactly your project address with no trailing slash or spaces, and{" "}
