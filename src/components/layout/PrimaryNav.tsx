@@ -1,17 +1,16 @@
 "use client";
 
 import { clsx } from "clsx";
-import { CreditCard, Dumbbell, House, LayoutGrid, MessageCircle, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
-const ITEMS: { href: string; label: string; icon: LucideIcon; solid: boolean }[] = [
-  { href: "/", label: "Home", icon: House, solid: true },
-  { href: "/programs", label: "Programs", icon: LayoutGrid, solid: true },
-  { href: "/training", label: "Training", icon: Dumbbell, solid: false },
-  { href: "/membership", label: "Membership", icon: CreditCard, solid: true },
-  { href: "/contact", label: "Contact", icon: MessageCircle, solid: true },
+const ITEMS: { href: string; label: string }[] = [
+  { href: "/", label: "Home" },
+  { href: "/programs", label: "Programs" },
+  { href: "/training", label: "Training" },
+  { href: "/membership", label: "Membership" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const DRAG_THRESHOLD = 5; // px of movement before a press becomes a drag (below this it's a normal click)
@@ -21,7 +20,7 @@ const DRAG_THRESHOLD = 5; // px of movement before a press becomes a drag (below
  * It never follows the cursor. It moves only when you:
  *   1. CLICK an item  → glides there (stretching, with a small spring) while the page loads, or
  *   2. DRAG the pill  → grab it, pull it toward another item, release: it snaps to the nearest one and opens it.
- * The icon under the pill turns solid and its label turns navy.
+ * The label under the pill turns navy.
  */
 export function PrimaryNav() {
   const pathname = usePathname();
@@ -188,7 +187,7 @@ export function PrimaryNav() {
           aria-hidden
           className="nav-pill pointer-events-none absolute inset-y-1.5 left-0 rounded-full bg-cream opacity-0 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]"
         />
-        {ITEMS.map(({ href, label, icon: Icon, solid }, i) => {
+        {ITEMS.map(({ href, label }, i) => {
           const under = target === i;
           return (
             <li key={href} className="relative z-10">
@@ -201,16 +200,11 @@ export function PrimaryNav() {
                 aria-current={i === active ? "page" : undefined}
                 onClick={() => setPending(i)} // glide immediately on click, while the page loads
                 className={clsx(
-                  "flex h-10 items-center gap-2 rounded-full px-4 text-[14px] font-medium outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-cream/70",
+                  "flex h-10 items-center rounded-full px-5 text-[14px] font-medium tracking-[0.01em] outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-cream/70",
                   under ? "text-navy" : "text-cream/75 hover:text-cream",
                 )}
                 style={{ cursor: "inherit" }}
               >
-                <Icon
-                  className={clsx("h-[18px] w-[18px] transition-all duration-300", under && solid ? "fill-current" : "fill-transparent", under && "scale-110")}
-                  strokeWidth={under ? 2 : 1.6}
-                  aria-hidden
-                />
                 {label}
               </Link>
             </li>
