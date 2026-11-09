@@ -345,3 +345,28 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---- Gloss: glass-like reflection, polished bezel and a slow light sweep (video surfaces) ---- */
+.gloss-sheen {
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.17) 0%, rgba(255, 255, 255, 0.05) 22%, rgba(255, 255, 255, 0) 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 14%);
+}
+.gloss-bezel {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -80px 90px -70px rgba(255, 107, 91, 0.22);
+}
+@keyframes gloss-sweep {
+  0% { transform: translate3d(-140%, 0, 0) skewX(-18deg); opacity: 0; }
+  6% { opacity: 1; }
+  34% { transform: translate3d(520%, 0, 0) skewX(-18deg); opacity: 0; }
+  100% { transform: translate3d(520%, 0, 0) skewX(-18deg); opacity: 0; }
+}
+.gloss-sweep { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.gloss-sweep::before {
+  content: ""; position: absolute; top: -15%; bottom: -15%; left: 0; width: 22%; opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.06), transparent);
+  animation: gloss-sweep 11s cubic-bezier(0.4, 0, 0.2, 1) 1.6s infinite;
+}

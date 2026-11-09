@@ -36,25 +36,36 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
           fallbackAlt="Athlete lifting a loaded barbell at Dangal Gym"
           priority
           className="hero-media"
-          // Soft focus: makes 480p footage read as intentional atmosphere behind the reeded glass.
-          mediaClassName="scale-[1.04] blur-[1.5px]"
-          controlsClassName="right-4 top-[92px] sm:right-6 sm:top-[110px] lg:bottom-8 lg:right-10 lg:top-auto"
+          // Sharp, slightly richer picture: a touch more contrast/saturation so the footage looks graded, not washed.
+          mediaClassName="scale-[1.02] contrast-[1.06] saturate-[1.1]"
+          controlsClassName="right-4 top-[130px] sm:right-6 sm:top-[148px] lg:bottom-8 lg:right-10 lg:top-auto"
         >
-        {/* Colour grade: pull any footage into the brand navy, keep text AA-readable */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-navy-600/45" />
-        {/* Coral light bleeding up from the bottom-right, slowly breathing (Tidewell-style glow) */}
-        <div
-          aria-hidden
-          className="glow-breathe pointer-events-none absolute -bottom-[20%] -right-[10%] z-10 h-[80%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgba(255,107,91,0.42),rgba(255,107,91,0.12)_55%,transparent)] blur-2xl motion-reduce:animate-none"
-        />
-        <div aria-hidden className="fluted pointer-events-none absolute inset-0 z-10 opacity-60" />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(10,18,38,0.55)_0%,rgba(10,18,38,0)_28%,rgba(10,18,38,0.15)_55%,rgba(10,18,38,0.9)_100%)]"
-        />
+          {/* Colour grade: the footage stays crisp; navy multiplied in for brand cohesion */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-navy-700/35 mix-blend-multiply" />
+          {/* Cinematic vignette */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(120%_90%_at_50%_30%,transparent_45%,rgba(6,11,24,0.55)_100%)]"
+          />
+          {/* Coral light bleeding up from the bottom-right, slowly breathing */}
+          <div
+            aria-hidden
+            className="glow-breathe pointer-events-none absolute -bottom-[20%] -right-[10%] z-10 h-[80%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgba(255,107,91,0.34),rgba(255,107,91,0.08)_55%,transparent)] blur-2xl motion-reduce:animate-none"
+          />
+          {/* Readability: dark at the top for the nav, deep navy at the bottom for the copy */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(8,14,30,0.6)_0%,rgba(8,14,30,0)_26%,rgba(8,14,30,0.1)_48%,rgba(8,14,30,0.88)_100%)]"
+          />
+          {/* Gloss: glass-like reflection across the top-left + a slow light sweep */}
+          <div aria-hidden className="gloss-sheen pointer-events-none absolute inset-0 z-10" />
+          <div aria-hidden className="gloss-sweep z-10 motion-reduce:hidden" />
         </VideoPlayer>
 
-        <div className="hero-content pointer-events-none container-x relative z-20 flex flex-1 flex-col pb-[88px] pt-28 sm:pb-6 sm:pt-32">
+        {/* Glass bezel: hairline edge + top highlight, like a polished display */}
+        <div aria-hidden className="gloss-bezel pointer-events-none absolute inset-0 z-[15] rounded-[inherit]" />
+
+        <div className="hero-content pointer-events-none container-x relative z-20 flex flex-1 flex-col pb-[88px] pt-[9.5rem] sm:pb-6 sm:pt-[10.5rem] lg:pt-32">
           <div className="pointer-events-auto hidden justify-end lg:flex">
             <TodayCard />
           </div>
@@ -74,7 +85,7 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
               </div>
             </div>
 
-            <div className="relative mt-10 border-t border-cream/15 pt-6 sm:mt-14">
+            <div className="relative mt-10 hidden border-t border-cream/15 pt-6 sm:mt-14 sm:block">
               <span aria-hidden className="grow-x absolute -top-px left-0 h-[2px] w-28 rounded-full bg-coral" style={{ ["--dur" as string]: "1.6s" }} />
               <ul className="no-scrollbar -mx-4 flex gap-8 overflow-x-auto px-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0 lg:grid-cols-5 lg:pr-28">
                 {FEATURES.map(({ icon: Icon, text }, i) => (

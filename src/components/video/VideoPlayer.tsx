@@ -277,7 +277,7 @@ export function VideoPlayer({
                 onClick={() => setMuted((m) => !m)}
                 aria-pressed={!muted}
                 className={clsx(
-                  "inline-flex h-11 items-center gap-2 rounded-full px-4 text-[13px] font-medium transition-colors duration-300",
+                  "inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-[12px] font-medium transition-colors duration-300 sm:h-11 sm:gap-2 sm:px-4 sm:text-[13px]",
                   muted ? "glass text-cream hover:bg-cream/20" : "bg-coral text-navy shadow-[0_8px_24px_-8px_rgba(255,107,91,0.8)]",
                 )}
               >

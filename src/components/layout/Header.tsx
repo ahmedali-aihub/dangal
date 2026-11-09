@@ -45,7 +45,7 @@ export function Header() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 text-cream">
       <div
         className={clsx(
-          "container-x pointer-events-auto flex items-center justify-between transition-[padding] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)]",
+          "container-x pointer-events-auto flex flex-wrap items-center justify-between gap-y-3 transition-[padding] lg:flex-nowrap lg:gap-y-0 duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)]",
           scrolled ? "pt-3" : "pt-5 sm:pt-7",
         )}
       >

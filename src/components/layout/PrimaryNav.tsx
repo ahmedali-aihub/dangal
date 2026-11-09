@@ -16,7 +16,7 @@ const ITEMS: { href: string; label: string }[] = [
 const DRAG_THRESHOLD = 5; // px of movement before a press becomes a drag (below this it's a normal click)
 
 /**
- * Desktop navigation with a single cream pill that marks the current page.
+ * Primary navigation (a second row under the logo on phones/tablets, inline from lg up) with a single cream pill that marks the current page.
  * It never follows the cursor. It moves only when you:
  *   1. CLICK an item  → glides there (stretching, with a small spring) while the page loads, or
  *   2. DRAG the pill  → grab it, pull it toward another item, release: it snaps to the nearest one and opens it.
@@ -165,7 +165,7 @@ export function PrimaryNav() {
   };
 
   return (
-    <nav aria-label="Primary" className="hidden lg:block">
+    <nav aria-label="Primary" className="order-last w-full lg:order-none lg:w-auto">
       <ul
         ref={bar}
         onPointerDown={onPointerDown}
@@ -179,13 +179,13 @@ export function PrimaryNav() {
             e.stopPropagation();
           }
         }}
-        className="glass-strong relative flex cursor-pointer select-none items-center gap-1 rounded-full p-1.5"
+        className="glass-strong relative flex w-full cursor-pointer touch-pan-y select-none items-center justify-between gap-0 rounded-full p-1 lg:w-auto lg:justify-start lg:gap-1 lg:p-1.5"
       >
         {/* the sliding pill */}
         <span
           ref={pill}
           aria-hidden
-          className="nav-pill pointer-events-none absolute inset-y-1.5 left-0 rounded-full bg-cream opacity-0 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]"
+          className="nav-pill pointer-events-none absolute inset-y-1 left-0 rounded-full bg-cream lg:inset-y-1.5 opacity-0 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]"
         />
         {ITEMS.map(({ href, label }, i) => {
           const under = target === i;
@@ -200,7 +200,7 @@ export function PrimaryNav() {
                 aria-current={i === active ? "page" : undefined}
                 onClick={() => setPending(i)} // glide immediately on click, while the page loads
                 className={clsx(
-                  "flex h-10 items-center rounded-full px-5 text-[14px] font-medium tracking-[0.01em] outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-cream/70",
+                  "flex h-9 items-center rounded-full px-[clamp(0.4rem,2.2vw,1.25rem)] text-[clamp(11px,3.1vw,14px)] font-medium tracking-[0.01em] outline-none lg:h-10 lg:px-5 lg:text-[14px] transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-cream/70",
                   under ? "text-navy" : "text-cream/75 hover:text-cream",
                 )}
                 style={{ cursor: "inherit" }}
