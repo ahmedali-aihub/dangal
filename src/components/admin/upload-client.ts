@@ -8,7 +8,7 @@ export function putToSignedUrl(signedUrl: string, file: Blob, onProgress?: (pct:
     const xhr = new XMLHttpRequest();
     xhr.open("PUT", signedUrl);
     xhr.setRequestHeader("x-upsert", "false");
-    const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const anon = (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "").replace(/\s+/g, "");
     if (anon) xhr.setRequestHeader("apikey", anon);
     xhr.upload.onprogress = (e) => e.lengthComputable && onProgress?.(Math.round((e.loaded / e.total) * 100));
     xhr.onload = () => (xhr.status >= 200 && xhr.status < 300 ? resolve() : reject(new Error(`Upload failed (${xhr.status})`)));

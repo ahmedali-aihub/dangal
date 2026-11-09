@@ -15,9 +15,8 @@ const lanIps = Object.values(os.networkInterfaces())
   .filter((i) => i && i.family === "IPv4" && !i.internal)
   .map((i) => i.address);
 
-const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL
-  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).host
-  : null;
+const supabaseUrl = (process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace(/\s+/g, "");
+const supabaseHost = supabaseUrl ? new URL(supabaseUrl).host : null;
 
 // Content-Security-Policy. 'unsafe-inline' for scripts is required by Next's inline bootstrap
 // unless you move to nonce-based CSP (which forces dynamic rendering and costs Lighthouse score).

@@ -4,7 +4,7 @@ export const SITE = {
   tagline: "Train like a wrestler. Live like a champion.",
   description:
     "Dangal Gym in Mehdipatnam, Hyderabad — professional fitness training centre with expert coaches, strength & conditioning, and four signature programs: I AM THE FITTEST MAN, WOMAN, ELDER (40+) and KID.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.dangalgym.com",
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.dangalgym.com").trim().replace(/\/+$/, ""),
   phone: "+91 96764 43944",
   phoneRaw: "+919676443944",
   whatsapp: "919676443944",
