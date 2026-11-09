@@ -15,7 +15,8 @@ const lanIps = Object.values(os.networkInterfaces())
   .filter((i) => i && i.family === "IPv4" && !i.internal)
   .map((i) => i.address);
 
-const supabaseUrl = (process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace(/\s+/g, "");
+const supabaseRaw = (process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace(/\s+/g, "");
+const supabaseUrl = supabaseRaw.match(/^https?:\/\/[a-z0-9-]+\.supabase\.(?:co|in|net)/i)?.[0] ?? supabaseRaw;
 const supabaseHost = supabaseUrl ? new URL(supabaseUrl).host : null;
 
 // Content-Security-Policy. 'unsafe-inline' for scripts is required by Next's inline bootstrap

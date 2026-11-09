@@ -3,7 +3,9 @@
  * space/newline (or a trailing "/"), which turns the address into "fetch failed". Trim defensively.
  */
 const clean = (v: string | undefined) => (v ?? "").replace(/\s+/g, "");
-export const SUPABASE_URL = clean(process.env.NEXT_PUBLIC_SUPABASE_URL).replace(/\/+$/, "");
+const rawUrl = clean(process.env.NEXT_PUBLIC_SUPABASE_URL);
+// If the address was pasted twice ("https://x.supabase.cohttps://x.supabase.co") keep the first, valid one.
+export const SUPABASE_URL = (rawUrl.match(/^https?:\/\/[a-z0-9-]+\.supabase\.(?:co|in|net)/i)?.[0] ?? rawUrl).replace(/\/+$/, "");
 export const SUPABASE_ANON_KEY = clean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 export const SUPABASE_SERVICE_KEY = clean(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
