@@ -14,12 +14,12 @@ export function PageHeader({ title, description, actions }: { title: string; des
 }
 
 export function Card({ className, children }: { className?: string; children: React.ReactNode }) {
-  return <div className={clsx("rounded-2xl border border-navy/10 bg-white p-5 sm:p-6", className)}>{children}</div>;
+  return <div className={clsx("rounded-2xl border border-ink/10 bg-white p-5 sm:p-6", className)}>{children}</div>;
 }
 
 export function DemoNotice() {
   return (
-    <div className="mb-6 rounded-2xl border border-navy/15 bg-cream-200/70 px-5 py-4 text-sm">
+    <div className="mb-6 rounded-2xl border border-ink/15 bg-titanium-200/70 px-5 py-4 text-sm">
       <strong className="font-medium">Local demo mode.</strong> You&apos;re previewing the admin panel with sample data. Connect Supabase (see README) to
       save changes, upload videos and receive leads.
     </div>
@@ -27,13 +27,13 @@ export function DemoNotice() {
 }
 
 export const btn = {
-  primary: "inline-flex h-10 items-center justify-center gap-2 rounded-full bg-navy px-5 text-sm font-medium text-cream transition-colors hover:bg-navy-700 disabled:opacity-50",
-  secondary: "inline-flex h-10 items-center justify-center gap-2 rounded-full border border-navy/15 bg-white px-4 text-sm transition-colors hover:border-navy/40 disabled:opacity-50",
-  ghost: "inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-sm opacity-75 transition hover:bg-navy/5 hover:opacity-100 disabled:opacity-40",
+  primary: "inline-flex h-10 items-center justify-center gap-2 rounded-full bg-ink px-5 text-sm font-medium text-titanium transition-colors hover:bg-ink-700 disabled:opacity-50",
+  secondary: "inline-flex h-10 items-center justify-center gap-2 rounded-full border border-ink/15 bg-white px-4 text-sm transition-colors hover:border-ink/40 disabled:opacity-50",
+  ghost: "inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-sm opacity-75 transition hover:bg-ink/5 hover:opacity-100 disabled:opacity-40",
   danger: "inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-sm text-red-800 transition hover:bg-red-50 disabled:opacity-40",
 };
 
-export const field = "h-11 w-full rounded-xl border border-navy/15 bg-white px-3.5 text-sm outline-none transition focus:border-navy";
+export const field = "h-11 w-full rounded-xl border border-ink/15 bg-white px-3.5 text-sm outline-none transition focus:border-ink";
 export const labelText = "mb-1.5 block text-xs font-medium uppercase tracking-[0.08em] opacity-70";
 
 export function Badge({ children, tone = "neutral" }: { children: React.ReactNode; tone?: "neutral" | "solid" | "outline" }) {
@@ -41,9 +41,9 @@ export function Badge({ children, tone = "neutral" }: { children: React.ReactNod
     <span
       className={clsx(
         "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium",
-        tone === "solid" && "bg-navy text-cream",
-        tone === "neutral" && "bg-navy/[0.07]",
-        tone === "outline" && "border border-navy/20",
+        tone === "solid" && "bg-ink text-titanium",
+        tone === "neutral" && "bg-ink/[0.07]",
+        tone === "outline" && "border border-ink/20",
       )}
     >
       {children}

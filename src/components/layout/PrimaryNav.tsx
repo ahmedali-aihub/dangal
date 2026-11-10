@@ -17,12 +17,12 @@ const ITEMS: { href: string; label: string; hideOnPhone?: boolean }[] = [
 const DRAG_THRESHOLD = 5; // px of movement before a press becomes a drag (below this it's a normal click)
 
 /**
- * Primary navigation, drawn inside the header capsule. A single cream pill marks the current page.
+ * Primary navigation, drawn inside the header capsule. A single titanium pill marks the current page.
  * It never follows the cursor. It moves only when you:
  *   1. CLICK an item  → glides there (stretching, with a small spring) while the page loads, or
  *   2. DRAG the pill  → grab it, pull it toward another item, release: it snaps to the nearest one and opens it.
  *
- * The label under the pill is navy because the pill carries its OWN copy of the labels, clipped to its
+ * The label under the pill is ink because the pill carries its OWN copy of the labels, clipped to its
  * shape and counter-moved so they stay aligned with the real ones. Whatever the pill covers is therefore
  * always legible — mid-glide, mid-drag, or on first paint — with no colour state to get out of sync.
  */
@@ -227,7 +227,7 @@ export function PrimaryNav() {
               aria-current={i === active ? "page" : undefined}
               onClick={() => setPending(i)} // glide immediately on click, while the page loads
               className={clsx(
-                "flex h-9 items-center rounded-full px-[clamp(3px,1vw,12px)] text-cream/75 outline-none transition-colors duration-300 hover:text-cream focus-visible:ring-2 focus-visible:ring-cream/70 sm:px-4 lg:h-10 lg:px-5",
+                "flex h-9 items-center rounded-full px-[clamp(3px,1vw,12px)] text-titanium/75 outline-none transition-colors duration-300 hover:text-titanium focus-visible:ring-2 focus-visible:ring-titanium/70 sm:px-4 lg:h-10 lg:px-5",
                 text,
               )}
               style={{ cursor: "inherit" }}
@@ -237,11 +237,11 @@ export function PrimaryNav() {
           </li>
         ))}
 
-        {/* The pill — above the labels, carrying its own navy copy of them (clipped to the pill's shape). */}
+        {/* The pill — above the labels, carrying its own ink copy of them (clipped to the pill's shape). */}
         <span
           ref={pill}
           aria-hidden
-          className="nav-pill pointer-events-none absolute inset-y-0 left-0 z-20 overflow-hidden rounded-full bg-cream opacity-0 shadow-[0_8px_24px_-10px_rgba(0,0,0,0.55)]"
+          className="nav-pill pointer-events-none absolute inset-y-0 left-0 z-20 overflow-hidden rounded-full bg-titanium opacity-0 shadow-[0_8px_24px_-10px_rgba(0,0,0,0.55)]"
         >
           <span ref={ghost} className="nav-ghost absolute left-0 top-0 h-full w-full">
             {ITEMS.map(({ href, label }, i) => (
@@ -250,7 +250,7 @@ export function PrimaryNav() {
                 ref={(el) => {
                   ghosts.current[i] = el;
                 }}
-                className={clsx("absolute top-0 flex h-full items-center justify-center whitespace-nowrap text-navy", text)}
+                className={clsx("absolute top-0 flex h-full items-center justify-center whitespace-nowrap text-ink", text)}
               >
                 {label}
               </span>

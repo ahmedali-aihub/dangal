@@ -106,16 +106,16 @@ export function ProgramFinder() {
   };
 
   return (
-    <div className="grid overflow-hidden rounded-[26px] bg-navy text-cream lg:grid-cols-12">
+    <div className="grid overflow-hidden rounded-[26px] bg-ink text-titanium lg:grid-cols-12">
       {/* Left rail: title + progress */}
       <div className="relative flex flex-col justify-between gap-10 overflow-hidden p-7 sm:p-10 lg:col-span-5">
         <div aria-hidden className="fluted absolute inset-0 opacity-50" />
         <div className="relative">
-          <p className="eyebrow text-cream/75">Program finder</p>
+          <p className="eyebrow text-titanium/75">Program finder</p>
           <h2 className="display-md mt-5">
             Not sure where to start? <span className="serif-accent">Ask the coach.</span>
           </h2>
-          <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-cream/75">Four quick questions. We&apos;ll match your program, plan, diet and best batch timings.</p>
+          <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-titanium/75">Four quick questions. We&apos;ll match your program, plan, diet and best batch timings.</p>
         </div>
         <ol className="relative space-y-3" aria-label="Progress">
           {STEPS.map((s, i) => (
@@ -123,7 +123,7 @@ export function ProgramFinder() {
               <span
                 className={clsx(
                   "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs tabular-nums transition-all duration-500",
-                  i < step ? "border-coral bg-coral text-navy" : i === step ? "border-cream" : "border-cream/30",
+                  i < step ? "border-silver bg-silver text-ink" : i === step ? "border-titanium" : "border-titanium/30",
                 )}
               >
                 {i < step ? <Check className="h-3.5 w-3.5" aria-hidden /> : i + 1}
@@ -136,7 +136,7 @@ export function ProgramFinder() {
       </div>
 
       {/* Right: question or result */}
-      <div className="bg-cream-50 p-5 text-navy sm:p-8 lg:col-span-7 lg:p-10" aria-live="polite">
+      <div className="bg-titanium-50 p-5 text-ink sm:p-8 lg:col-span-7 lg:p-10" aria-live="polite">
         {!done ? (
           <div key={step} className="fade-up flex h-full flex-col">
             <div className="flex items-center justify-between text-sm">
@@ -144,13 +144,13 @@ export function ProgramFinder() {
                 Question {step + 1} of {STEPS.length}
               </span>
               {step > 0 && (
-                <button type="button" onClick={() => setStep((s) => s - 1)} className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 opacity-75 hover:bg-navy/5 hover:opacity-100">
+                <button type="button" onClick={() => setStep((s) => s - 1)} className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 opacity-75 hover:bg-ink/5 hover:opacity-100">
                   <ArrowLeft className="h-4 w-4" aria-hidden /> Back
                 </button>
               )}
             </div>
-            <div className="mt-3 h-1 overflow-hidden rounded-full bg-navy/10">
-              <div className="h-full rounded-full bg-coral transition-[width] duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)]" style={{ width: `${(step / STEPS.length) * 100}%` }} />
+            <div className="mt-3 h-1 overflow-hidden rounded-full bg-ink/10">
+              <div className="h-full rounded-full bg-silver transition-[width] duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)]" style={{ width: `${(step / STEPS.length) * 100}%` }} />
             </div>
             <h3 className="mt-8 text-[clamp(1.6rem,3vw,2.4rem)] font-light leading-[1.1] tracking-[-0.035em]">{STEPS[step].q}</h3>
             <div role="radiogroup" aria-label={STEPS[step].q} className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -164,8 +164,8 @@ export function ProgramFinder() {
                     aria-checked={selected}
                     onClick={() => choose(STEPS[step].key, o.v)}
                     className={clsx(
-                      "fade-up group flex min-h-[64px] items-center justify-between gap-4 rounded-2xl border px-5 py-4 text-left text-[15px] transition-all duration-300 hover:-translate-y-0.5 hover:border-navy hover:shadow-soft",
-                      selected ? "border-navy bg-navy text-cream" : "border-navy/15 bg-white",
+                      "fade-up group flex min-h-[64px] items-center justify-between gap-4 rounded-2xl border px-5 py-4 text-left text-[15px] transition-all duration-300 hover:-translate-y-0.5 hover:border-ink hover:shadow-soft",
+                      selected ? "border-ink bg-ink text-titanium" : "border-ink/15 bg-white",
                     )}
                     style={{ ["--delay" as string]: `${0.05 + i * 0.05}s` }}
                   >
@@ -187,14 +187,14 @@ export function ProgramFinder() {
                     setA({});
                     setStep(0);
                   }}
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 opacity-75 hover:bg-navy/5 hover:opacity-100"
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 opacity-75 hover:bg-ink/5 hover:opacity-100"
                 >
                   <RotateCcw className="h-4 w-4" aria-hidden /> Start over
                 </button>
               </div>
 
               <div className="mt-4 grid gap-5 sm:grid-cols-[180px_1fr]">
-                <div className="reveal-img relative aspect-[4/3] overflow-hidden rounded-2xl bg-navy sm:aspect-[4/5]">
+                <div className="reveal-img relative aspect-[4/3] overflow-hidden rounded-2xl bg-ink sm:aspect-[4/5]">
                   <Image src={img(result.prog.image, 500)} alt="" fill sizes="180px" placeholder="blur" blurDataURL={BLUR} className="object-cover" />
                 </div>
                 <div>
@@ -204,7 +204,7 @@ export function ProgramFinder() {
                 </div>
               </div>
 
-              <dl className="mt-6 grid gap-px overflow-hidden rounded-2xl bg-navy/10 text-sm sm:grid-cols-2">
+              <dl className="mt-6 grid gap-px overflow-hidden rounded-2xl bg-ink/10 text-sm sm:grid-cols-2">
                 <div className="bg-white p-4">
                   <dt className="text-xs uppercase tracking-[0.08em] opacity-70">Recommended plan</dt>
                   <dd className="mt-1 font-medium">{result.plan.name}</dd>
@@ -239,7 +239,7 @@ export function ProgramFinder() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href={`/contact?program=${result.prog.slug}#trial`}
-                  className="group inline-flex h-12 items-center gap-2 rounded-full bg-coral px-6 text-sm font-semibold text-navy shadow-[0_10px_30px_-10px_rgba(255,107,91,0.8)] transition-colors hover:bg-coral-400"
+                  className="group inline-flex h-12 items-center gap-2 rounded-full bg-silver px-6 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(255,255,255,0.3)] transition-colors hover:bg-silver-400"
                 >
                   <span className="roll" data-text="Book my free trial">
                     <span>Book my free trial</span>
@@ -250,7 +250,7 @@ export function ProgramFinder() {
                   href={whatsappLink(`Hi Dangal Gym! The program finder matched me with ${result.prog.name} (${result.plan.name} plan). I'd like to book a free trial.`)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center gap-2 rounded-full border border-navy/20 px-5 text-sm transition-colors hover:border-navy"
+                  className="inline-flex h-12 items-center gap-2 rounded-full border border-ink/20 px-5 text-sm transition-colors hover:border-ink"
                 >
                   <SocialIcon name="whatsapp" /> Send to WhatsApp
                 </a>

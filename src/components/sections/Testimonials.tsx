@@ -71,9 +71,9 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
         {/* Story progress */}
         <div className="mb-10 flex gap-1.5" aria-hidden>
           {items.map((x, k) => (
-            <button key={x.id} tabIndex={-1} onClick={() => setI(k)} className="h-[3px] flex-1 overflow-hidden rounded-full bg-navy/15">
-              {k < i && <span className="block h-full w-full bg-navy" />}
-              {k === i && <span key={i} className={clsx("block h-full w-full bg-navy", n > 1 && !reduce && "grow-x")} style={{ ["--dur" as string]: `${DURATION}ms` }} />}
+            <button key={x.id} tabIndex={-1} onClick={() => setI(k)} className="h-[3px] flex-1 overflow-hidden rounded-full bg-ink/15">
+              {k < i && <span className="block h-full w-full bg-ink" />}
+              {k === i && <span key={i} className={clsx("block h-full w-full bg-ink", n > 1 && !reduce && "grow-x")} style={{ ["--dur" as string]: `${DURATION}ms` }} />}
             </button>
           ))}
         </div>
@@ -90,7 +90,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
               ))}
             </blockquote>
             <figcaption className="fade-up mt-10 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm" style={{ ["--delay" as string]: "0.25s" }}>
-              <span aria-hidden className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-navy text-[13px] font-medium text-cream">
+              <span aria-hidden className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-ink text-[13px] font-medium text-titanium">
                 {t.name
                   .split(" ")
                   .slice(0, 2)
@@ -125,7 +125,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
           <button
             type="button"
             onClick={() => go(-1)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-navy/20 transition-all duration-300 hover:bg-navy hover:text-cream active:scale-95"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/20 transition-all duration-300 hover:bg-ink hover:text-titanium active:scale-95"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
             <span className="sr-only">Previous testimonial</span>
@@ -133,7 +133,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
           <button
             type="button"
             onClick={() => go(1)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-navy/20 transition-all duration-300 hover:bg-navy hover:text-cream active:scale-95"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/20 transition-all duration-300 hover:bg-ink hover:text-titanium active:scale-95"
           >
             <ArrowRight className="h-4 w-4" aria-hidden />
             <span className="sr-only">Next testimonial</span>

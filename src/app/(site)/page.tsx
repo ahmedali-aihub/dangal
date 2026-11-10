@@ -32,16 +32,16 @@ export default async function HomePage() {
       <Hero slot={heroSlot} isDefault={heroSlot.isDefault} />
       <Intro />
       <Marquee />
-      <div className="h-3 bg-cream sm:h-4" aria-hidden />
+      <div className="h-3 bg-titanium sm:h-4" aria-hidden />
 
-      <Section tone="navy" label="Signature programs" className="mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px]">
+      <Section tone="ink" label="Signature programs" className="mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px]">
         <div className="container-x">
           <SectionHeading
             index="01"
             eyebrow="Signature programs"
             title={<>Four programs. One standard: <span className="serif-accent">the fittest.</span></>}
             lede="Built for where you are in life — not a one-size template. Each program has its own coaching, schedule and milestones."
-            action={<ButtonLink href="/programs" variant="outline-cream" arrow>All programs</ButtonLink>}
+            action={<ButtonLink href="/programs" variant="outline-titanium" arrow>All programs</ButtonLink>}
           />
           <div className="mt-14">
             <ProgramShowcase />
@@ -49,7 +49,7 @@ export default async function HomePage() {
         </div>
       </Section>
 
-      <Section tone="cream" label="Program finder" id="finder">
+      <Section tone="titanium" label="Program finder" id="finder">
         <div className="container-x">
           <ProgramFinder />
         </div>
@@ -57,13 +57,13 @@ export default async function HomePage() {
 
       <Why />
 
-      <Section tone="cream" label="Trainers">
+      <Section tone="titanium" label="Trainers">
         <div className="container-x">
           <SectionHeading
             index="03"
             eyebrow="The coaches"
             title={<>Coaches who have <span className="serif-accent">lived</span> the grind.</>}
-            action={<ButtonLink href="/trainers" variant="outline-navy" arrow>Meet the team</ButtonLink>}
+            action={<ButtonLink href="/trainers" variant="outline-ink" arrow>Meet the team</ButtonLink>}
           />
           <div className="mt-14">
             <TrainerGrid trainers={trainers.slice(0, 4)} />
@@ -71,14 +71,14 @@ export default async function HomePage() {
         </div>
       </Section>
 
-      <Section tone="navy" label="Membership" id="membership" className="mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px]">
+      <Section tone="ink" label="Membership" id="membership" className="mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px]">
         <div className="container-x">
           <SectionHeading
             index="04"
             eyebrow="Membership"
             title={<>Simple plans. <span className="serif-accent">No</span> hidden fees.</>}
             lede="Every plan includes full floor access, group classes and an onboarding assessment. Longer commitments, better value."
-            action={<ButtonLink href="/membership" variant="outline-cream" arrow>Compare plans</ButtonLink>}
+            action={<ButtonLink href="/membership" variant="outline-titanium" arrow>Compare plans</ButtonLink>}
           />
           <div className="mt-14">
             <PlanCards plans={plans} />
@@ -86,7 +86,7 @@ export default async function HomePage() {
         </div>
       </Section>
 
-      <Section tone="cream" label="Testimonials">
+      <Section tone="titanium" label="Testimonials">
         <div className="container-x">
           <p className="eyebrow mb-10 opacity-70">
             <span className="tabular-nums">05</span>Member stories
@@ -98,8 +98,8 @@ export default async function HomePage() {
       <GalleryPreview items={gallery} />
       <InstagramFeed posts={instagram} />
 
-      <Section tone="cream" className="pt-0 sm:pt-0 lg:pt-0" label="Frequently asked questions">
-        <div className="container-x grid gap-12 border-t border-navy/10 pt-20 lg:grid-cols-12">
+      <Section tone="titanium" className="pt-0 sm:pt-0 lg:pt-0" label="Frequently asked questions">
+        <div className="container-x grid gap-12 border-t border-ink/10 pt-20 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="eyebrow opacity-70">
               <span className="tabular-nums">07</span>FAQ
@@ -118,7 +118,7 @@ export default async function HomePage() {
       </Section>
 
       <FinalCta />
-      <div className="h-3 bg-cream" aria-hidden />
+      <div className="h-3 bg-titanium" aria-hidden />
     </>
   );
 }

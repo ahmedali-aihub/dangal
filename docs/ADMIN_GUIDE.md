@@ -48,7 +48,7 @@ Each of these works the same way:
 - **Display order**: lower numbers appear first.
 - **Photos**: click **Upload image** (JPG, PNG or WebP, max 5 MB). Use well-lit, sharp photos. Trainer photos look best as portraits.
 
-Pricing notes: enter prices in rupees without commas. "Original price" shows struck through, for discounts. **Highlight this plan** makes it the featured cream card.
+Pricing notes: enter prices in rupees without commas. "Original price" shows struck through, for discounts. **Highlight this plan** makes it the featured silver card.
 
 Testimonials: only publish a member's name, photo or results with their permission.
 

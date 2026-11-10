@@ -8,7 +8,7 @@ import { LogoBadge } from "./Logo";
 let hasMounted = false;
 
 /**
- * Premium route transition: a navy curtain with the Dangal mark sweeps up over the incoming page,
+ * Premium route transition: a ink curtain with the Dangal mark sweeps up over the incoming page,
  * which rises into place. Plays only on in-app navigation, never on first load or for reduced-motion users.
  */
 export function PageTransition({ children }: { children: React.ReactNode }) {

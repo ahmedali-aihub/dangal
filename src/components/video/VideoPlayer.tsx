@@ -181,7 +181,7 @@ export function VideoPlayer({
       : `https://player.vimeo.com/video/${v.src}?background=1&autoplay=1&muted=1&loop=${isPlaylist ? 0 : 1}&autopause=0&dnt=1`;
 
   return (
-    <div ref={rootRef} className={clsx("absolute inset-0 overflow-hidden bg-navy-900 [container-type:size]", className)}>
+    <div ref={rootRef} className={clsx("absolute inset-0 overflow-hidden bg-ink-900 [container-type:size]", className)}>
       {/* Poster / fallback (also the LCP image) */}
       <Image
         src={img(poster, 1920, 72)}
@@ -256,7 +256,7 @@ export function VideoPlayer({
             <button
               type="button"
               onClick={() => setOptIn(true)}
-              className="glass inline-flex h-10 items-center gap-2 rounded-full px-4 text-[13px] text-cream"
+              className="glass inline-flex h-10 items-center gap-2 rounded-full px-4 text-[13px] text-titanium"
             >
               <Play className="h-3.5 w-3.5" aria-hidden /> {reason === "data" ? "Play video (uses data)" : "Play video"}
             </button>
@@ -267,7 +267,7 @@ export function VideoPlayer({
                   {videos.map((v, i) => (
                     <span
                       key={v.id}
-                      className={clsx("h-1 rounded-full bg-cream transition-all", i === index % videos.length ? "w-5" : "w-1.5 opacity-70")}
+                      className={clsx("h-1 rounded-full bg-titanium transition-all", i === index % videos.length ? "w-5" : "w-1.5 opacity-70")}
                     />
                   ))}
                 </div>
@@ -278,7 +278,7 @@ export function VideoPlayer({
                 aria-pressed={!muted}
                 className={clsx(
                   "inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-[12px] font-medium transition-colors duration-300 sm:h-11 sm:gap-2 sm:px-4 sm:text-[13px]",
-                  muted ? "glass text-cream hover:bg-cream/20" : "bg-coral text-navy shadow-[0_8px_24px_-8px_rgba(255,107,91,0.8)]",
+                  muted ? "glass text-titanium hover:bg-titanium/20" : "bg-silver text-ink shadow-[0_8px_24px_-8px_rgba(255,255,255,0.3)]",
                 )}
               >
                 {muted ? <VolumeX className="h-4 w-4" aria-hidden /> : <Volume2 className="h-4 w-4" aria-hidden />}

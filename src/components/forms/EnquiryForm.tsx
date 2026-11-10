@@ -12,9 +12,9 @@ type Errors = Partial<Record<string, string[]>>;
 const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 const input =
-  "peer h-14 w-full rounded-xl border bg-cream-50 px-4 pt-5 text-[15px] text-navy outline-none transition placeholder:text-transparent focus:border-navy aria-[invalid=true]:border-red-700";
+  "peer h-14 w-full rounded-xl border bg-titanium-50 px-4 pt-5 text-[15px] text-ink outline-none transition placeholder:text-transparent focus:border-ink aria-[invalid=true]:border-red-700";
 const labelCls =
-  "pointer-events-none absolute left-4 top-2 text-[11px] uppercase tracking-[0.1em] text-navy/70 transition-all";
+  "pointer-events-none absolute left-4 top-2 text-[11px] uppercase tracking-[0.1em] text-ink/70 transition-all";
 
 export function EnquiryForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -83,7 +83,7 @@ export function EnquiryForm() {
 
   if (status === "done") {
     return (
-      <div className="flex min-h-[420px] flex-col items-start justify-center rounded-[24px] bg-cream-50 p-8 sm:p-12" role="status">
+      <div className="flex min-h-[420px] flex-col items-start justify-center rounded-[24px] bg-titanium-50 p-8 sm:p-12" role="status">
         <CheckCircle2 className="h-10 w-10" strokeWidth={1.25} aria-hidden />
         <h3 className="mt-6 text-3xl font-light tracking-[-0.035em]">
           {kind === "free_trial" ? "Your free trial request is in." : "Thanks — we've got your message."}
@@ -91,7 +91,7 @@ export function EnquiryForm() {
         <p className="mt-4 max-w-md text-[15px] leading-relaxed opacity-75">
           A coach will call you within a few working hours to confirm a time. Prefer instant? Message us on WhatsApp.
         </p>
-        <a href={whatsappLink("Hi, I just booked a free trial on the website.")} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-11 items-center rounded-full bg-navy px-6 text-sm text-cream">
+        <a href={whatsappLink("Hi, I just booked a free trial on the website.")} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-11 items-center rounded-full bg-ink px-6 text-sm text-titanium">
           Continue on WhatsApp
         </a>
       </div>
@@ -101,10 +101,10 @@ export function EnquiryForm() {
   const err = (k: string) => errors[k]?.[0];
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} noValidate className="rounded-[24px] bg-cream-50 p-6 sm:p-10" aria-label="Free trial and enquiry form">
+    <form ref={formRef} onSubmit={onSubmit} noValidate className="rounded-[24px] bg-titanium-50 p-6 sm:p-10" aria-label="Free trial and enquiry form">
       {SITE_KEY && <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />}
 
-      <div role="radiogroup" aria-label="Request type" className="grid grid-cols-2 gap-1 rounded-full bg-navy/[0.06] p-1">
+      <div role="radiogroup" aria-label="Request type" className="grid grid-cols-2 gap-1 rounded-full bg-ink/[0.06] p-1">
         {(
           [
             ["free_trial", "Book a free trial"],
@@ -117,7 +117,7 @@ export function EnquiryForm() {
             role="radio"
             aria-checked={kind === k}
             onClick={() => setKind(k)}
-            className={clsx("h-11 rounded-full text-sm transition-colors", kind === k ? "bg-navy text-cream" : "text-navy/70 hover:text-navy")}
+            className={clsx("h-11 rounded-full text-sm transition-colors", kind === k ? "bg-ink text-titanium" : "text-ink/70 hover:text-ink")}
           >
             {l}
           </button>
@@ -126,16 +126,16 @@ export function EnquiryForm() {
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         <Field id="name" label="Full name *" error={err("name")}>
-          <input id="name" name="name" autoComplete="name" placeholder="Full name" maxLength={80} required aria-invalid={!!err("name")} aria-describedby={err("name") ? "name-err" : undefined} className={clsx(input, "border-navy/15")} />
+          <input id="name" name="name" autoComplete="name" placeholder="Full name" maxLength={80} required aria-invalid={!!err("name")} aria-describedby={err("name") ? "name-err" : undefined} className={clsx(input, "border-ink/15")} />
         </Field>
         <Field id="phone" label="Mobile number *" error={err("phone")}>
-          <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="Mobile" maxLength={16} required aria-invalid={!!err("phone")} aria-describedby={err("phone") ? "phone-err" : undefined} className={clsx(input, "border-navy/15")} />
+          <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="Mobile" maxLength={16} required aria-invalid={!!err("phone")} aria-describedby={err("phone") ? "phone-err" : undefined} className={clsx(input, "border-ink/15")} />
         </Field>
         <Field id="email" label="Email (optional)" error={err("email")}>
-          <input id="email" name="email" type="email" autoComplete="email" placeholder="Email" maxLength={120} aria-invalid={!!err("email")} aria-describedby={err("email") ? "email-err" : undefined} className={clsx(input, "border-navy/15")} />
+          <input id="email" name="email" type="email" autoComplete="email" placeholder="Email" maxLength={120} aria-invalid={!!err("email")} aria-describedby={err("email") ? "email-err" : undefined} className={clsx(input, "border-ink/15")} />
         </Field>
         <Field id="interest" label="Interested in">
-          <select id="interest" name="interest" value={interest} onChange={(e) => setInterest(e.target.value)} className={clsx(input, "appearance-none border-navy/15")}>
+          <select id="interest" name="interest" value={interest} onChange={(e) => setInterest(e.target.value)} className={clsx(input, "appearance-none border-ink/15")}>
             <option value="">Select a program</option>
             {INTERESTS.map((i) => (
               <option key={i} value={i}>
@@ -145,7 +145,7 @@ export function EnquiryForm() {
           </select>
         </Field>
         <Field id="preferredTime" label="Preferred time" className="sm:col-span-2">
-          <select id="preferredTime" name="preferredTime" defaultValue="" className={clsx(input, "appearance-none border-navy/15")}>
+          <select id="preferredTime" name="preferredTime" defaultValue="" className={clsx(input, "appearance-none border-ink/15")}>
             <option value="">Any time</option>
             {TIMES.map((t) => (
               <option key={t} value={t}>
@@ -155,7 +155,7 @@ export function EnquiryForm() {
           </select>
         </Field>
         <Field id="message" label="Goals or questions" className="sm:col-span-2" error={err("message")}>
-          <textarea id="message" name="message" rows={4} maxLength={1000} placeholder="Message" className={clsx(input, "!h-auto resize-none border-navy/15 pt-7")} />
+          <textarea id="message" name="message" rows={4} maxLength={1000} placeholder="Message" className={clsx(input, "!h-auto resize-none border-ink/15 pt-7")} />
         </Field>
       </div>
 
@@ -168,7 +168,7 @@ export function EnquiryForm() {
       {SITE_KEY && <div className="cf-turnstile mt-5" data-sitekey={SITE_KEY} data-theme="light" />}
 
       <label className="mt-5 flex items-start gap-3 text-sm">
-        <input type="checkbox" name="consent" className="mt-0.5 h-5 w-5 shrink-0 accent-navy" aria-invalid={!!err("consent")} aria-describedby={err("consent") ? "consent-err" : undefined} />
+        <input type="checkbox" name="consent" className="mt-0.5 h-5 w-5 shrink-0 accent-ink" aria-invalid={!!err("consent")} aria-describedby={err("consent") ? "consent-err" : undefined} />
         <span className="opacity-75">
           I agree to be contacted by Dangal Gym by phone, WhatsApp or email about my request. See our{" "}
           <a href="/privacy" className="underline underline-offset-2">
@@ -187,7 +187,7 @@ export function EnquiryForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex h-[52px] items-center justify-center gap-2 rounded-full bg-navy px-8 text-[15px] font-medium text-cream transition-colors hover:bg-navy-700 disabled:opacity-60"
+          className="inline-flex h-[52px] items-center justify-center gap-2 rounded-full bg-ink px-8 text-[15px] font-medium text-titanium transition-colors hover:bg-ink-700 disabled:opacity-60"
         >
           {status === "sending" && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />}
           {kind === "free_trial" ? "Request free trial" : "Send enquiry"}

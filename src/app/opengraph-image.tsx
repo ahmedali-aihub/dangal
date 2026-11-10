@@ -15,13 +15,13 @@ export default function OG() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "linear-gradient(135deg,#0e1a33 0%,#14213D 55%,#1e3057 100%)",
-          color: "#F4EDE0",
+          background: "linear-gradient(135deg,#09090b 0%,#111113 55%,#1c1c1f 100%)",
+          color: "#F5F5F7",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28, letterSpacing: 6 }}>
-          <div style={{ width: 40, height: 40, borderRadius: 40, border: "3px solid #F4EDE0", display: "flex" }} />
+          <div style={{ width: 40, height: 40, borderRadius: 40, border: "3px solid #F5F5F7", display: "flex" }} />
           DANGAL GYM
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>

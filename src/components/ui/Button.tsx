@@ -3,17 +3,18 @@ import { clsx } from "clsx";
 import { ArrowUpRight } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "coral" | "cream" | "navy" | "outline-cream" | "outline-navy" | "text-cream" | "text-navy";
+type Variant = "silver" | "titanium" | "ink" | "outline-titanium" | "outline-ink" | "text-titanium" | "text-ink";
 
 const styles: Record<Variant, string> = {
-  // Primary action. Navy text on coral = 5.8:1 (AA).
-  coral: "bg-coral text-navy shadow-[0_10px_30px_-10px_rgba(255,107,91,0.7)] hover:bg-coral-400 hover:shadow-[0_14px_36px_-10px_rgba(255,107,91,0.85)]",
-  cream: "bg-cream text-navy hover:bg-white",
-  navy: "bg-navy text-cream hover:bg-navy-700",
-  "outline-cream": "border border-cream/30 text-cream hover:border-cream/70 hover:bg-cream/5",
-  "outline-navy": "border border-navy/25 text-navy hover:border-navy/60 hover:bg-navy/[0.03]",
-  "text-cream": "text-cream px-0 hover:opacity-80",
-  "text-navy": "text-navy px-0 hover:opacity-70",
+  // Primary action: polished silver. Ink text on silver is > 15:1.
+  silver:
+    "bg-gradient-to-b from-white to-silver-600 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_10px_30px_-12px_rgba(255,255,255,0.35)] hover:to-silver hover:shadow-[inset_0_1px_0_rgba(255,255,255,1),0_14px_36px_-12px_rgba(255,255,255,0.5)]",
+  titanium: "bg-titanium text-ink hover:bg-white",
+  ink: "bg-ink text-titanium hover:bg-ink-700",
+  "outline-titanium": "border border-titanium/30 text-titanium hover:border-titanium/70 hover:bg-titanium/5",
+  "outline-ink": "border border-ink/25 text-ink hover:border-ink/60 hover:bg-ink/[0.03]",
+  "text-titanium": "text-titanium px-0 hover:opacity-80",
+  "text-ink": "text-ink px-0 hover:opacity-70",
 };
 
 type Props = {
@@ -52,7 +53,7 @@ function Inner({ children, arrow }: { children: ReactNode; arrow?: boolean }) {
 }
 
 export function ButtonLink({
-  variant = "navy",
+  variant = "ink",
   size = "md",
   arrow,
   children,
@@ -68,7 +69,7 @@ export function ButtonLink({
 }
 
 export function ExternalButton({
-  variant = "navy",
+  variant = "ink",
   size = "md",
   arrow,
   children,
@@ -84,7 +85,7 @@ export function ExternalButton({
 }
 
 export function Button({
-  variant = "navy",
+  variant = "ink",
   size = "md",
   arrow,
   children,

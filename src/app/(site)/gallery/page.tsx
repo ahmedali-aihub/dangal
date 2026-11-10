@@ -25,13 +25,13 @@ export default async function GalleryPage() {
         image={IMG.weights}
         crumbs={[{ name: "Gallery", path: "/gallery" }]}
       />
-      <Section tone="cream" label="Photo gallery">
+      <Section tone="titanium" label="Photo gallery">
         <div className="container-x">
           <GalleryGrid items={items} />
         </div>
       </Section>
       <FinalCta />
-      <div className="h-3 bg-cream" aria-hidden />
+      <div className="h-3 bg-titanium" aria-hidden />
     </>
   );
 }

@@ -17,7 +17,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
 
   return (
     <>
-      {denied && <p className="mb-6 rounded-xl bg-navy/5 p-3 text-sm">You don&apos;t have access to that section. Ask the owner.</p>}
+      {denied && <p className="mb-6 rounded-xl bg-ink/5 p-3 text-sm">You don&apos;t have access to that section. Ask the owner.</p>}
       <PageHeader
         title={`Good ${hour < 12 ? "morning" : hour < 17 ? "afternoon" : "evening"}, ${(session.name ?? "").split(" ")[0] || "there"}.`}
         description="Here's what's happening at Dangal today."
@@ -30,7 +30,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
           ["Trials booked", stats.trials, "/admin/leads?status=trial_booked"],
           ["Converted", stats.converted, "/admin/leads?status=converted"],
         ].map(([label, value, href]) => (
-          <Link key={label as string} href={href as string} className="group rounded-2xl border border-navy/10 bg-white p-5 transition-colors hover:border-navy/30">
+          <Link key={label as string} href={href as string} className="group rounded-2xl border border-ink/10 bg-white p-5 transition-colors hover:border-ink/30">
             <p className="flex items-center justify-between text-sm opacity-65">
               {label}
               <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-60" aria-hidden />
@@ -48,7 +48,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
               View all →
             </Link>
           </div>
-          <ul className="mt-4 divide-y divide-navy/10">
+          <ul className="mt-4 divide-y divide-ink/10">
             {stats.recent.length === 0 && <li className="py-6 text-sm opacity-70">No enquiries yet.</li>}
             {stats.recent.map((l) => (
               <li key={l.id} className="flex items-center justify-between gap-4 py-3.5">
@@ -78,7 +78,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
                 Change →
               </Link>
             </div>
-            <p className="mt-4 rounded-xl bg-cream-100 p-4 text-sm">{video ? video.title : <span className="opacity-70">The Dangal film (built-in)</span>}</p>
+            <p className="mt-4 rounded-xl bg-titanium-100 p-4 text-sm">{video ? video.title : <span className="opacity-70">The Dangal film (built-in)</span>}</p>
             <p className="mt-3 text-xs opacity-65">This is the only video on the website — it plays at the top of the home page.</p>
           </Card>
         )}

@@ -4,13 +4,13 @@ import { Reveal } from "./Motion";
 import { SplitText } from "./SplitText";
 
 export function Section({
-  tone = "cream",
+  tone = "titanium",
   id,
   className,
   children,
   label,
 }: {
-  tone?: "cream" | "navy" | "sand";
+  tone?: "titanium" | "ink" | "sand";
   id?: string;
   className?: string;
   children: ReactNode;
@@ -23,9 +23,9 @@ export function Section({
       className={clsx(
         // content-visibility: skip style/layout/paint for off-screen sections until they approach the viewport
         "relative py-20 [contain-intrinsic-size:auto_900px] [content-visibility:auto] sm:py-28 lg:py-32",
-        tone === "navy" && "bg-navy text-cream",
-        tone === "cream" && "bg-cream text-navy",
-        tone === "sand" && "bg-cream-200/60 text-navy",
+        tone === "ink" && "bg-ink text-titanium",
+        tone === "titanium" && "bg-titanium text-ink",
+        tone === "sand" && "bg-titanium-200/60 text-ink",
         className,
       )}
     >

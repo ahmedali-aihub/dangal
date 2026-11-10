@@ -59,18 +59,18 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
       >
         <div className="flex flex-wrap items-center gap-x-6 gap-y-4 lg:justify-end">
           <Magnetic>
-            <ButtonLink href={`/contact?program=${p.slug}#trial`} variant="coral" size="lg" arrow>
+            <ButtonLink href={`/contact?program=${p.slug}#trial`} variant="silver" size="lg" arrow>
               Join this program
             </ButtonLink>
           </Magnetic>
-          <a href="#schedule" className="text-sm text-cream/80 hover:text-cream">
+          <a href="#schedule" className="text-sm text-titanium/80 hover:text-titanium">
             See schedule ↓
           </a>
         </div>
       </PageHero>
 
       {/* Philosophy */}
-      <Section tone="cream" label="Philosophy">
+      <Section tone="titanium" label="Philosophy">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-3">
             <p className="eyebrow opacity-70">
@@ -88,15 +88,15 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
       </Section>
 
       {/* Workouts */}
-      <Section tone="navy" label="Workouts" className="mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px]">
+      <Section tone="ink" label="Workouts" className="mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px]">
         <div className="container-x">
           <SectionHeading index="02" eyebrow="The work" title={<>What you&apos;ll <span className="serif-accent">train.</span></>} />
-          <ol className="mt-14 grid gap-px overflow-hidden rounded-[22px] bg-cream/10 sm:grid-cols-2">
+          <ol className="mt-14 grid gap-px overflow-hidden rounded-[22px] bg-titanium/10 sm:grid-cols-2">
             {p.workouts.map((w, i) => (
-              <Reveal as="li" key={w.title} delay={(i % 2) * 0.06} className="bg-navy p-8 sm:p-10">
-                <span className="text-xs tabular-nums text-cream/65">{String(i + 1).padStart(2, "0")}</span>
+              <Reveal as="li" key={w.title} delay={(i % 2) * 0.06} className="bg-ink p-8 sm:p-10">
+                <span className="text-xs tabular-nums text-titanium/65">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-8 text-2xl font-light tracking-[-0.03em]">{w.title}</h3>
-                <p className="mt-3 max-w-md text-[15px] leading-relaxed text-cream/70">{w.detail}</p>
+                <p className="mt-3 max-w-md text-[15px] leading-relaxed text-titanium/70">{w.detail}</p>
               </Reveal>
             ))}
           </ol>
@@ -104,19 +104,19 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
       </Section>
 
       {/* Benefits + ideal for */}
-      <Section tone="cream" label="Benefits">
+      <Section tone="titanium" label="Benefits">
         <div className="container-x grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionHeading index="03" eyebrow="Benefits" title="What changes." className="!block" />
-            <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-[22px] bg-navy">
+            <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-[22px] bg-ink">
               <Image src={img(p.image, 900)} alt="" fill sizes="(min-width:1024px) 40vw, 100vw" placeholder="blur" blurDataURL={BLUR} className="object-cover object-top" />
             </div>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
-            <ul className="border-t border-navy/10">
+            <ul className="border-t border-ink/10">
               {p.benefits.map((b, i) => (
-                <Reveal as="li" key={b} delay={i * 0.04} className="flex items-center gap-5 border-b border-navy/10 py-5 text-lg tracking-[-0.015em]">
-                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy text-cream">
+                <Reveal as="li" key={b} delay={i * 0.04} className="flex items-center gap-5 border-b border-ink/10 py-5 text-lg tracking-[-0.015em]">
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-titanium">
                     <Check className="h-4 w-4" strokeWidth={1.75} aria-hidden />
                   </span>
                   {b}
@@ -127,7 +127,7 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
               <p className="eyebrow opacity-70">Ideal for</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {p.idealFor.map((x) => (
-                  <li key={x} className="rounded-full border border-navy/20 px-4 py-2 text-sm">
+                  <li key={x} className="rounded-full border border-ink/20 px-4 py-2 text-sm">
                     {x}
                   </li>
                 ))}
@@ -149,9 +149,9 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
             index="04"
             eyebrow="Schedule"
             title="When we train."
-            action={<ButtonLink href="/schedule" variant="outline-navy" arrow>Full timetable</ButtonLink>}
+            action={<ButtonLink href="/schedule" variant="outline-ink" arrow>Full timetable</ButtonLink>}
           />
-          <div className="mt-12 overflow-hidden rounded-[22px] bg-cream">
+          <div className="mt-12 overflow-hidden rounded-[22px] bg-titanium">
             <table className="w-full text-left text-[15px]">
               <caption className="sr-only">{p.name} batch timings</caption>
               <thead className="text-xs uppercase tracking-eyebrow opacity-70">
@@ -163,7 +163,7 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
               </thead>
               <tbody>
                 {p.schedule.map((s) => (
-                  <tr key={s.days + s.time} className="border-t border-navy/10">
+                  <tr key={s.days + s.time} className="border-t border-ink/10">
                     <td className="px-6 py-5">{s.days}</td>
                     <td className="px-6 py-5 tabular-nums">
                       {s.time}
@@ -179,12 +179,12 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
       </Section>
 
       {/* Other programs */}
-      <Section tone="cream" label="Other programs">
+      <Section tone="titanium" label="Other programs">
         <div className="container-x">
           <p className="eyebrow opacity-70">Other programs</p>
-          <ul className="mt-8 grid border-t border-navy/10 sm:grid-cols-3">
+          <ul className="mt-8 grid border-t border-ink/10 sm:grid-cols-3">
             {others.map((o) => (
-              <li key={o.slug} className="border-b border-navy/10 sm:border-b-0 sm:border-r sm:last:border-r-0">
+              <li key={o.slug} className="border-b border-ink/10 sm:border-b-0 sm:border-r sm:last:border-r-0">
                 <Link href={`/programs/${o.slug}`} className="group block py-8 sm:px-6 sm:first:pl-0">
                   <p className="text-xs opacity-70">{o.audience}</p>
                   <p className="mt-2 text-xl tracking-[-0.02em] group-hover:underline group-hover:underline-offset-4">{o.name}</p>
@@ -196,7 +196,7 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
       </Section>
 
       <FinalCta title={<>Ready to say <span className="serif-accent">“I am the fittest”?</span></>} />
-      <div className="h-3 bg-cream" aria-hidden />
+      <div className="h-3 bg-titanium" aria-hidden />
     </>
   );
 }

@@ -26,11 +26,11 @@ export default function BlogPage() {
         image={IMG.bar}
         crumbs={[{ name: "Blog", path: "/blog" }]}
       />
-      <Section tone="cream" label="Articles">
+      <Section tone="titanium" label="Articles">
         <div className="container-x">
           <Reveal>
             <Link href={`/blog/${lead.slug}`} className="group grid gap-8 lg:grid-cols-12 lg:items-center">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-[22px] bg-navy lg:col-span-7">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[22px] bg-ink lg:col-span-7">
                 <Image src={img(lead.image, 1400)} alt="" fill sizes="(min-width:1024px) 58vw, 100vw" placeholder="blur" blurDataURL={BLUR} className="object-cover transition-transform duration-1000 group-hover:scale-105" />
               </div>
               <div className="lg:col-span-4 lg:col-start-9">
@@ -45,11 +45,11 @@ export default function BlogPage() {
             </Link>
           </Reveal>
 
-          <ul className="mt-20 grid gap-x-4 gap-y-14 border-t border-navy/10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-20 grid gap-x-4 gap-y-14 border-t border-ink/10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((p, i) => (
               <Reveal as="li" key={p.slug} delay={i * 0.06}>
                 <Link href={`/blog/${p.slug}`} className="group block">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] bg-navy">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] bg-ink">
                     <Image src={img(p.image, 800)} alt="" fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" placeholder="blur" blurDataURL={BLUR} className="object-cover transition-transform duration-1000 group-hover:scale-105" />
                   </div>
                   <p className="mt-5 text-sm opacity-70">

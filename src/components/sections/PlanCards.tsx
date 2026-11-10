@@ -13,7 +13,7 @@ function StaticItem({ children, className }: { children: React.ReactNode; classN
 const monthsOf = (p: Plan) => Number(p.duration.match(/\d+/)?.[0] ?? 1);
 
 /**
- * Membership plans with a Total / Per-month toggle and "you save" vs paying monthly. Rendered on navy.
+ * Membership plans with a Total / Per-month toggle and "you save" vs paying monthly. Rendered on ink.
  * `reveal={false}` when the cards start on screen (no scroll fade for content already in view).
  */
 export function PlanCards({ plans, reveal = true }: { plans: Plan[]; reveal?: boolean }) {
@@ -33,15 +33,15 @@ export function PlanCards({ plans, reveal = true }: { plans: Plan[]; reveal?: bo
                 className={clsx(
                   "group relative flex h-full flex-col rounded-[22px] p-7 transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:-translate-y-1.5",
                   p.highlight
-                    ? "bg-cream text-navy shadow-[0_30px_90px_-30px_rgba(255,107,91,0.55)] ring-2 ring-coral"
-                    : "border border-cream/15 bg-cream/[0.04] text-cream hover:border-cream/35",
+                    ? "bg-titanium text-ink shadow-[0_30px_90px_-30px_rgba(255,255,255,0.14)] ring-2 ring-silver"
+                    : "border border-titanium/15 bg-titanium/[0.04] text-titanium hover:border-titanium/35",
                 )}
               >
                 {/* "Best choice" stamp for the featured plan (echoes the gym's existing price list) */}
                 {p.highlight && p.badge && (
                   <span
                     aria-hidden
-                    className="absolute -right-3 -top-5 inline-flex h-[74px] w-[74px] rotate-[10deg] flex-col items-center justify-center rounded-full bg-coral text-center text-[10px] font-bold uppercase leading-tight tracking-[0.12em] text-navy shadow-[0_10px_24px_-8px_rgba(255,107,91,0.8)] transition-transform duration-500 group-hover:rotate-[-4deg] group-hover:scale-110"
+                    className="absolute -right-3 -top-5 inline-flex h-[74px] w-[74px] rotate-[10deg] flex-col items-center justify-center rounded-full bg-white text-center text-[10px] font-bold uppercase leading-tight tracking-[0.12em] text-ink ring-4 ring-ink shadow-[0_10px_24px_-8px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:rotate-[-4deg] group-hover:scale-110"
                   >
                     {p.badge.split(" ").map((w) => (
                       <span key={w}>{w}</span>
@@ -53,7 +53,7 @@ export function PlanCards({ plans, reveal = true }: { plans: Plan[]; reveal?: bo
                     <h3 className="text-xl tracking-[-0.02em]">{p.name}</h3>
                     <p className="mt-1 text-sm opacity-70">{p.duration}</p>
                   </div>
-                  {p.badge && !p.highlight && <span className="shrink-0 rounded-full bg-cream/15 px-3 py-1 text-[11px] font-medium">{p.badge}</span>}
+                  {p.badge && !p.highlight && <span className="shrink-0 rounded-full bg-titanium/15 px-3 py-1 text-[11px] font-medium">{p.badge}</span>}
                   {p.badge && p.highlight && <span className="sr-only">{p.badge}</span>}
                 </div>
 
@@ -82,14 +82,14 @@ export function PlanCards({ plans, reveal = true }: { plans: Plan[]; reveal?: bo
                   </div>
                   <p className="mt-4 h-7">
                     {save > 0 && (
-                      <span className="inline-flex rounded-full bg-coral px-3 py-1 text-xs font-semibold text-navy">
+                      <span className={clsx("inline-flex rounded-full px-3 py-1 text-xs font-semibold", p.highlight ? "bg-ink text-titanium" : "bg-silver text-ink")}>
                         Save {inr(save)} vs monthly
                       </span>
                     )}
                   </p>
                 </div>
 
-                <ul className={clsx("mt-6 flex-1 space-y-3 border-t pt-6 text-[14px]", p.highlight ? "border-navy/10" : "border-cream/10")}>
+                <ul className={clsx("mt-6 flex-1 space-y-3 border-t pt-6 text-[14px]", p.highlight ? "border-ink/10" : "border-titanium/10")}>
                   {p.features.map((f) => (
                     <li key={f} className="flex gap-3">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 opacity-70" strokeWidth={1.75} aria-hidden />
@@ -98,7 +98,7 @@ export function PlanCards({ plans, reveal = true }: { plans: Plan[]; reveal?: bo
                   ))}
                 </ul>
 
-                <ButtonLink href={`/contact?plan=${encodeURIComponent(p.name)}#trial`} variant={p.highlight ? "coral" : "outline-cream"} className="mt-8 w-full" arrow>
+                <ButtonLink href={`/contact?plan=${encodeURIComponent(p.name)}#trial`} variant={p.highlight ? "ink" : "outline-titanium"} className="mt-8 w-full" arrow>
                   {`Join ${p.name}`}
                 </ButtonLink>
               </article>

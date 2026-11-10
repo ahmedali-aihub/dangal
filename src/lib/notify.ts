@@ -28,19 +28,19 @@ async function sendEmail(lead: LeadPayload) {
     ["Message", lead.message],
   ];
   const html = `
-  <div style="font-family:Arial,sans-serif;background:#F4EDE0;padding:24px">
+  <div style="font-family:Arial,sans-serif;background:#F5F5F7;padding:24px">
     <div style="max-width:560px;margin:auto;background:#fff;border-radius:12px;overflow:hidden">
-      <div style="background:#14213D;color:#F4EDE0;padding:20px 24px;font-size:18px">${label} — Dangal Gym</div>
-      <table style="width:100%;border-collapse:collapse;font-size:14px;color:#14213D">
+      <div style="background:#111113;color:#F5F5F7;padding:20px 24px;font-size:18px">${label} — Dangal Gym</div>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;color:#111113">
         ${rows
           .filter(([, v]) => v)
           .map(
             ([k, v]) =>
-              `<tr><td style="padding:10px 24px;color:#6c80ad;width:140px;vertical-align:top">${k}</td><td style="padding:10px 24px">${esc(String(v))}</td></tr>`,
+              `<tr><td style="padding:10px 24px;color:#86868b;width:140px;vertical-align:top">${k}</td><td style="padding:10px 24px">${esc(String(v))}</td></tr>`,
           )
           .join("")}
       </table>
-      <div style="padding:20px 24px"><a href="tel:${esc(lead.phone)}" style="background:#14213D;color:#F4EDE0;padding:10px 18px;border-radius:999px;text-decoration:none">Call ${esc(lead.name)}</a></div>
+      <div style="padding:20px 24px"><a href="tel:${esc(lead.phone)}" style="background:#111113;color:#F5F5F7;padding:10px 18px;border-radius:999px;text-decoration:none">Call ${esc(lead.name)}</a></div>
     </div>
   </div>`;
   const res = await fetch("https://api.resend.com/emails", {

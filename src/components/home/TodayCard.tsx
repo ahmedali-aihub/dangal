@@ -60,41 +60,41 @@ export function TodayCard() {
   }, []);
 
   return (
-    <div className="glass w-[330px] rounded-[22px] p-3 text-cream" aria-live="polite">
-      <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-cream/40" aria-hidden />
-      <div className="flex items-center justify-between px-2 pb-3 text-[12px] text-cream/75">
+    <div className="glass w-[330px] rounded-[22px] p-3 text-titanium" aria-live="polite">
+      <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-titanium/40" aria-hidden />
+      <div className="flex items-center justify-between px-2 pb-3 text-[12px] text-titanium/75">
         <span className="flex items-center gap-1.5">
           <MapPin className="h-3.5 w-3.5" aria-hidden /> Mehdipatnam, Hyderabad
         </span>
         {state && (
           <span className="flex items-center gap-1.5">
-            <span className={`h-1.5 w-1.5 rounded-full ${state.open ? "bg-coral shadow-[0_0_0_3px_rgba(255,107,91,0.25)]" : "bg-cream/40"}`} aria-hidden />
+            <span className={`h-1.5 w-1.5 rounded-full ${state.open ? "bg-silver shadow-[0_0_0_3px_rgba(255,255,255,0.18)]" : "bg-titanium/40"}`} aria-hidden />
             {state.open ? "Open now" : "Closed"}
           </span>
         )}
       </div>
       <ul className="space-y-2">
         {(state?.upcoming ?? []).map((s) => (
-          <li key={s.time + s.name} className="rounded-2xl border border-cream/10 bg-cream/[0.07] px-4 py-3">
+          <li key={s.time + s.name} className="rounded-2xl border border-titanium/10 bg-titanium/[0.07] px-4 py-3">
             <div className="flex items-center justify-between text-[13px]">
               <span className="font-medium">{s.name}</span>
             </div>
             <div className="mt-2 flex items-end justify-between">
               <div>
-                <p className="text-[11px] text-cream/60">{state?.day}</p>
+                <p className="text-[11px] text-titanium/60">{state?.day}</p>
                 <p className="text-xl tracking-tight">{s.time.split("–")[0].trim()}</p>
               </div>
-              <span className="rounded-full bg-cream/15 px-2.5 py-1 text-[11px]">{s.program === "ALL" ? "Open" : s.program}</span>
+              <span className="rounded-full bg-titanium/15 px-2.5 py-1 text-[11px]">{s.program === "ALL" ? "Open" : s.program}</span>
               <div className="text-right">
-                <p className="text-[11px] text-cream/60">Coach</p>
+                <p className="text-[11px] text-titanium/60">Coach</p>
                 <p className="text-[13px]">{s.coach.replace("Coach ", "")}</p>
               </div>
             </div>
           </li>
         ))}
-        {!state && <li className="h-[172px] rounded-2xl bg-cream/[0.05]" aria-hidden />}
+        {!state && <li className="h-[172px] rounded-2xl bg-titanium/[0.05]" aria-hidden />}
       </ul>
-      <Link href="/schedule" className="mt-3 block px-2 pb-1 text-[12px] text-cream/75 hover:text-cream">
+      <Link href="/schedule" className="mt-3 block px-2 pb-1 text-[12px] text-titanium/75 hover:text-titanium">
         Full timetable · {SITE.hours[0].label} →
       </Link>
     </div>

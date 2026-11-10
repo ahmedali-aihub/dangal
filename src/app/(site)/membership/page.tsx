@@ -44,27 +44,27 @@ export default async function MembershipPage() {
         image={IMG.racks}
         crumbs={[{ name: "Membership", path: "/membership" }]}
       >
-        <p className="text-sm text-cream/70 lg:text-right">{NEXT_BATCH_NOTE}</p>
+        <p className="text-sm text-titanium/70 lg:text-right">{NEXT_BATCH_NOTE}</p>
       </PageHero>
 
-      <Section tone="cream" label="Plans" className="pb-8 sm:pb-12 lg:pb-12">
+      <Section tone="titanium" label="Plans" className="pb-8 sm:pb-12 lg:pb-12">
         <div className="container-x">
           <h2 className="sr-only">Membership plans</h2>
-          <div className="rounded-[26px] bg-navy p-4 sm:p-6">
+          <div className="rounded-[26px] bg-ink p-4 sm:p-6">
             <PlanCards plans={plans} reveal={false} />
           </div>
           <p className="mt-4 text-xs opacity-70">Prices in INR, inclusive of applicable taxes unless stated at the front desk.</p>
         </div>
       </Section>
 
-      <Section tone="cream" label="What's included">
+      <Section tone="titanium" label="What's included">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionHeading index="01" eyebrow="Every plan includes" title="The essentials, done properly." className="!block" />
           </div>
-          <ul className="grid gap-px overflow-hidden rounded-[22px] bg-navy/10 sm:grid-cols-2 lg:col-span-7">
+          <ul className="grid gap-px overflow-hidden rounded-[22px] bg-ink/10 sm:grid-cols-2 lg:col-span-7">
             {INCLUDED.map((x) => (
-              <li key={x} className="bg-cream p-6 text-[15px]">
+              <li key={x} className="bg-titanium p-6 text-[15px]">
                 {x}
               </li>
             ))}
@@ -74,9 +74,9 @@ export default async function MembershipPage() {
           <div className="lg:col-span-5">
             <SectionHeading index="02" eyebrow="Add-ons" title="Go further." className="!block" />
           </div>
-          <ul className="border-t border-navy/10 lg:col-span-7">
+          <ul className="border-t border-ink/10 lg:col-span-7">
             {ADDONS.map(([k, v]) => (
-              <li key={k} className="flex justify-between gap-6 border-b border-navy/10 py-5 text-[15px]">
+              <li key={k} className="flex justify-between gap-6 border-b border-ink/10 py-5 text-[15px]">
                 <span>{k}</span>
                 <span className="opacity-70">{v}</span>
               </li>
@@ -97,9 +97,9 @@ export default async function MembershipPage() {
         </div>
       </Section>
 
-      <div className="h-3 bg-cream" aria-hidden />
+      <div className="h-3 bg-titanium" aria-hidden />
       <FinalCta />
-      <div className="h-3 bg-cream" aria-hidden />
+      <div className="h-3 bg-titanium" aria-hidden />
     </>
   );
 }

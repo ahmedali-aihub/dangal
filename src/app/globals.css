@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --navy: 20 33 61;
-    --cream: 244 237 224;
+    --ink: 17 17 19;
+    --titanium: 245 245 247;
     color-scheme: light;
   }
   html {
@@ -15,16 +15,16 @@
     -moz-osx-font-smoothing: grayscale;
   }
   body {
-    @apply bg-cream text-navy font-sans;
+    @apply bg-titanium text-ink font-sans;
     font-feature-settings: "ss01", "cv11";
   }
   ::selection {
-    background: #ff6b5b;
-    color: #14213d;
+    background: #d2d2d7;
+    color: #111113;
   }
-  /* Accent words (serif italics) glow coral on navy grounds, stay navy on cream (contrast). Nearest context wins. */
-  .text-cream { --accent: #ff6b5b; }
-  .text-navy { --accent: currentColor; }
+  /* Two-tone headlines (the Apple way): the accent phrase is a quieter silver on black, a mid-grey on silver. Nearest context wins. */
+  .text-titanium { --accent: #a1a1a6; }
+  .text-ink { --accent: #6e6e73; }
   :focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 3px;
@@ -54,7 +54,7 @@
   }
   .eyebrow::before {
     content: "";
-    @apply inline-block h-[2px] w-6 rounded-full bg-coral;
+    @apply inline-block h-px w-6 bg-current opacity-50;
   }
   .display-xl {
     @apply text-[clamp(2.9rem,8.2vw,7.25rem)] font-light;
@@ -74,18 +74,15 @@
   .lede {
     @apply text-base leading-relaxed sm:text-lg;
   }
-  /* Frosted glass panels (on navy) */
+  /* Frosted glass panels (on ink) */
   .glass {
-    @apply border border-cream/15 bg-cream/[0.08] shadow-glass backdrop-blur-md;
+    @apply border border-titanium/15 bg-titanium/[0.08] shadow-glass backdrop-blur-md;
   }
   .glass-strong {
-    @apply border border-cream/15 bg-navy-900/[0.93] shadow-glass backdrop-blur-xl;
+    @apply border border-titanium/15 bg-ink-900/[0.93] shadow-glass backdrop-blur-xl;
   }
   .serif-accent {
-    font-family: var(--font-serif), Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-weight: 300;
     color: var(--accent, inherit);
   }
   .link-underline {
@@ -100,13 +97,14 @@
 
 @layer utilities {
   /* Fluted / ribbed glass texture, echoes architectural reeded glass */
+  /* Brushed-metal grain: ultra-fine horizontal lines, like anodised titanium */
   .fluted {
     background-image: repeating-linear-gradient(
-      90deg,
-      rgba(244, 237, 224, 0.06) 0px,
-      rgba(244, 237, 224, 0) 3px,
-      rgba(10, 18, 38, 0.1) 6px,
-      rgba(244, 237, 224, 0) 9px
+      0deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0) 1px,
+      rgba(0, 0, 0, 0.08) 2px,
+      rgba(255, 255, 255, 0) 3px
     );
   }
   .grain {
@@ -199,7 +197,7 @@
 .page-enter { animation: page-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s both; }
 .page-curtain {
   position: fixed; inset: 0; z-index: 90; pointer-events: none;
-  background: #0a1226; color: #f4ede0;
+  background: #050506; color: #f4ede0;
   display: flex; align-items: center; justify-content: center;
   animation: curtain-up 0.85s cubic-bezier(0.76, 0, 0.24, 1) 0.15s both;
 }
@@ -226,12 +224,12 @@
 .spotlight > * { position: relative; isolation: isolate; }
 .spotlight > *::before {
   content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; pointer-events: none;
-  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgba(20, 33, 61, 0.09), transparent 60%);
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgba(17, 17, 19, 0.09), transparent 60%);
   transition: opacity 0.4s ease;
 }
 .spotlight > *:hover::before { opacity: 1; }
 
-/* Coral glow that slowly breathes (hero) */
+/* Silver glow that slowly breathes (hero) */
 @keyframes glow-breathe {
   0%, 100% { opacity: 0.75; transform: translate3d(0, 0, 0) scale(1); }
   50% { opacity: 1; transform: translate3d(-2%, -3%, 0) scale(1.08); }
@@ -246,7 +244,7 @@
   52% { opacity: 0.68; }
 }
 .projector-beam {
-  background: linear-gradient(180deg, rgba(244, 237, 224, 0.22) 0%, rgba(244, 237, 224, 0.05) 55%, rgba(255, 107, 91, 0.06) 100%);
+  background: linear-gradient(180deg, rgba(245, 245, 247, 0.22) 0%, rgba(245, 245, 247, 0.05) 55%, rgba(236, 236, 241, 0.06) 100%);
   clip-path: polygon(46% 0, 54% 0, 100% 100%, 0 100%);
   filter: blur(18px);
   animation: beam-flicker 6s ease-in-out infinite;
@@ -362,7 +360,7 @@
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.38),
-    inset 0 -80px 90px -70px rgba(255, 107, 91, 0.22);
+    inset 0 -80px 90px -70px rgba(255, 255, 255, 0.08);
 }
 @keyframes gloss-sweep {
   0% { transform: translate3d(-140%, 0, 0) skewX(-18deg); opacity: 0; }

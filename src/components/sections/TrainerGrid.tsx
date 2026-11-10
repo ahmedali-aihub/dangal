@@ -15,8 +15,8 @@ export function TrainerGrid({ trainers, detailed = false }: { trainers: Trainer[
     <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
       {trainers.map((t, i) => (
         <Reveal as="li" key={t.id} delay={i * 0.06}>
-          <article tabIndex={0} className="group rounded-[22px] outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 focus-visible:ring-offset-cream">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-cream-200 transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:-translate-y-1.5">
+          <article tabIndex={0} className="group rounded-[22px] outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-4 focus-visible:ring-offset-titanium">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-titanium-200 transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:-translate-y-1.5">
               {t.image_url ? (
                 <Image
                   src={img(t.image_url, 800)}
@@ -28,19 +28,19 @@ export function TrainerGrid({ trainers, detailed = false }: { trainers: Trainer[
                   className="object-cover grayscale-[40%] transition-[filter,transform] duration-[1.2s] ease-out group-hover:scale-[1.06] group-hover:grayscale-0 group-focus-visible:grayscale-0"
                 />
               ) : (
-                <div className="flex h-full items-center justify-center text-6xl font-light text-navy/30">{t.name.replace("Coach ", "").charAt(0)}</div>
+                <div className="flex h-full items-center justify-center text-6xl font-light text-ink/30">{t.name.replace("Coach ", "").charAt(0)}</div>
               )}
-              <span className="absolute left-4 top-4 rounded-full bg-cream/90 px-3 py-1 text-[11px] font-medium text-navy backdrop-blur">{t.experience_years}+ yrs</span>
+              <span className="absolute left-4 top-4 rounded-full bg-titanium/90 px-3 py-1 text-[11px] font-medium text-ink backdrop-blur">{t.experience_years}+ yrs</span>
 
               {/* Hover / focus panel (pointer devices) */}
               <div
                 aria-hidden={detailed || undefined}
-                className="pointer-events-none absolute inset-x-3 bottom-3 hidden translate-y-[calc(100%+1rem)] rounded-2xl bg-navy/90 p-5 text-cream backdrop-blur-md transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:translate-y-0 group-focus-visible:translate-y-0 [@media(hover:hover)]:block"
+                className="pointer-events-none absolute inset-x-3 bottom-3 hidden translate-y-[calc(100%+1rem)] rounded-2xl bg-ink/90 p-5 text-titanium backdrop-blur-md transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:translate-y-0 group-focus-visible:translate-y-0 [@media(hover:hover)]:block"
               >
-                <p className="line-clamp-4 text-[13px] leading-relaxed text-cream/85">{t.bio}</p>
+                <p className="line-clamp-4 text-[13px] leading-relaxed text-titanium/85">{t.bio}</p>
                 <ul className="mt-3 flex flex-wrap gap-1.5">
                   {t.specialties.slice(0, 3).map((s) => (
-                    <li key={s} className="rounded-full border border-cream/25 px-2.5 py-0.5 text-[11px]">
+                    <li key={s} className="rounded-full border border-titanium/25 px-2.5 py-0.5 text-[11px]">
                       {s}
                     </li>
                   ))}
@@ -57,7 +57,7 @@ export function TrainerGrid({ trainers, detailed = false }: { trainers: Trainer[
                   href="/trainers"
                   tabIndex={-1}
                   aria-hidden
-                  className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-navy/15 transition-all duration-500 group-hover:rotate-45 group-hover:border-navy group-hover:bg-navy group-hover:text-cream"
+                  className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink/15 transition-all duration-500 group-hover:rotate-45 group-hover:border-ink group-hover:bg-ink group-hover:text-titanium"
                 >
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
@@ -68,7 +68,7 @@ export function TrainerGrid({ trainers, detailed = false }: { trainers: Trainer[
                 <p className="mt-4 text-[15px] leading-relaxed opacity-80">{t.bio}</p>
                 <ul className="mt-4 flex flex-wrap gap-1.5">
                   {t.specialties.map((s) => (
-                    <li key={s} className="rounded-full border border-navy/20 px-3 py-1 text-xs opacity-80">
+                    <li key={s} className="rounded-full border border-ink/20 px-3 py-1 text-xs opacity-80">
                       {s}
                     </li>
                   ))}

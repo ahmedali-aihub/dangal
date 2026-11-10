@@ -25,7 +25,7 @@ function bmiBand(bmi: number) {
 }
 
 const field =
-  "h-12 w-full rounded-xl border border-navy/15 bg-cream-50 px-4 text-[15px] text-navy outline-none transition focus:border-navy";
+  "h-12 w-full rounded-xl border border-ink/15 bg-titanium-50 px-4 text-[15px] text-ink outline-none transition focus:border-ink";
 
 export function Calculator() {
   const [sex, setSex] = useState<"male" | "female">("male");
@@ -50,13 +50,13 @@ export function Calculator() {
   }, [sex, age, height, weight, act, goal]);
 
   return (
-    <div className="grid overflow-hidden rounded-[24px] bg-cream text-navy shadow-soft lg:grid-cols-2">
+    <div className="grid overflow-hidden rounded-[24px] bg-titanium text-ink shadow-soft lg:grid-cols-2">
       <form className="space-y-6 p-6 sm:p-10" onSubmit={(e) => e.preventDefault()} aria-label="BMI and calorie calculator">
         <fieldset>
           <legend className="text-sm font-medium">Sex</legend>
           <div className="mt-3 grid grid-cols-2 gap-2">
             {(["male", "female"] as const).map((s) => (
-              <label key={s} className={clsx("flex h-12 cursor-pointer items-center justify-center rounded-xl border text-sm capitalize transition", sex === s ? "border-navy bg-navy text-cream" : "border-navy/15 hover:border-navy/40")}>
+              <label key={s} className={clsx("flex h-12 cursor-pointer items-center justify-center rounded-xl border text-sm capitalize transition", sex === s ? "border-ink bg-ink text-titanium" : "border-ink/15 hover:border-ink/40")}>
                 <input type="radio" name="sex" value={s} checked={sex === s} onChange={() => setSex(s)} className="sr-only" />
                 {s}
               </label>
@@ -88,7 +88,7 @@ export function Calculator() {
           <legend className="text-sm font-medium">Activity</legend>
           <div className="mt-3 grid grid-cols-2 gap-2">
             {ACTIVITY.map((a) => (
-              <label key={a.k} className={clsx("cursor-pointer rounded-xl border px-4 py-3 transition", act === a.k ? "border-navy bg-navy text-cream" : "border-navy/15 hover:border-navy/40")}>
+              <label key={a.k} className={clsx("cursor-pointer rounded-xl border px-4 py-3 transition", act === a.k ? "border-ink bg-ink text-titanium" : "border-ink/15 hover:border-ink/40")}>
                 <input type="radio" name="activity" checked={act === a.k} onChange={() => setAct(a.k)} className="sr-only" />
                 <span className="block text-sm">{a.label}</span>
                 <span className="block text-xs opacity-65">{a.hint}</span>
@@ -100,7 +100,7 @@ export function Calculator() {
           <legend className="text-sm font-medium">Goal</legend>
           <div className="mt-3 grid grid-cols-3 gap-2">
             {GOALS.map((g) => (
-              <label key={g.k} className={clsx("flex h-12 cursor-pointer items-center justify-center rounded-xl border text-sm transition", goal === g.k ? "border-navy bg-navy text-cream" : "border-navy/15 hover:border-navy/40")}>
+              <label key={g.k} className={clsx("flex h-12 cursor-pointer items-center justify-center rounded-xl border text-sm transition", goal === g.k ? "border-ink bg-ink text-titanium" : "border-ink/15 hover:border-ink/40")}>
                 <input type="radio" name="goal" checked={goal === g.k} onChange={() => setGoal(g.k)} className="sr-only" />
                 {g.label}
               </label>
@@ -109,19 +109,19 @@ export function Calculator() {
         </fieldset>
       </form>
 
-      <div className="flex flex-col bg-navy p-6 text-cream sm:p-10" aria-live="polite">
+      <div className="flex flex-col bg-ink p-6 text-titanium sm:p-10" aria-live="polite">
         {r ? (
           <>
-            <div className="grid grid-cols-2 gap-6 border-b border-cream/15 pb-8">
+            <div className="grid grid-cols-2 gap-6 border-b border-titanium/15 pb-8">
               <div>
-                <p className="text-sm text-cream/60">BMI</p>
+                <p className="text-sm text-titanium/60">BMI</p>
                 <p className="mt-2 text-5xl font-light tracking-[-0.05em]">{r.bmi.toFixed(1)}</p>
-                <p className="mt-2 text-sm text-cream/80">{bmiBand(r.bmi)}</p>
+                <p className="mt-2 text-sm text-titanium/80">{bmiBand(r.bmi)}</p>
               </div>
               <div>
-                <p className="text-sm text-cream/60">Daily target</p>
+                <p className="text-sm text-titanium/60">Daily target</p>
                 <p className="mt-2 text-5xl font-light tracking-[-0.05em]">{r.target.toLocaleString("en-IN")}</p>
-                <p className="mt-2 text-sm text-cream/80">kcal / day</p>
+                <p className="mt-2 text-sm text-titanium/80">kcal / day</p>
               </div>
             </div>
             <dl className="grid grid-cols-3 gap-4 py-8">
@@ -131,22 +131,22 @@ export function Calculator() {
                 ["Fat", r.fat],
               ].map(([k, v]) => (
                 <div key={k as string}>
-                  <dt className="text-sm text-cream/60">{k}</dt>
+                  <dt className="text-sm text-titanium/60">{k}</dt>
                   <dd className="mt-1 text-2xl font-light tracking-[-0.03em]">
                     {v}
-                    <span className="text-sm text-cream/60"> g</span>
+                    <span className="text-sm text-titanium/60"> g</span>
                   </dd>
                 </div>
               ))}
             </dl>
-            <p className="text-sm text-cream/60">
+            <p className="text-sm text-titanium/60">
               Maintenance ≈ {r.tdee.toLocaleString("en-IN")} kcal · BMR ≈ {r.bmr.toLocaleString("en-IN")} kcal
             </p>
           </>
         ) : (
-          <p className="text-cream/75">Enter a valid age (10–100), height (100–230 cm) and weight (25–250 kg).</p>
+          <p className="text-titanium/75">Enter a valid age (10–100), height (100–230 cm) and weight (25–250 kg).</p>
         )}
-        <p className="mt-auto pt-10 text-xs leading-relaxed text-cream/65">
+        <p className="mt-auto pt-10 text-xs leading-relaxed text-titanium/65">
           Estimates only (Mifflin–St Jeor equation, Asian BMI cut-offs). Not medical advice — consult a doctor or registered
           dietitian for a personalised plan, especially if you are pregnant or have a medical condition.
         </p>

@@ -62,14 +62,14 @@ export function OfferBanner({ banner }: { banner: Banner | null }) {
     <div
       role="region"
       aria-label="Current offer"
-      className="fixed bottom-4 left-1/2 z-40 hidden w-[min(720px,calc(100%-2rem))] -translate-x-1/2 items-center gap-4 rounded-full border border-cream/15 bg-navy/90 py-2 pl-5 pr-2 text-sm text-cream shadow-glass backdrop-blur-xl sm:flex"
+      className="fixed bottom-4 left-1/2 z-40 hidden w-[min(720px,calc(100%-2rem))] -translate-x-1/2 items-center gap-4 rounded-full border border-titanium/15 bg-ink/90 py-2 pl-5 pr-2 text-sm text-titanium shadow-glass backdrop-blur-xl sm:flex"
     >
-      <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
+      <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-silver" />
       <p className="flex-1 truncate">{banner.message}</p>
       {banner.cta_href && banner.cta_label && (
         <Link
           href={banner.cta_href}
-          className="shrink-0 rounded-full bg-coral px-4 py-2 text-[13px] font-semibold text-navy hover:bg-coral-400"
+          className="shrink-0 rounded-full bg-silver px-4 py-2 text-[13px] font-semibold text-ink hover:bg-silver-400"
         >
           {banner.cta_label}
         </Link>
@@ -82,7 +82,7 @@ export function OfferBanner({ banner }: { banner: Banner | null }) {
             sessionStorage.setItem(key, "1");
           } catch {}
         }}
-        className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-cream/60 hover:text-cream"
+        className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-titanium/60 hover:text-titanium"
       >
         <X className="h-4 w-4" aria-hidden />
         <span className="sr-only">Dismiss offer</span>
@@ -96,7 +96,7 @@ export function MobileDock() {
   return (
     <nav
       aria-label="Quick actions"
-      className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-3 gap-1 rounded-full border border-cream/15 bg-navy/90 p-1.5 text-cream shadow-glass backdrop-blur-xl sm:hidden"
+      className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-3 gap-1 rounded-full border border-titanium/15 bg-ink/90 p-1.5 text-titanium shadow-glass backdrop-blur-xl sm:hidden"
       style={{ marginBottom: "env(safe-area-inset-bottom)" }}
     >
       <a href={`tel:${SITE.phoneRaw}`} className="flex h-11 items-center justify-center gap-2 rounded-full text-[13px]">
@@ -112,7 +112,7 @@ export function MobileDock() {
       </a>
       <Link
         href="/contact#trial"
-        className="flex h-11 items-center justify-center gap-2 rounded-full bg-coral text-[13px] font-semibold text-navy"
+        className="flex h-11 items-center justify-center gap-2 rounded-full bg-silver text-[13px] font-semibold text-ink"
       >
         <CalendarCheck className="h-4 w-4" strokeWidth={1.75} aria-hidden /> Free trial
       </Link>

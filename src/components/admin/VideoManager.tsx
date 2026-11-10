@@ -40,7 +40,7 @@ export function VideoManager({ current, maxMb }: { current: VideoRow | null; max
     <div className="mx-auto max-w-3xl space-y-6">
       {/* ── What's playing ── */}
       <Card className="overflow-hidden !p-0">
-        <div className="relative aspect-video bg-navy">
+        <div className="relative aspect-video bg-ink">
           {current?.source === "upload" ? (
             // eslint-disable-next-line jsx-a11y/media-has-caption
             <video key={current.id} src={current.src} poster={poster ?? undefined} controls muted playsInline preload="metadata" className="h-full w-full object-contain" />
@@ -48,8 +48,8 @@ export function VideoManager({ current, maxMb }: { current: VideoRow | null; max
             // eslint-disable-next-line @next/next/no-img-element
             <img src={poster ?? "/videos/dangal-film-poster.jpg"} alt="" className="h-full w-full object-cover" />
           )}
-          <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-navy/85 px-3 py-1 text-xs font-medium text-cream">
-            <span className="h-1.5 w-1.5 rounded-full bg-coral" aria-hidden /> Live on the home page
+          <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-ink/85 px-3 py-1 text-xs font-medium text-titanium">
+            <span className="h-1.5 w-1.5 rounded-full bg-silver" aria-hidden /> Live on the home page
           </span>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3 p-5 sm:px-6">
@@ -105,7 +105,7 @@ export function VideoManager({ current, maxMb }: { current: VideoRow | null; max
       )}
 
       {toast && (
-        <div role="status" className={clsx("fixed bottom-6 left-1/2 z-[80] -translate-x-1/2 rounded-full px-5 py-3 text-sm shadow-soft", toast.err ? "bg-red-800 text-white" : "bg-navy text-cream")}>
+        <div role="status" className={clsx("fixed bottom-6 left-1/2 z-[80] -translate-x-1/2 rounded-full px-5 py-3 text-sm shadow-soft", toast.err ? "bg-red-800 text-white" : "bg-ink text-titanium")}>
           {toast.msg}
         </div>
       )}
@@ -176,14 +176,14 @@ function Replace({ current, maxMb, onDone }: { current: VideoRow | null; maxMb: 
       <h2 className="text-lg tracking-[-0.02em]">{current ? "Replace the video" : "Upload your video"}</h2>
       <p className="mt-1 text-sm opacity-65">It goes live on the home page straight away{current ? " and replaces the current one" : ""}.</p>
 
-      <div role="tablist" className="mt-4 inline-flex rounded-full bg-navy/[0.06] p-1">
+      <div role="tablist" className="mt-4 inline-flex rounded-full bg-ink/[0.06] p-1">
         {(
           [
             ["upload", "Upload a file"],
             ["link", "YouTube / Vimeo link"],
           ] as const
         ).map(([k, l]) => (
-          <button key={k} role="tab" type="button" aria-selected={tab === k} onClick={() => setTab(k)} className={clsx("h-9 rounded-full px-4 text-sm transition-colors", tab === k ? "bg-navy text-cream" : "opacity-70")}>
+          <button key={k} role="tab" type="button" aria-selected={tab === k} onClick={() => setTab(k)} className={clsx("h-9 rounded-full px-4 text-sm transition-colors", tab === k ? "bg-ink text-titanium" : "opacity-70")}>
             {l}
           </button>
         ))}
@@ -202,7 +202,7 @@ function Replace({ current, maxMb, onDone }: { current: VideoRow | null; maxMb: 
               setDrag(false);
               pick(e.dataTransfer.files?.[0]);
             }}
-            className={clsx("flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-10 text-center transition", drag ? "border-navy bg-navy/5" : "border-navy/15 hover:border-navy/35")}
+            className={clsx("flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-10 text-center transition", drag ? "border-ink bg-ink/5" : "border-ink/15 hover:border-ink/35")}
           >
             <UploadCloud className="h-8 w-8 opacity-70" strokeWidth={1.25} aria-hidden />
             <span className="mt-3 text-sm font-medium">{file ? file.name : "Drop a video here, or click to choose"}</span>
@@ -222,8 +222,8 @@ function Replace({ current, maxMb, onDone }: { current: VideoRow | null; maxMb: 
               <span>{stage}</span>
               <span className="tabular-nums">{progress}%</span>
             </div>
-            <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-navy/10" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
-              <div className="h-full rounded-full bg-navy transition-[width]" style={{ width: `${progress}%` }} />
+            <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-ink/10" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
+              <div className="h-full rounded-full bg-ink transition-[width]" style={{ width: `${progress}%` }} />
             </div>
           </div>
         )}

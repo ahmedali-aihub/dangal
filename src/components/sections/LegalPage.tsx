@@ -6,7 +6,7 @@ export function LegalPage({ title, path, updated, intro, sections }: { title: st
   return (
     <>
       <PageHero eyebrow={`Last updated ${updated}`} title={title} crumbs={[{ name: title, path }]} />
-      <section className="bg-cream py-16 sm:py-24">
+      <section className="bg-titanium py-16 sm:py-24">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <nav aria-label="On this page" className="hidden lg:col-span-3 lg:block">
             <ol className="sticky top-28 space-y-2 text-sm">

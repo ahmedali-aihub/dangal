@@ -25,7 +25,7 @@ export default async function TrainersPage() {
         image={IMG.monochrome}
         crumbs={[{ name: "Trainers", path: "/trainers" }]}
       />
-      <Section tone="cream" label="Trainers" className="pt-16 sm:pt-20 lg:pt-24">
+      <Section tone="titanium" label="Trainers" className="pt-16 sm:pt-20 lg:pt-24">
         <div className="container-x">
           <SectionHeading
             index="01"
@@ -39,7 +39,7 @@ export default async function TrainersPage() {
         </div>
       </Section>
       <FinalCta title={<>Train with a coach <span className="serif-accent">this week.</span></>} />
-      <div className="h-3 bg-cream" aria-hidden />
+      <div className="h-3 bg-titanium" aria-hidden />
     </>
   );
 }

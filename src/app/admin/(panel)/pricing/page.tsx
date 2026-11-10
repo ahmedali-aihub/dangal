@@ -33,7 +33,7 @@ export default async function PricingAdmin() {
           { name: "features", label: "Features (one per line)", type: "list" },
           { name: "badge", label: "Badge", type: "text", half: true, placeholder: "Most popular" },
           { name: "sort_order", label: "Display order", type: "number", half: true },
-          { name: "highlight", label: "Highlight this plan", type: "boolean", help: "Shown in cream to draw attention" },
+          { name: "highlight", label: "Highlight this plan", type: "boolean", help: "Shown in titanium to draw attention" },
           { name: "is_active", label: "Visible on website", type: "boolean" },
         ]}
       />

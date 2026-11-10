@@ -32,13 +32,13 @@ export default function TrainingPage() {
         crumbs={[{ name: "Training", path: "/training" }]}
       />
 
-      <Section tone="cream" label="Training styles">
+      <Section tone="titanium" label="Training styles">
         <div className="container-x">
           <SectionHeading index="01" eyebrow="Disciplines" title="Six ways to get stronger." />
           <ul className="mt-14 grid gap-x-4 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
             {TRAINING_TYPES.map((t, i) => (
               <Reveal as="li" key={t.title} delay={(i % 3) * 0.06}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] bg-navy">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] bg-ink">
                   <Image src={img(t.image, 900)} alt="" fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" placeholder="blur" blurDataURL={BLUR} className="object-cover transition-transform duration-1000 hover:scale-105" />
                 </div>
                 <div className="mt-5 flex items-baseline gap-4">
@@ -54,7 +54,7 @@ export default function TrainingPage() {
         </div>
       </Section>
 
-      <Section tone="navy" label="Our coaching process" className="mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px]">
+      <Section tone="ink" label="Our coaching process" className="mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px]">
         <div className="container-x">
           <SectionHeading
             index="02"
@@ -62,39 +62,39 @@ export default function TrainingPage() {
             title={<>Assess. Plan. Coach. <span className="serif-accent">Measure.</span></>}
             lede="Every member, every program, the same four steps. It's how we make sure effort becomes results."
           />
-          <ol className="mt-14 grid gap-px overflow-hidden rounded-[22px] bg-cream/10 md:grid-cols-4">
+          <ol className="mt-14 grid gap-px overflow-hidden rounded-[22px] bg-titanium/10 md:grid-cols-4">
             {PROCESS.map((s, i) => (
-              <Reveal as="li" key={s.t} delay={i * 0.06} className="bg-navy p-8">
-                <span className="text-[3.5rem] font-light leading-none tracking-[-0.05em] text-cream/45">{i + 1}</span>
+              <Reveal as="li" key={s.t} delay={i * 0.06} className="bg-ink p-8">
+                <span className="text-[3.5rem] font-light leading-none tracking-[-0.05em] text-titanium/45">{i + 1}</span>
                 <h3 className="mt-10 text-xl tracking-[-0.02em]">{s.t}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-cream/70">{s.d}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-titanium/70">{s.d}</p>
               </Reveal>
             ))}
           </ol>
         </div>
       </Section>
 
-      <Section tone="cream" label="Facility">
+      <Section tone="titanium" label="Facility">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-5">
             <SectionHeading index="03" eyebrow="The floor" title="Equipped for serious work." className="!block" />
-            <ul className="mt-10 border-t border-navy/10 text-[15px]">
+            <ul className="mt-10 border-t border-ink/10 text-[15px]">
               {["Power racks & competition plates", "Full dumbbell range", "Plate-loaded & cable machines", "Conditioning zone — ropes, sleds, kettlebells", "Cardio deck", "Changing rooms & lockers"].map((x) => (
-                <li key={x} className="border-b border-navy/10 py-4">
+                <li key={x} className="border-b border-ink/10 py-4">
                   {x}
                 </li>
               ))}
             </ul>
             <p className="mt-4 text-xs opacity-70">{/* PLACEHOLDER */}Owner to confirm the final equipment list.</p>
           </div>
-          <Reveal delay={0.1} className="relative aspect-[5/4] overflow-hidden rounded-[22px] bg-navy lg:col-span-6 lg:col-start-7">
+          <Reveal delay={0.1} className="relative aspect-[5/4] overflow-hidden rounded-[22px] bg-ink lg:col-span-6 lg:col-start-7">
             <Image src={img(IMG.weights, 1200)} alt="Dumbbell racks on the Dangal Gym floor" fill sizes="(min-width:1024px) 50vw, 100vw" placeholder="blur" blurDataURL={BLUR} className="object-cover" />
           </Reveal>
         </div>
       </Section>
 
       <FinalCta />
-      <div className="h-3 bg-cream" aria-hidden />
+      <div className="h-3 bg-titanium" aria-hidden />
     </>
   );
 }

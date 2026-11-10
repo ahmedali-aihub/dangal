@@ -50,12 +50,12 @@ export function Timetable() {
               onClick={() => setDay(d.day)}
               className={clsx(
                 "relative h-11 min-w-[60px] shrink-0 rounded-full px-4 text-sm transition-all duration-300",
-                day === d.day ? "bg-navy text-cream" : "border border-navy/15 hover:border-navy/40",
+                day === d.day ? "bg-ink text-titanium" : "border border-ink/15 hover:border-ink/40",
               )}
             >
               {d.day}
               {d.day === today && (
-                <span aria-label="(today)" className={clsx("absolute right-2 top-2 h-1.5 w-1.5 rounded-full", day === d.day ? "bg-cream" : "bg-navy")} />
+                <span aria-label="(today)" className={clsx("absolute right-2 top-2 h-1.5 w-1.5 rounded-full", day === d.day ? "bg-titanium" : "bg-ink")} />
               )}
             </button>
           ))}
@@ -67,7 +67,7 @@ export function Timetable() {
               type="button"
               aria-pressed={filter === f}
               onClick={() => setFilter(f)}
-              className={clsx("h-9 rounded-full px-3.5 text-[13px] transition-colors", filter === f ? "bg-navy/10" : "opacity-70 hover:opacity-100")}
+              className={clsx("h-9 rounded-full px-3.5 text-[13px] transition-colors", filter === f ? "bg-ink/10" : "opacity-70 hover:opacity-100")}
             >
               {LABEL[f]}
             </button>
@@ -75,7 +75,7 @@ export function Timetable() {
         </div>
       </div>
 
-      <div id="timetable-panel" role="tabpanel" aria-live="polite" className="mt-8 overflow-hidden rounded-[22px] bg-cream-50">
+      <div id="timetable-panel" role="tabpanel" aria-live="polite" className="mt-8 overflow-hidden rounded-[22px] bg-titanium-50">
         {rows.length ? (
           <ul key={day + filter}>
             {rows.map((s, i) => (
@@ -83,8 +83,8 @@ export function Timetable() {
                 key={s.time + s.name}
                 className={clsx(
                   "fade-up grid grid-cols-[1fr_auto] items-center gap-4 px-6 py-5 transition-colors sm:grid-cols-[180px_1fr_160px_120px] sm:px-8",
-                  i > 0 && "border-t border-navy/10",
-                  s.state === "live" && "bg-navy text-cream",
+                  i > 0 && "border-t border-ink/10",
+                  s.state === "live" && "bg-ink text-titanium",
                   s.state === "past" && "opacity-70",
                 )}
                 style={{ ["--delay" as string]: `${i * 0.04}s` }}
@@ -93,18 +93,18 @@ export function Timetable() {
                 <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-lg tracking-[-0.015em]">
                   {s.name}
                   {s.state === "live" && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-coral px-2.5 py-0.5 text-[11px] font-semibold text-navy">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-0.5 text-[11px] font-semibold text-titanium">
                       <span className="relative flex h-1.5 w-1.5" aria-hidden>
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-navy opacity-60" />
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-navy" />
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-titanium opacity-60" />
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-titanium" />
                       </span>
                       Live now
                     </span>
                   )}
-                  {s.state === "next" && <span className="rounded-full border border-navy/25 px-2.5 py-0.5 text-[11px] font-medium">Up next</span>}
+                  {s.state === "next" && <span className="rounded-full border border-ink/25 px-2.5 py-0.5 text-[11px] font-medium">Up next</span>}
                 </span>
-                <span className={clsx("hidden text-sm sm:block", s.state === "live" ? "text-cream/80" : "opacity-70")}>{s.coach}</span>
-                <span className={clsx("hidden justify-self-end rounded-full border px-3 py-1 text-xs sm:block", s.state === "live" ? "border-cream/30" : "border-navy/15")}>
+                <span className={clsx("hidden text-sm sm:block", s.state === "live" ? "text-titanium/80" : "opacity-70")}>{s.coach}</span>
+                <span className={clsx("hidden justify-self-end rounded-full border px-3 py-1 text-xs sm:block", s.state === "live" ? "border-titanium/30" : "border-ink/15")}>
                   {LABEL[s.program] ?? s.program}
                 </span>
               </li>

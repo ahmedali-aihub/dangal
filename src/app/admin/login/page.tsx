@@ -16,9 +16,9 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
     return (
       <AuthShell title="Admin setup required" subtitle="Supabase isn't connected yet, so there is nothing to sign in to.">
         <div className="space-y-4 text-sm leading-relaxed opacity-85">
-          <p>Add your Supabase keys to <code className="rounded bg-navy/5 px-1.5 py-0.5">.env.local</code> and run the SQL in <code className="rounded bg-navy/5 px-1.5 py-0.5">supabase/schema.sql</code>. Full steps are in the README.</p>
+          <p>Add your Supabase keys to <code className="rounded bg-ink/5 px-1.5 py-0.5">.env.local</code> and run the SQL in <code className="rounded bg-ink/5 px-1.5 py-0.5">supabase/schema.sql</code>. Full steps are in the README.</p>
           {isAdminDemo && (
-            <Link href="/admin" className="inline-flex h-12 w-full items-center justify-center rounded-full bg-navy text-sm font-medium text-cream">
+            <Link href="/admin" className="inline-flex h-12 w-full items-center justify-center rounded-full bg-ink text-sm font-medium text-titanium">
               Preview the admin panel (local demo)
             </Link>
           )}
@@ -53,16 +53,16 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         {tablesMissing ? (
           <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed opacity-85">
             <li>Supabase Dashboard → <strong>SQL Editor</strong> → New query.</li>
-            <li>Paste the contents of <code className="rounded bg-navy/5 px-1.5 py-0.5">supabase/setup.sql</code> and press <strong>Run</strong>.</li>
+            <li>Paste the contents of <code className="rounded bg-ink/5 px-1.5 py-0.5">supabase/setup.sql</code> and press <strong>Run</strong>.</li>
             <li>Refresh this page.</li>
           </ol>
         ) : (
           <div className="space-y-4 text-sm leading-relaxed opacity-85">
-            <p className="rounded-xl bg-navy/5 p-3 font-mono text-xs">
+            <p className="rounded-xl bg-ink/5 p-3 font-mono text-xs">
               {dbError.message}
               {dbError.hint ? ` — ${dbError.hint}` : ""}
             </p>
-            <ul className="space-y-1 rounded-xl bg-navy/5 p-3 font-mono text-xs break-all">
+            <ul className="space-y-1 rounded-xl bg-ink/5 p-3 font-mono text-xs break-all">
               <li>address in use: {JSON.stringify(SUPABASE_URL)}</li>
               <li>key: {SUPABASE_ANON_KEY ? `${SUPABASE_ANON_KEY.slice(0, 15)}… (${SUPABASE_ANON_KEY.length} chars)` : "(empty)"}</li>
               <li>connection test: {probe}</li>
@@ -87,7 +87,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   return (
     <AuthShell title="Sign in" subtitle="Owner and staff access only.">
       {error === "no-access" && (
-        <p role="alert" className="mb-6 rounded-xl bg-navy/5 p-3 text-sm">
+        <p role="alert" className="mb-6 rounded-xl bg-ink/5 p-3 text-sm">
           Your account isn&apos;t active yet. Ask the owner to enable it.
         </p>
       )}

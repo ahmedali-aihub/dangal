@@ -1,13 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter } from "next/font/google";
 import { LogoDefs } from "@/components/layout/Logo";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
-// One variable family for UI + display (tight tracking does the "display" work), plus an italic serif
-// used only for accent words — not preloaded so it never competes with the hero image.
+// One variable family for UI + display; tight tracking does the "display" work.
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["italic"], variable: "--font-serif", display: "swap", preload: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -43,7 +41,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#14213D",
+  themeColor: "#111113",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -54,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en-IN"
       data-scroll-behavior="smooth"
-      className={`${sans.variable} ${serif.variable}`}
+      className={sans.variable}
       style={{ ["--font-display" as string]: "var(--font-sans)" }}
     >
       <body>

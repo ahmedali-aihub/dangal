@@ -73,13 +73,13 @@ export function CrudManager({
         </button>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-navy/10 bg-white">
+      <div className="overflow-hidden rounded-2xl border border-ink/10 bg-white">
         {rows.length === 0 ? (
           <p className="p-10 text-center text-sm opacity-70">{emptyText}</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-cream-100 text-xs uppercase tracking-[0.08em] opacity-70">
+              <thead className="bg-titanium-100 text-xs uppercase tracking-[0.08em] opacity-70">
                 <tr>
                   {imageField && <th className="w-16 px-4 py-3 font-medium">Image</th>}
                   {columns.map((c) => (
@@ -91,7 +91,7 @@ export function CrudManager({
                   <th className="px-4 py-3" />
                 </tr>
               </thead>
-              <tbody className="divide-y divide-navy/10">
+              <tbody className="divide-y divide-ink/10">
                 {rows.map((r) => (
                   <tr key={r.id} className={clsx(!r.is_active && "opacity-70")}>
                     {imageField && (
@@ -100,7 +100,7 @@ export function CrudManager({
                           // eslint-disable-next-line @next/next/no-img-element
                           <img src={`${r[imageField]}${String(r[imageField]).includes("unsplash") ? "?w=120&auto=format" : ""}`} alt="" className="h-10 w-10 rounded-lg object-cover" />
                         ) : (
-                          <span className="block h-10 w-10 rounded-lg bg-navy/10" />
+                          <span className="block h-10 w-10 rounded-lg bg-ink/10" />
                         )}
                       </td>
                     )}
@@ -161,7 +161,7 @@ export function CrudManager({
         />
       )}
       {toast && (
-        <div role="status" className={clsx("fixed bottom-6 left-1/2 z-[80] -translate-x-1/2 rounded-full px-5 py-3 text-sm shadow-soft", toast.err ? "bg-red-800 text-white" : "bg-navy text-cream")}>
+        <div role="status" className={clsx("fixed bottom-6 left-1/2 z-[80] -translate-x-1/2 rounded-full px-5 py-3 text-sm shadow-soft", toast.err ? "bg-red-800 text-white" : "bg-ink text-titanium")}>
           {toast.msg}
         </div>
       )}
@@ -176,9 +176,9 @@ function Drawer({ row, fields, pending, onClose, onSave }: { row: Row | null; fi
   const [uploading, setUploading] = useState<string | null>(null);
 
   return (
-    <div role="dialog" aria-modal="true" className="fixed inset-0 z-[70] flex justify-end bg-navy-950/50" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div role="dialog" aria-modal="true" className="fixed inset-0 z-[70] flex justify-end bg-ink-950/50" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <form
-        className="h-full w-full max-w-lg overflow-y-auto bg-cream-50 p-6 sm:p-8"
+        className="h-full w-full max-w-lg overflow-y-auto bg-titanium-50 p-6 sm:p-8"
         onSubmit={(e) => {
           e.preventDefault();
           const fd = new FormData(e.currentTarget);
@@ -197,7 +197,7 @@ function Drawer({ row, fields, pending, onClose, onSave }: { row: Row | null; fi
       >
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-light tracking-[-0.03em]">{row ? "Edit" : "Add new"}</h2>
-          <button type="button" onClick={onClose} className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-navy/5">
+          <button type="button" onClick={onClose} className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-ink/5">
             <X className="h-5 w-5" aria-hidden />
             <span className="sr-only">Close</span>
           </button>
@@ -213,7 +213,7 @@ function Drawer({ row, fields, pending, onClose, onSave }: { row: Row | null; fi
                     {f.label}
                     {f.help && <span className="block text-xs opacity-70">{f.help}</span>}
                   </span>
-                  <input type="checkbox" name={f.name} defaultChecked={row ? Boolean(v) : f.name === "is_active"} className="h-5 w-5 accent-navy" />
+                  <input type="checkbox" name={f.name} defaultChecked={row ? Boolean(v) : f.name === "is_active"} className="h-5 w-5 accent-ink" />
                 </label>
               );
             if (f.type === "image")
@@ -291,7 +291,7 @@ function Drawer({ row, fields, pending, onClose, onSave }: { row: Row | null; fi
             );
           })}
         </div>
-        <div className="sticky bottom-0 -mx-6 mt-8 flex gap-2 border-t border-navy/10 bg-cream-50 px-6 py-4 sm:-mx-8 sm:px-8">
+        <div className="sticky bottom-0 -mx-6 mt-8 flex gap-2 border-t border-ink/10 bg-titanium-50 px-6 py-4 sm:-mx-8 sm:px-8">
           <button className={btn.primary} disabled={pending || !!uploading}>
             {pending && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />} Save
           </button>

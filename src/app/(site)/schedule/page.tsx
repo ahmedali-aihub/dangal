@@ -23,7 +23,7 @@ export default function SchedulePage() {
         image={IMG.studio}
         crumbs={[{ name: "Schedule", path: "/schedule" }]}
       >
-        <ul className="space-y-1 text-sm text-cream/80 lg:text-right">
+        <ul className="space-y-1 text-sm text-titanium/80 lg:text-right">
           {SITE.hours.map((h) => (
             <li key={h.days}>
               {h.days} · {h.label}
@@ -31,14 +31,14 @@ export default function SchedulePage() {
           ))}
         </ul>
       </PageHero>
-      <Section tone="cream" label="Weekly timetable">
+      <Section tone="titanium" label="Weekly timetable">
         <div className="container-x">
           <Timetable />
           <p className="mt-6 text-sm opacity-70">{NEXT_BATCH_NOTE} Timings may change on public holidays — we post updates on Instagram.</p>
         </div>
       </Section>
       <FinalCta />
-      <div className="h-3 bg-cream" aria-hidden />
+      <div className="h-3 bg-titanium" aria-hidden />
     </>
   );
 }

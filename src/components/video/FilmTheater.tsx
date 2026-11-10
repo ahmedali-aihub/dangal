@@ -21,7 +21,7 @@ export function WatchFilm({
   label?: string;
   duration?: string;
   /** "cover": invisible full-size button laid over a video; a play prompt appears on hover/focus. */
-  variant?: "glass" | "coral" | "cream" | "cover";
+  variant?: "glass" | "silver" | "titanium" | "cover";
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -35,8 +35,8 @@ export function WatchFilm({
     return (
       <>
         <button ref={trigger} type="button" onClick={() => setOpen(true)} className={clsx("group absolute inset-0 z-20 flex cursor-pointer items-center justify-center", className)}>
-          <span className="inline-flex scale-90 items-center gap-3 rounded-full bg-navy-950/70 py-2 pl-2 pr-5 text-sm font-medium text-cream opacity-0 backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-coral text-navy">
+          <span className="inline-flex scale-90 items-center gap-3 rounded-full bg-ink-950/70 py-2 pl-2 pr-5 text-sm font-medium text-titanium opacity-0 backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-silver text-ink">
               <Play className="h-4 w-4 translate-x-px fill-current" aria-hidden />
             </span>
             {label}
@@ -55,21 +55,21 @@ export function WatchFilm({
         onClick={() => setOpen(true)}
         className={clsx(
           "group inline-flex h-12 items-center gap-3 rounded-full pl-1.5 pr-5 text-sm font-medium transition-all duration-300",
-          variant === "coral"
-            ? "bg-coral text-navy shadow-[0_10px_30px_-10px_rgba(255,107,91,0.8)] hover:bg-coral-400"
-            : variant === "cream"
-              ? "bg-cream text-navy shadow-[0_14px_40px_-12px_rgba(0,0,0,0.6)] hover:bg-white"
-              : "glass text-cream hover:bg-cream/15",
+          variant === "silver"
+            ? "bg-silver text-ink shadow-[0_10px_30px_-10px_rgba(255,255,255,0.3)] hover:bg-silver-400"
+            : variant === "titanium"
+              ? "bg-titanium text-ink shadow-[0_14px_40px_-12px_rgba(0,0,0,0.6)] hover:bg-white"
+              : "glass text-titanium hover:bg-titanium/15",
           className,
         )}
       >
         <span
           className={clsx(
             "relative inline-flex h-9 w-9 items-center justify-center rounded-full transition-transform duration-500 group-hover:scale-110",
-            variant === "coral" ? "bg-navy text-coral" : "bg-coral text-navy",
+            variant === "silver" ? "bg-ink text-silver" : "bg-silver text-ink",
           )}
         >
-          <span aria-hidden className="absolute inset-0 animate-ping rounded-full bg-coral/40 motion-reduce:hidden" />
+          <span aria-hidden className="absolute inset-0 animate-ping rounded-full bg-silver/40 motion-reduce:hidden" />
           <Play className="relative h-3.5 w-3.5 translate-x-px fill-current" aria-hidden />
         </span>
         {label}
@@ -135,20 +135,20 @@ function Theater({ video, onClose }: { video: PlayerVideo; onClose: () => void }
       role="dialog"
       aria-modal="true"
       aria-label={video.title}
-      className="fade-in fixed inset-0 z-[80] flex flex-col items-center justify-center bg-navy-950/95 p-4 backdrop-blur-md sm:p-10"
+      className="fade-in fixed inset-0 z-[80] flex flex-col items-center justify-center bg-ink-950/95 p-4 backdrop-blur-md sm:p-10"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="mb-4 flex w-full max-w-6xl items-center justify-between text-cream">
+      <div className="mb-4 flex w-full max-w-6xl items-center justify-between text-titanium">
         <p className="flex items-center gap-2 text-sm">
-          <span className="h-1.5 w-1.5 rounded-full bg-coral" aria-hidden />
+          <span className="h-1.5 w-1.5 rounded-full bg-silver" aria-hidden />
           {video.title}
         </p>
-        <button ref={closeRef} type="button" onClick={onClose} className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-cream text-navy transition-transform hover:rotate-90">
+        <button ref={closeRef} type="button" onClick={onClose} className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-titanium text-ink transition-transform hover:rotate-90">
           <X className="h-5 w-5" aria-hidden />
           <span className="sr-only">Close video</span>
         </button>
       </div>
-      <div className="relative aspect-video w-full max-w-6xl overflow-hidden rounded-[18px] bg-black shadow-[0_40px_140px_-30px_rgba(255,107,91,0.55)] ring-1 ring-cream/10">
+      <div className="relative aspect-video w-full max-w-6xl overflow-hidden rounded-[18px] bg-black shadow-[0_40px_140px_-30px_rgba(255,255,255,0.14)] ring-1 ring-titanium/10">
         {video.source === "youtube" || video.source === "vimeo" ? (
           <iframe
             src={
@@ -181,16 +181,16 @@ function Theater({ video, onClose }: { video: PlayerVideo; onClose: () => void }
               v.play().catch(() => {});
               setNeedsTap(false);
             }}
-            className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full bg-coral py-3 pl-3 pr-6 text-sm font-semibold text-navy shadow-[0_10px_30px_-10px_rgba(255,107,91,0.9)]"
+            className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full bg-silver py-3 pl-3 pr-6 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(236,236,241,0.9)]"
           >
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-navy text-coral">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink text-silver">
               <Play className="h-4 w-4 translate-x-px fill-current" aria-hidden />
             </span>
             Tap for sound
           </button>
         )}
       </div>
-      <p className="mt-4 text-xs text-cream/65">Press Esc or click outside to close</p>
+      <p className="mt-4 text-xs text-titanium/65">Press Esc or click outside to close</p>
     </div>
   );
 }

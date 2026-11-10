@@ -70,7 +70,7 @@ export function EnrollForm() {
     };
   }, []);
 
-  if (!setup) return <div className="h-64 animate-pulse rounded-2xl bg-navy/5" aria-label="Loading" />;
+  if (!setup) return <div className="h-64 animate-pulse rounded-2xl bg-ink/5" aria-label="Loading" />;
   if ("error" in setup) return <p className="text-sm text-red-800">{setup.error}</p>;
 
   return (
@@ -85,7 +85,7 @@ export function EnrollForm() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={qrSrc(setup.qr)} alt="Scan this QR code with your authenticator app" width={180} height={180} className="h-[180px] w-[180px]" />
       </div>
-      <p className="break-all rounded-xl bg-navy/5 p-3 text-center font-mono text-xs">{setup.secret}</p>
+      <p className="break-all rounded-xl bg-ink/5 p-3 text-center font-mono text-xs">{setup.secret}</p>
       <form action={action} className="space-y-4">
         <input type="hidden" name="factorId" value={setup.factorId} />
         <input name="code" inputMode="numeric" autoComplete="one-time-code" pattern="\d{6}" maxLength={6} required placeholder="123456" className={`${authInput} text-center text-2xl tracking-[0.5em]`} />

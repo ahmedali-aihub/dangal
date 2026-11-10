@@ -45,14 +45,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       />
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }, { name: p.title, path: `/blog/${p.slug}` }])} />
 
-      <article className="bg-cream">
-        <header className="bg-cream p-2 sm:p-3">
-          <div className="rounded-[22px] bg-navy text-cream sm:rounded-[28px]">
+      <article className="bg-titanium">
+        <header className="bg-titanium p-2 sm:p-3">
+          <div className="rounded-[22px] bg-ink text-titanium sm:rounded-[28px]">
             <div className="container-x max-w-4xl pb-14 pt-36 sm:pb-20 sm:pt-44">
-              <Link href="/blog" className="text-sm text-cream/70 hover:text-cream">
+              <Link href="/blog" className="text-sm text-titanium/70 hover:text-titanium">
                 ← Journal
               </Link>
-              <p className="mt-10 text-sm text-cream/60">
+              <p className="mt-10 text-sm text-titanium/60">
                 {p.category} · {new Date(p.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })} · {p.readMins} min read
               </p>
               <h1 className="mt-4 text-[clamp(2.2rem,5vw,4rem)] font-light leading-[1.02] tracking-[-0.04em] text-balance">{p.title}</h1>
@@ -61,7 +61,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </header>
 
         <div className="container-x max-w-4xl">
-          <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[22px] bg-navy">
+          <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[22px] bg-ink">
             <Image src={img(p.image, 1600)} alt="" fill priority sizes="(min-width:1024px) 900px, 100vw" placeholder="blur" blurDataURL={BLUR} className="object-cover" />
           </div>
           <div className="mx-auto max-w-[680px] py-16 text-[17px] leading-[1.75]">
@@ -75,7 +75,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
 
           {more.length > 0 && (
-            <aside className="border-t border-navy/10 py-14" aria-label="More articles">
+            <aside className="border-t border-ink/10 py-14" aria-label="More articles">
               <p className="eyebrow opacity-70">Keep reading</p>
               <ul className="mt-6 grid gap-6 sm:grid-cols-2">
                 {more.map((m) => (
@@ -91,7 +91,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </div>
       </article>
       <FinalCta />
-      <div className="h-3 bg-cream" aria-hidden />
+      <div className="h-3 bg-titanium" aria-hidden />
     </>
   );
 }

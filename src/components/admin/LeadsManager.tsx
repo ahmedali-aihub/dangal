@@ -49,7 +49,7 @@ export function LeadsManager({ leads, canDelete }: { leads: Lead[]; canDelete: b
       <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
         <div className="no-scrollbar -mx-4 flex gap-1 overflow-x-auto px-4 sm:mx-0 sm:px-0">
           {[{ v: "all", l: "All" }, ...STATUSES].map((s) => (
-            <button key={s.v} onClick={() => go({ status: s.v })} aria-pressed={status === s.v} className={clsx("h-9 shrink-0 rounded-full px-4 text-sm", status === s.v ? "bg-navy text-cream" : "border border-navy/15 bg-white")}>
+            <button key={s.v} onClick={() => go({ status: s.v })} aria-pressed={status === s.v} className={clsx("h-9 shrink-0 rounded-full px-4 text-sm", status === s.v ? "bg-ink text-titanium" : "border border-ink/15 bg-white")}>
               {s.l}
             </button>
           ))}
@@ -72,17 +72,17 @@ export function LeadsManager({ leads, canDelete }: { leads: Lead[]; canDelete: b
       </div>
       {error && <p className="mb-4 rounded-xl bg-red-50 p-3 text-sm text-red-800">{error}</p>}
 
-      <div className="overflow-hidden rounded-2xl border border-navy/10 bg-white">
+      <div className="overflow-hidden rounded-2xl border border-ink/10 bg-white">
         {leads.length === 0 ? (
           <p className="p-10 text-center text-sm opacity-70">No leads match.</p>
         ) : (
-          <ul className="divide-y divide-navy/10">
+          <ul className="divide-y divide-ink/10">
             {leads.map((l) => {
               const expanded = open === l.id;
               const wa = `https://wa.me/${l.phone.replace(/\D/g, "")}?text=${encodeURIComponent(`Hi ${l.name.split(" ")[0]}, this is Dangal Gym. Thanks for your enquiry!`)}`;
               return (
                 <li key={l.id}>
-                  <button className="grid w-full grid-cols-[1fr_auto] items-center gap-4 px-5 py-4 text-left hover:bg-cream-100/60 sm:grid-cols-[1.4fr_1.2fr_1fr_auto]" onClick={() => setOpen(expanded ? null : l.id)} aria-expanded={expanded}>
+                  <button className="grid w-full grid-cols-[1fr_auto] items-center gap-4 px-5 py-4 text-left hover:bg-titanium-100/60 sm:grid-cols-[1.4fr_1.2fr_1fr_auto]" onClick={() => setOpen(expanded ? null : l.id)} aria-expanded={expanded}>
                     <span className="min-w-0">
                       <span className="block truncate font-medium">{l.name}</span>
                       <span className="block truncate text-xs opacity-70">{l.phone}</span>
@@ -95,7 +95,7 @@ export function LeadsManager({ leads, canDelete }: { leads: Lead[]; canDelete: b
                     </span>
                   </button>
                   {expanded && (
-                    <div className="grid gap-6 bg-cream-100/50 px-5 py-5 lg:grid-cols-2">
+                    <div className="grid gap-6 bg-titanium-100/50 px-5 py-5 lg:grid-cols-2">
                       <dl className="space-y-2 text-sm">
                         {[
                           ["Email", l.email],

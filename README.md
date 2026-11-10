@@ -9,7 +9,7 @@ Production website for **Dangal Gym**, #501, 5th Floor, Aries Plaza, St Ann's Co
 
 **About the animations:** an earlier version used Framer Motion. It was replaced to reach the Lighthouse target: on mobile its runtime and hydration-gated reveals cost about 45 kB and delayed LCP. Scroll reveals and parallax now use native CSS scroll-driven animations (`animation-timeline: view()`), which need no JavaScript. Browsers without support simply show the content without the animation. Hero text animates with pure CSS. Lenis smooth scroll loads only on desktop pointer devices. All motion respects `prefers-reduced-motion`.
 
-**The motion system:** headings animate in word by word as they scroll into view (`SplitText`), and the home-page statement writes itself on as you scroll. Images open with a curtain reveal and settle from a slight zoom. The hero drifts out and zooms as you scroll past it. The menu button doubles as a scroll-progress ring, and the header stays pinned while you scroll. Client-side navigations get a navy curtain page transition (never on first load). Buttons roll their text on hover.
+**The motion system:** headings animate in word by word as they scroll into view (`SplitText`), and the home-page statement writes itself on as you scroll. Images open with a curtain reveal and settle from a slight zoom. The hero drifts out and zooms as you scroll past it. The menu button doubles as a scroll-progress ring, and the header stays pinned while you scroll. Client-side navigations get a space-black curtain page transition (never on first load). Buttons roll their text on hover.
 
 **Interactive features:**
 - "Find your program" quiz (`ProgramFinder`)

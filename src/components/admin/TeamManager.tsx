@@ -24,7 +24,7 @@ export function TeamManager({ team, me }: { team: TeamMember[]; me: string }) {
     <div className="grid gap-6 lg:grid-cols-3">
       <Card className="lg:col-span-2">
         <h2 className="text-lg tracking-[-0.02em]">People with access</h2>
-        <ul className="mt-4 divide-y divide-navy/10">
+        <ul className="mt-4 divide-y divide-ink/10">
           {team.map((m) => (
             <li key={m.id} className="flex flex-wrap items-center justify-between gap-3 py-4">
               <div className="min-w-0">
@@ -48,7 +48,7 @@ export function TeamManager({ team, me }: { team: TeamMember[]; me: string }) {
                   defaultValue={m.role}
                   disabled={m.id === me || pending}
                   onChange={(e) => run(() => updateStaff(m.id, { role: e.target.value as "owner" | "staff" }), "Role updated.")}
-                  className="h-9 rounded-full border border-navy/15 bg-white px-3 text-sm"
+                  className="h-9 rounded-full border border-ink/15 bg-white px-3 text-sm"
                 >
                   <option value="staff">Staff</option>
                   <option value="owner">Owner</option>
