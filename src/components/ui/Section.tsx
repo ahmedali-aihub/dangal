@@ -23,9 +23,9 @@ export function Section({
       className={clsx(
         // content-visibility: skip style/layout/paint for off-screen sections until they approach the viewport
         "relative py-20 [contain-intrinsic-size:auto_900px] [content-visibility:auto] sm:py-28 lg:py-32",
-        tone === "ink" && "bg-ink text-titanium",
+        tone === "ink" && "ink-glow bg-ink text-titanium",
         tone === "titanium" && "bg-titanium text-ink",
-        tone === "sand" && "bg-titanium-200/60 text-ink",
+        tone === "sand" && "bg-sand text-ink",
         className,
       )}
     >

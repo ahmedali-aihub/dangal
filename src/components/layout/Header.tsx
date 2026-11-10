@@ -121,10 +121,10 @@ export function Header() {
                           className="group flex items-center justify-between py-[clamp(0.45rem,1.7vh,1rem)] text-[clamp(1.5rem,min(4.2vw,6.8vh),2.75rem)] font-light leading-tight tracking-[-0.035em] text-titanium/80 transition-colors duration-300 hover:text-titanium"
                         >
                           <span className="inline-flex items-center gap-3 transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:translate-x-2">
-                            {current && <span aria-hidden className="h-2 w-2 rounded-full bg-silver" />}
+                            {current && <span aria-hidden className="h-2 w-2 rounded-full bg-ember" />}
                             {n.label}
                           </span>
-                          <span className="text-xs tabular-nums text-titanium/65 transition-colors group-hover:text-silver">{String(i + 1).padStart(2, "0")}</span>
+                          <span className="text-xs tabular-nums text-titanium/65 transition-colors group-hover:text-ember">{String(i + 1).padStart(2, "0")}</span>
                         </Link>
                       </li>
                     );
@@ -153,7 +153,7 @@ export function Header() {
                   </div>
                   <Link
                     href="/contact#trial"
-                    className="inline-flex h-12 items-center rounded-full bg-silver px-6 text-sm font-semibold text-ink"
+                    className="inline-flex h-12 items-center rounded-full bg-ember px-6 text-sm font-semibold text-ink"
                   >
                     Book a free trial
                   </Link>

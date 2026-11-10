@@ -20,6 +20,8 @@ type Props = {
   controlsClassName?: string;
   /** Extra classes on the media layer (poster + video), e.g. a soft blur for low-res background footage. */
   mediaClassName?: string;
+  /** Played instead when the main video can't be decoded by this browser (e.g. an H.265/HEVC upload in Chrome). */
+  backup?: PlayerVideo;
   /** Overlays (tint, gradients…) drawn above the media but BELOW the controls, so controls stay bright and clickable. */
   children?: React.ReactNode;
   onVideoChange?: (v: PlayerVideo | null) => void;
@@ -54,6 +56,7 @@ export function VideoPlayer({
   className,
   controlsClassName,
   mediaClassName,
+  backup,
   children,
   onVideoChange,
 }: Props) {
@@ -67,7 +70,7 @@ export function VideoPlayer({
   const [visible, setVisible] = useState(true);
   const [index, setIndex] = useState(0);
   const [ready, setReady] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const [failedIds, setFailedIds] = useState<string[]>([]);
   const [muted, setMuted] = useState(true);
 
   // Never server-render the <video>: it would start downloading before the page (and the LCP poster)
@@ -82,10 +85,16 @@ export function VideoPlayer({
     return () => window.removeEventListener("load", go);
   }, []);
 
-  const videos = slot.videos;
+  // Videos this browser can't play are skipped; if none are left we use the backup, then the still image.
+  const ok = slot.videos.filter((v) => !failedIds.includes(v.id));
+  const videos = ok.length ? ok : backup && !failedIds.includes(backup.id) ? [backup] : [];
   const current = videos.length ? videos[index % videos.length] : null;
   const isPlaylist = videos.length > 1;
-  const canPlay = !!current && !failed && (!constrained || optIn);
+  const failed = !current;
+  const failCurrent = useCallback(() => {
+    if (current) setFailedIds((f) => (f.includes(current.id) ? f : [...f, current.id]));
+  }, [current]);
+  const canPlay = !!current && (!constrained || optIn);
   const shouldMount = canPlay && near && pageLoaded;
 
   const poster = current ? posterFor(current) ?? fallbackImage : fallbackImage;
@@ -130,16 +139,16 @@ export function VideoPlayer({
       v.src = url;
     } else {
       import("hls.js").then(({ default: Hls }) => {
-        if (!Hls.isSupported()) return setFailed(true);
+        if (!Hls.isSupported()) return failCurrent();
         const h = new Hls({ capLevelToPlayerSize: true, startLevel: -1 });
-        h.on(Hls.Events.ERROR, (_e, data) => data.fatal && setFailed(true));
+        h.on(Hls.Events.ERROR, (_e, data) => data.fatal && failCurrent());
         h.loadSource(url);
         h.attachMedia(v);
         hls = h;
       });
     }
     return () => hls?.destroy();
-  }, [shouldMount, current]);
+  }, [shouldMount, current, failCurrent]);
 
   // Pause/resume with visibility & user intent
   const post = useCallback(
@@ -161,6 +170,14 @@ export function VideoPlayer({
     if (current?.source === "youtube") post({ event: "command", func: shouldPlay ? "playVideo" : "pauseVideo", args: [] });
     if (current?.source === "vimeo") post({ method: shouldPlay ? "play" : "pause" });
   }, [visible, current, post, ready]);
+
+  // Watchdog: a file some browsers can't decode (HEVC in Chrome, say) loads but never starts. If nothing is
+  // playing a while after mounting, drop it and fall back instead of leaving a frozen picture.
+  useEffect(() => {
+    if (!shouldMount || !visible || ready || !current || (current.source !== "upload" && current.source !== "mux")) return;
+    const t = setTimeout(failCurrent, 12000);
+    return () => clearTimeout(t);
+  }, [shouldMount, visible, ready, current, failCurrent]);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -220,7 +237,7 @@ export function VideoPlayer({
           disablePictureInPicture
           onPlaying={() => setReady(true)}
           onEnded={next}
-          onError={() => setFailed(true)}
+          onError={failCurrent}
           aria-label={current.title}
         />
       )}
@@ -278,7 +295,7 @@ export function VideoPlayer({
                 aria-pressed={!muted}
                 className={clsx(
                   "inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-[12px] font-medium transition-colors duration-300 sm:h-11 sm:gap-2 sm:px-4 sm:text-[13px]",
-                  muted ? "glass text-titanium hover:bg-titanium/20" : "bg-silver text-ink shadow-[0_8px_24px_-8px_rgba(255,255,255,0.3)]",
+                  muted ? "glass text-titanium hover:bg-titanium/20" : "bg-ember text-ink shadow-[0_8px_24px_-8px_rgba(255,106,61,0.6)]",
                 )}
               >
                 {muted ? <VolumeX className="h-4 w-4" aria-hidden /> : <Volume2 className="h-4 w-4" aria-hidden />}

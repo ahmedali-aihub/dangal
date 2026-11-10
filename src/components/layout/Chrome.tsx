@@ -64,12 +64,12 @@ export function OfferBanner({ banner }: { banner: Banner | null }) {
       aria-label="Current offer"
       className="fixed bottom-4 left-1/2 z-40 hidden w-[min(720px,calc(100%-2rem))] -translate-x-1/2 items-center gap-4 rounded-full border border-titanium/15 bg-ink/90 py-2 pl-5 pr-2 text-sm text-titanium shadow-glass backdrop-blur-xl sm:flex"
     >
-      <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-silver" />
+      <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-ember" />
       <p className="flex-1 truncate">{banner.message}</p>
       {banner.cta_href && banner.cta_label && (
         <Link
           href={banner.cta_href}
-          className="shrink-0 rounded-full bg-silver px-4 py-2 text-[13px] font-semibold text-ink hover:bg-silver-400"
+          className="shrink-0 rounded-full bg-ember px-4 py-2 text-[13px] font-semibold text-ink hover:bg-ember-400"
         >
           {banner.cta_label}
         </Link>
@@ -112,7 +112,7 @@ export function MobileDock() {
       </a>
       <Link
         href="/contact#trial"
-        className="flex h-11 items-center justify-center gap-2 rounded-full bg-silver text-[13px] font-semibold text-ink"
+        className="flex h-11 items-center justify-center gap-2 rounded-full bg-ember text-[13px] font-semibold text-ink"
       >
         <CalendarCheck className="h-4 w-4" strokeWidth={1.75} aria-hidden /> Free trial
       </Link>

@@ -21,7 +21,7 @@ export function WatchFilm({
   label?: string;
   duration?: string;
   /** "cover": invisible full-size button laid over a video; a play prompt appears on hover/focus. */
-  variant?: "glass" | "silver" | "titanium" | "cover";
+  variant?: "glass" | "ember" | "titanium" | "cover";
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -36,7 +36,7 @@ export function WatchFilm({
       <>
         <button ref={trigger} type="button" onClick={() => setOpen(true)} className={clsx("group absolute inset-0 z-20 flex cursor-pointer items-center justify-center", className)}>
           <span className="inline-flex scale-90 items-center gap-3 rounded-full bg-ink-950/70 py-2 pl-2 pr-5 text-sm font-medium text-titanium opacity-0 backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-silver text-ink">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-ember text-ink">
               <Play className="h-4 w-4 translate-x-px fill-current" aria-hidden />
             </span>
             {label}
@@ -55,8 +55,8 @@ export function WatchFilm({
         onClick={() => setOpen(true)}
         className={clsx(
           "group inline-flex h-12 items-center gap-3 rounded-full pl-1.5 pr-5 text-sm font-medium transition-all duration-300",
-          variant === "silver"
-            ? "bg-silver text-ink shadow-[0_10px_30px_-10px_rgba(255,255,255,0.3)] hover:bg-silver-400"
+          variant === "ember"
+            ? "bg-ember text-ink shadow-[0_10px_30px_-10px_rgba(255,106,61,0.6)] hover:bg-ember-400"
             : variant === "titanium"
               ? "bg-titanium text-ink shadow-[0_14px_40px_-12px_rgba(0,0,0,0.6)] hover:bg-white"
               : "glass text-titanium hover:bg-titanium/15",
@@ -66,10 +66,10 @@ export function WatchFilm({
         <span
           className={clsx(
             "relative inline-flex h-9 w-9 items-center justify-center rounded-full transition-transform duration-500 group-hover:scale-110",
-            variant === "silver" ? "bg-ink text-silver" : "bg-silver text-ink",
+            variant === "ember" ? "bg-ink text-ember" : "bg-ember text-ink",
           )}
         >
-          <span aria-hidden className="absolute inset-0 animate-ping rounded-full bg-silver/40 motion-reduce:hidden" />
+          <span aria-hidden className="absolute inset-0 animate-ping rounded-full bg-ember/40 motion-reduce:hidden" />
           <Play className="relative h-3.5 w-3.5 translate-x-px fill-current" aria-hidden />
         </span>
         {label}
@@ -140,7 +140,7 @@ function Theater({ video, onClose }: { video: PlayerVideo; onClose: () => void }
     >
       <div className="mb-4 flex w-full max-w-6xl items-center justify-between text-titanium">
         <p className="flex items-center gap-2 text-sm">
-          <span className="h-1.5 w-1.5 rounded-full bg-silver" aria-hidden />
+          <span className="h-1.5 w-1.5 rounded-full bg-ember" aria-hidden />
           {video.title}
         </p>
         <button ref={closeRef} type="button" onClick={onClose} className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-titanium text-ink transition-transform hover:rotate-90">
@@ -181,9 +181,9 @@ function Theater({ video, onClose }: { video: PlayerVideo; onClose: () => void }
               v.play().catch(() => {});
               setNeedsTap(false);
             }}
-            className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full bg-silver py-3 pl-3 pr-6 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(236,236,241,0.9)]"
+            className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full bg-ember py-3 pl-3 pr-6 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(236,236,241,0.9)]"
           >
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink text-silver">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink text-ember">
               <Play className="h-4 w-4 translate-x-px fill-current" aria-hidden />
             </span>
             Tap for sound

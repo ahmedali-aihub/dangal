@@ -81,7 +81,7 @@ export function ProgramShowcase() {
                     ))}
                   </ul>
                   <span className="mt-8 inline-flex items-center gap-3 text-sm">
-                    <span className="inline-flex h-11 items-center gap-2 rounded-full bg-silver px-5 font-semibold text-ink transition-colors group-hover:bg-silver-400">
+                    <span className="inline-flex h-11 items-center gap-2 rounded-full bg-ember px-5 font-semibold text-ink transition-colors group-hover:bg-ember-400">
                       Explore program <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" aria-hidden />
                     </span>
                   </span>

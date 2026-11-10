@@ -10,7 +10,7 @@ export function Marquee() {
         <Fragment key={w}>
           <span className={i % 2 ? "serif-accent px-6 sm:px-10" : "px-6 font-light sm:px-10"}>{w}</span>
           {/* dumbbell from the Dangal badge */}
-          <svg viewBox="0 0 60 32" className="h-5 w-9 shrink-0 text-silver sm:h-7 sm:w-12" aria-hidden fill="currentColor">
+          <svg viewBox="0 0 60 32" className="h-5 w-9 shrink-0 text-ember sm:h-7 sm:w-12" aria-hidden fill="currentColor">
             <rect x="8" y="13.5" width="44" height="5" rx="1" />
             <rect x="10" y="3" width="8" height="26" rx="2" />
             <rect x="3" y="8" width="5" height="16" rx="1.5" />

@@ -93,10 +93,10 @@ export function Timetable() {
                 <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-lg tracking-[-0.015em]">
                   {s.name}
                   {s.state === "live" && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-0.5 text-[11px] font-semibold text-titanium">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-ember px-2.5 py-0.5 text-[11px] font-semibold text-ink">
                       <span className="relative flex h-1.5 w-1.5" aria-hidden>
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-titanium opacity-60" />
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-titanium" />
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-60" />
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ink" />
                       </span>
                       Live now
                     </span>

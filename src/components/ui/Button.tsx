@@ -3,12 +3,12 @@ import { clsx } from "clsx";
 import { ArrowUpRight } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "silver" | "titanium" | "ink" | "outline-titanium" | "outline-ink" | "text-titanium" | "text-ink";
+type Variant = "ember" | "titanium" | "ink" | "outline-titanium" | "outline-ink" | "text-titanium" | "text-ink";
 
 const styles: Record<Variant, string> = {
-  // Primary action: polished silver. Ink text on silver is > 15:1.
-  silver:
-    "bg-gradient-to-b from-white to-silver-600 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_10px_30px_-12px_rgba(255,255,255,0.35)] hover:to-silver hover:shadow-[inset_0_1px_0_rgba(255,255,255,1),0_14px_36px_-12px_rgba(255,255,255,0.5)]",
+  // Primary action: glowing orange. Ink text on ember is 7:1.
+  ember:
+    "bg-gradient-to-b from-ember-400 to-ember text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_12px_32px_-10px_rgba(255,106,61,0.65)] hover:from-ember-300 hover:to-ember-400 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_16px_40px_-10px_rgba(255,106,61,0.8)]",
   titanium: "bg-titanium text-ink hover:bg-white",
   ink: "bg-ink text-titanium hover:bg-ink-700",
   "outline-titanium": "border border-titanium/30 text-titanium hover:border-titanium/70 hover:bg-titanium/5",

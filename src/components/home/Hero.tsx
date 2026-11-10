@@ -5,9 +5,20 @@ import { WatchFilm } from "@/components/video/FilmTheater";
 import { VideoPlayer } from "@/components/video/VideoPlayer";
 import { DEFAULT_FILM } from "@/content/data";
 import { IMG } from "@/lib/images";
-import type { VideoSlot } from "@/lib/types";
+import type { PlayerVideo, VideoSlot } from "@/lib/types";
 import { HeroHeadline } from "./HeroHeadline";
 import { TodayCard } from "./TodayCard";
+
+// If an uploaded video can't be decoded by a visitor's browser, the built-in film plays instead.
+const BACKUP_FILM: PlayerVideo = {
+  id: DEFAULT_FILM.id,
+  title: DEFAULT_FILM.title,
+  source: DEFAULT_FILM.source,
+  src: DEFAULT_FILM.src,
+  poster_url: DEFAULT_FILM.poster_url,
+  headline: null,
+  subline: null,
+};
 
 const FEATURES = [
   { icon: ShieldCheck, text: ["Certified coaches,", "technique first"] },
@@ -35,22 +46,23 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
           fallbackImage={IMG.hero}
           fallbackAlt="Athlete lifting a loaded barbell at Dangal Gym"
           priority
+          backup={isDefault ? undefined : BACKUP_FILM}
           className="hero-media"
           // Sharp, slightly richer picture: a touch more contrast/saturation so the footage looks graded, not washed.
-          mediaClassName="scale-[1.02] contrast-[1.1] saturate-[0.12]"
+          mediaClassName="scale-[1.02] contrast-[1.06] saturate-[1.05]"
           controlsClassName="right-4 top-[84px] sm:right-6 sm:top-[104px] lg:bottom-8 lg:right-10 lg:top-auto"
         >
           {/* Colour grade: footage kept crisp, pulled toward space black */}
-          <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-ink-700/35 mix-blend-multiply" />
+          <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-steel-700/40 mix-blend-multiply" />
           {/* Cinematic vignette */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(120%_90%_at_50%_30%,transparent_45%,rgba(0,0,0,0.6)_100%)]"
           />
-          {/* Soft titanium light rising from the bottom-right, slowly breathing */}
+          {/* Ember light rising from the bottom-right, slowly breathing */}
           <div
             aria-hidden
-            className="glow-breathe pointer-events-none absolute -bottom-[20%] -right-[10%] z-10 h-[80%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgba(236,236,241,0.16),rgba(236,236,241,0.04)_55%,transparent)] blur-2xl motion-reduce:animate-none"
+            className="glow-breathe pointer-events-none absolute -bottom-[20%] -right-[10%] z-10 h-[80%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,61,0.30),rgba(255,106,61,0.07)_55%,transparent)] blur-2xl motion-reduce:animate-none"
           />
           {/* Readability: dark at the top for the nav, deep ink at the bottom for the copy */}
           <div
@@ -77,7 +89,7 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
               <p className="max-w-[460px] text-[15px] leading-relaxed text-titanium/80 sm:text-base">{subline}</p>
               <div className="pointer-events-auto flex flex-wrap items-center gap-x-4 gap-y-4 lg:mr-28">
                 <Magnetic>
-                  <ButtonLink href="/contact#trial" variant="silver" size="lg" arrow>
+                  <ButtonLink href="/contact#trial" variant="ember" size="lg" arrow>
                     Book a free trial
                   </ButtonLink>
                 </Magnetic>
@@ -86,7 +98,7 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
             </div>
 
             <div className="relative mt-10 hidden border-t border-titanium/15 pt-6 sm:mt-14 sm:block">
-              <span aria-hidden className="grow-x absolute -top-px left-0 h-[2px] w-28 rounded-full bg-silver" style={{ ["--dur" as string]: "1.6s" }} />
+              <span aria-hidden className="grow-x absolute -top-px left-0 h-[2px] w-28 rounded-full bg-ember" style={{ ["--dur" as string]: "1.6s" }} />
               <ul className="no-scrollbar -mx-4 flex gap-8 overflow-x-auto px-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0 lg:grid-cols-5 lg:pr-28">
                 {FEATURES.map(({ icon: Icon, text }, i) => (
                   <li

@@ -43,7 +43,7 @@ export function FinalCta({
             <p className="lede text-titanium/80">{body}</p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
               <Magnetic>
-                <ButtonLink href="/contact#trial" variant="silver" size="lg" arrow>
+                <ButtonLink href="/contact#trial" variant="ember" size="lg" arrow>
                   Book free trial
                 </ButtonLink>
               </Magnetic>

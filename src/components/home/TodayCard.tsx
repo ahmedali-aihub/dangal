@@ -68,7 +68,7 @@ export function TodayCard() {
         </span>
         {state && (
           <span className="flex items-center gap-1.5">
-            <span className={`h-1.5 w-1.5 rounded-full ${state.open ? "bg-silver shadow-[0_0_0_3px_rgba(255,255,255,0.18)]" : "bg-titanium/40"}`} aria-hidden />
+            <span className={`h-1.5 w-1.5 rounded-full ${state.open ? "bg-ember shadow-[0_0_0_3px_rgba(255,255,255,0.18)]" : "bg-titanium/40"}`} aria-hidden />
             {state.open ? "Open now" : "Closed"}
           </span>
         )}

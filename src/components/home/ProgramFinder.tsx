@@ -123,7 +123,7 @@ export function ProgramFinder() {
               <span
                 className={clsx(
                   "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs tabular-nums transition-all duration-500",
-                  i < step ? "border-silver bg-silver text-ink" : i === step ? "border-titanium" : "border-titanium/30",
+                  i < step ? "border-ember bg-ember text-ink" : i === step ? "border-titanium" : "border-titanium/30",
                 )}
               >
                 {i < step ? <Check className="h-3.5 w-3.5" aria-hidden /> : i + 1}
@@ -150,7 +150,7 @@ export function ProgramFinder() {
               )}
             </div>
             <div className="mt-3 h-1 overflow-hidden rounded-full bg-ink/10">
-              <div className="h-full rounded-full bg-silver transition-[width] duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)]" style={{ width: `${(step / STEPS.length) * 100}%` }} />
+              <div className="h-full rounded-full bg-ember transition-[width] duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)]" style={{ width: `${(step / STEPS.length) * 100}%` }} />
             </div>
             <h3 className="mt-8 text-[clamp(1.6rem,3vw,2.4rem)] font-light leading-[1.1] tracking-[-0.035em]">{STEPS[step].q}</h3>
             <div role="radiogroup" aria-label={STEPS[step].q} className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -239,7 +239,7 @@ export function ProgramFinder() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href={`/contact?program=${result.prog.slug}#trial`}
-                  className="group inline-flex h-12 items-center gap-2 rounded-full bg-silver px-6 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(255,255,255,0.3)] transition-colors hover:bg-silver-400"
+                  className="group inline-flex h-12 items-center gap-2 rounded-full bg-ember px-6 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(255,106,61,0.6)] transition-colors hover:bg-ember-400"
                 >
                   <span className="roll" data-text="Book my free trial">
                     <span>Book my free trial</span>

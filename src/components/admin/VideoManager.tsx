@@ -7,6 +7,7 @@ import { useRef, useState, useTransition } from "react";
 import { publishHeroVideo, requestVideoUpload, resetHeroVideo, updateHeroText } from "@/app/admin/actions/videos";
 import { posterFor } from "@/lib/video";
 import type { VideoRow } from "@/lib/types";
+import { checkWebCompatible } from "./video-codec";
 import { capturePoster, putToSignedUrl, uploadImage } from "./upload-client";
 import { btn, Card, field, labelText } from "./ui";
 
@@ -49,7 +50,7 @@ export function VideoManager({ current, maxMb }: { current: VideoRow | null; max
             <img src={poster ?? "/videos/dangal-film-poster.jpg"} alt="" className="h-full w-full object-cover" />
           )}
           <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-ink/85 px-3 py-1 text-xs font-medium text-titanium">
-            <span className="h-1.5 w-1.5 rounded-full bg-silver" aria-hidden /> Live on the home page
+            <span className="h-1.5 w-1.5 rounded-full bg-ember" aria-hidden /> Live on the home page
           </span>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3 p-5 sm:px-6">
@@ -126,10 +127,12 @@ function Replace({ current, maxMb, onDone }: { current: VideoRow | null; maxMb: 
   const [drag, setDrag] = useState(false);
   const abort = useRef<AbortController | null>(null);
 
-  const pick = (f: File | undefined | null) => {
+  const pick = async (f: File | undefined | null) => {
     if (!f) return;
     if (!["video/mp4", "video/webm"].includes(f.type)) return onDone("Only MP4 or WebM files are allowed.", true);
     if (f.size > maxMb * 1024 * 1024) return onDone(`That file is over ${maxMb} MB. Compress it (e.g. HandBrake, 1080p) and try again.`, true);
+    const problem = await checkWebCompatible(f).catch(() => null);
+    if (problem) return onDone(problem, true);
     setFile(f);
   };
 

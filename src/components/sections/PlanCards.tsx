@@ -33,7 +33,7 @@ export function PlanCards({ plans, reveal = true }: { plans: Plan[]; reveal?: bo
                 className={clsx(
                   "group relative flex h-full flex-col rounded-[22px] p-7 transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:-translate-y-1.5",
                   p.highlight
-                    ? "bg-titanium text-ink shadow-[0_30px_90px_-30px_rgba(255,255,255,0.14)] ring-2 ring-silver"
+                    ? "bg-titanium text-ink shadow-[0_30px_90px_-30px_rgba(255,255,255,0.14)] ring-2 ring-ember"
                     : "border border-titanium/15 bg-titanium/[0.04] text-titanium hover:border-titanium/35",
                 )}
               >
@@ -41,7 +41,7 @@ export function PlanCards({ plans, reveal = true }: { plans: Plan[]; reveal?: bo
                 {p.highlight && p.badge && (
                   <span
                     aria-hidden
-                    className="absolute -right-3 -top-5 inline-flex h-[74px] w-[74px] rotate-[10deg] flex-col items-center justify-center rounded-full bg-white text-center text-[10px] font-bold uppercase leading-tight tracking-[0.12em] text-ink ring-4 ring-ink shadow-[0_10px_24px_-8px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:rotate-[-4deg] group-hover:scale-110"
+                    className="absolute -right-3 -top-5 inline-flex h-[74px] w-[74px] rotate-[10deg] flex-col items-center justify-center rounded-full bg-ember text-center text-[10px] font-bold uppercase leading-tight tracking-[0.12em] text-ink ring-4 ring-ink shadow-[0_10px_24px_-8px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:rotate-[-4deg] group-hover:scale-110"
                   >
                     {p.badge.split(" ").map((w) => (
                       <span key={w}>{w}</span>
@@ -82,7 +82,7 @@ export function PlanCards({ plans, reveal = true }: { plans: Plan[]; reveal?: bo
                   </div>
                   <p className="mt-4 h-7">
                     {save > 0 && (
-                      <span className={clsx("inline-flex rounded-full px-3 py-1 text-xs font-semibold", p.highlight ? "bg-ink text-titanium" : "bg-silver text-ink")}>
+                      <span className={clsx("inline-flex rounded-full px-3 py-1 text-xs font-semibold", "bg-ember text-ink")}>
                         Save {inr(save)} vs monthly
                       </span>
                     )}
@@ -98,7 +98,7 @@ export function PlanCards({ plans, reveal = true }: { plans: Plan[]; reveal?: bo
                   ))}
                 </ul>
 
-                <ButtonLink href={`/contact?plan=${encodeURIComponent(p.name)}#trial`} variant={p.highlight ? "ink" : "outline-titanium"} className="mt-8 w-full" arrow>
+                <ButtonLink href={`/contact?plan=${encodeURIComponent(p.name)}#trial`} variant={p.highlight ? "ember" : "outline-titanium"} className="mt-8 w-full" arrow>
                   {`Join ${p.name}`}
                 </ButtonLink>
               </article>

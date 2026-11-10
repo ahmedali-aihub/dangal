@@ -18,7 +18,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/contact#trial"
-              className="group inline-flex h-14 items-center gap-3 rounded-full bg-silver px-7 text-[15px] font-semibold text-ink shadow-[0_12px_32px_-12px_rgba(255,255,255,0.3)] transition-colors hover:bg-silver-400"
+              className="group inline-flex h-14 items-center gap-3 rounded-full bg-ember px-7 text-[15px] font-semibold text-ink shadow-[0_12px_32px_-12px_rgba(255,106,61,0.6)] transition-colors hover:bg-ember-400"
             >
               <span className="roll" data-text="Book a free trial">
                 <span>Book a free trial</span>

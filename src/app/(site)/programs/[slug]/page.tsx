@@ -59,7 +59,7 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
       >
         <div className="flex flex-wrap items-center gap-x-6 gap-y-4 lg:justify-end">
           <Magnetic>
-            <ButtonLink href={`/contact?program=${p.slug}#trial`} variant="silver" size="lg" arrow>
+            <ButtonLink href={`/contact?program=${p.slug}#trial`} variant="ember" size="lg" arrow>
               Join this program
             </ButtonLink>
           </Magnetic>

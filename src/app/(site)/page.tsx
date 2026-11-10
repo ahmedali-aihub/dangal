@@ -49,7 +49,7 @@ export default async function HomePage() {
         </div>
       </Section>
 
-      <Section tone="titanium" label="Program finder" id="finder">
+      <Section tone="sand" label="Program finder" id="finder">
         <div className="container-x">
           <ProgramFinder />
         </div>
@@ -57,7 +57,7 @@ export default async function HomePage() {
 
       <Why />
 
-      <Section tone="titanium" label="Trainers">
+      <Section tone="sand" label="Trainers">
         <div className="container-x">
           <SectionHeading
             index="03"

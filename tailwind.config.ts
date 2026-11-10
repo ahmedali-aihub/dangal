@@ -3,8 +3,8 @@ import type { Config } from "tailwindcss";
 /**
  * Design system: SPACE BLACK + SILVER TITANIUM (an Apple-style monochrome).
  * ink       — space black: dark sections, hero, text on light   (DEFAULT #111113)
- * titanium  — silver titanium: light sections, text on dark     (DEFAULT #F5F5F7)
- * silver    — the bright metal highlight: primary buttons, markers, glow on dark grounds
+ * titanium  — ember titanium: light sections, text on dark     (DEFAULT #F5F5F7)
+ * ember    — the bright metal highlight: primary buttons, markers, glow on dark grounds
  */
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
@@ -22,14 +22,30 @@ const config: Config = {
           400: "#76767c",
           300: "#a1a1a6",
         },
-        // Bright metal — primary CTAs, markers, glows. Always pair with ink text (never titanium text).
-        silver: {
-          DEFAULT: "#ECECF1",
-          300: "#ffffff",
-          400: "#f7f7fa",
-          500: "#ECECF1",
-          600: "#d8d8de",
-          700: "#c1c1c8",
+        // The spark (cosmic orange): primary CTAs, markers, accent words, glows. Pair with ink text on it.
+        ember: {
+          DEFAULT: "#FF6A3D",
+          300: "#ffb89c",
+          400: "#ff8a5c",
+          500: "#FF6A3D",
+          600: "#f0521f",
+          700: "#cf4313",
+        },
+        // Blue titanium: the cool depth used in dark sections' glows and cards.
+        steel: {
+          DEFAULT: "#3d4a63",
+          300: "#8fa4c4",
+          400: "#62779c",
+          500: "#3d4a63",
+          700: "#252d3d",
+          900: "#141824",
+        },
+        // Natural / desert titanium: the warm light tone.
+        sand: {
+          DEFAULT: "#ECE6DC",
+          100: "#F3EFE8",
+          200: "#ECE6DC",
+          300: "#DDD4C6",
         },
         titanium: {
           DEFAULT: "#F5F5F7",
