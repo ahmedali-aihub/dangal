@@ -62,7 +62,7 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
           {/* Ember light rising from the bottom-right, slowly breathing */}
           <div
             aria-hidden
-            className="glow-breathe pointer-events-none absolute -bottom-[20%] -right-[10%] z-10 h-[80%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,61,0.30),rgba(255,106,61,0.07)_55%,transparent)] blur-2xl motion-reduce:animate-none"
+            className="glow-breathe pointer-events-none absolute -bottom-[20%] -right-[10%] z-10 h-[80%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgb(var(--ember-500)_/_0.30),rgb(var(--ember-500)_/_0.07)_55%,transparent)] blur-2xl motion-reduce:animate-none"
           />
           {/* Readability: dark at the top for the nav, deep ink at the bottom for the copy */}
           <div

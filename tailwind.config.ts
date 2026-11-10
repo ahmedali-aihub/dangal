@@ -6,55 +6,20 @@ import type { Config } from "tailwindcss";
  * titanium  — ember titanium: light sections, text on dark     (DEFAULT #F5F5F7)
  * ember    — the bright metal highlight: primary buttons, markers, glow on dark grounds
  */
+const v = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
+
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      // Every colour is a CSS variable (an "r g b" triplet) so the whole site can switch theme at runtime.
+      // The palettes live in globals.css (:root = Space Black, [data-theme=...] = the others).
       colors: {
-        ink: {
-          DEFAULT: "#111113",
-          950: "#050506",
-          900: "#09090b",
-          800: "#111113",
-          700: "#1c1c1f",
-          600: "#2a2a2e",
-          500: "#48484d",
-          400: "#76767c",
-          300: "#a1a1a6",
-        },
-        // The spark (cosmic orange): primary CTAs, markers, accent words, glows. Pair with ink text on it.
-        ember: {
-          DEFAULT: "#FF6A3D",
-          300: "#ffb89c",
-          400: "#ff8a5c",
-          500: "#FF6A3D",
-          600: "#f0521f",
-          700: "#cf4313",
-        },
-        // Blue titanium: the cool depth used in dark sections' glows and cards.
-        steel: {
-          DEFAULT: "#3d4a63",
-          300: "#8fa4c4",
-          400: "#62779c",
-          500: "#3d4a63",
-          700: "#252d3d",
-          900: "#141824",
-        },
-        // Natural / desert titanium: the warm light tone.
-        sand: {
-          DEFAULT: "#ECE6DC",
-          100: "#F3EFE8",
-          200: "#ECE6DC",
-          300: "#DDD4C6",
-        },
-        titanium: {
-          DEFAULT: "#F5F5F7",
-          50: "#fbfbfd",
-          100: "#F5F5F7",
-          200: "#E8E8ED",
-          300: "#D2D2D7",
-          400: "#AEAEB2",
-        },
+        ink: { DEFAULT: v("ink-800"), 950: v("ink-950"), 900: v("ink-900"), 800: v("ink-800"), 700: v("ink-700"), 600: v("ink-600"), 500: v("ink-500"), 400: v("ink-400"), 300: v("ink-300") },
+        ember: { DEFAULT: v("ember-500"), 300: v("ember-300"), 400: v("ember-400"), 500: v("ember-500"), 600: v("ember-600"), 700: v("ember-700") },
+        steel: { DEFAULT: v("steel-500"), 300: v("steel-300"), 400: v("steel-400"), 500: v("steel-500"), 700: v("steel-700"), 900: v("steel-900") },
+        sand: { DEFAULT: v("sand-200"), 100: v("sand-100"), 200: v("sand-200"), 300: v("sand-300") },
+        titanium: { DEFAULT: v("titanium-100"), 50: v("titanium-50"), 100: v("titanium-100"), 200: v("titanium-200"), 300: v("titanium-300"), 400: v("titanium-400") },
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],

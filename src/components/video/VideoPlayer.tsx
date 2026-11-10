@@ -295,7 +295,7 @@ export function VideoPlayer({
                 aria-pressed={!muted}
                 className={clsx(
                   "inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-[12px] font-medium transition-colors duration-300 sm:h-11 sm:gap-2 sm:px-4 sm:text-[13px]",
-                  muted ? "glass text-titanium hover:bg-titanium/20" : "bg-ember text-ink shadow-[0_8px_24px_-8px_rgba(255,106,61,0.6)]",
+                  muted ? "glass text-titanium hover:bg-titanium/20" : "bg-ember text-ink shadow-[0_8px_24px_-8px_rgb(var(--ember-500)_/_0.6)]",
                 )}
               >
                 {muted ? <VolumeX className="h-4 w-4" aria-hidden /> : <Volume2 className="h-4 w-4" aria-hidden />}

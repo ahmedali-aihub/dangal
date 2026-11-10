@@ -53,8 +53,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en-IN"
       data-scroll-behavior="smooth"
       className={sans.variable}
+      suppressHydrationWarning
       style={{ ["--font-display" as string]: "var(--font-sans)" }}
     >
+      <head>
+        {/* Apply the visitor's saved theme before first paint (no flash of the default colours) */}
+        <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem("dangal-theme");if(t&&/^(space|blue|natural|green)$/.test(t))document.documentElement.dataset.theme=t}catch(e){}` }} />
+      </head>
       <body>
         <LogoDefs />
         {children}

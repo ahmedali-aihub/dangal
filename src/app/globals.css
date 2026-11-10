@@ -3,9 +3,44 @@
 @tailwind utilities;
 
 @layer base {
+  /* ── Themes ──────────────────────────────────────────────────────────────────────────────
+     Each palette is a set of "r g b" triplets. ink = dark surface / text on light, titanium = light surface /
+     text on dark, ember = the accent, steel = cool depth in dark sections, sand = the warm light tone.
+     Switching theme only swaps these variables (see components/layout/ThemeSwitcher.tsx). */
+  :root,
+  [data-theme="space"] {
+    --ink-950: 5 5 6; --ink-900: 9 9 11; --ink-800: 17 17 19; --ink-700: 28 28 31; --ink-600: 42 42 46; --ink-500: 72 72 77; --ink-400: 118 118 124; --ink-300: 161 161 166;
+    --titanium-50: 251 251 253; --titanium-100: 245 245 247; --titanium-200: 232 232 237; --titanium-300: 210 210 215; --titanium-400: 174 174 178;
+    --ember-300: 255 184 156; --ember-400: 255 138 92; --ember-500: 255 106 61; --ember-600: 240 82 31; --ember-700: 207 67 19;
+    --steel-300: 143 164 196; --steel-400: 98 119 156; --steel-500: 61 74 99; --steel-700: 37 45 61; --steel-900: 20 24 36;
+    --sand-100: 243 239 232; --sand-200: 236 230 220; --sand-300: 221 212 198;
+    --glow: 77 99 140; --surface-top: 21 26 38; --surface-bottom: 13 14 18; --accent-deep: 226 72 26;
+  }
+  [data-theme="blue"] {
+    --ink-950: 4 7 14; --ink-900: 8 12 22; --ink-800: 14 20 34; --ink-700: 24 33 52; --ink-600: 38 50 76; --ink-500: 70 84 112; --ink-400: 116 128 152; --ink-300: 160 170 190;
+    --titanium-50: 247 249 252; --titanium-100: 238 242 248; --titanium-200: 224 230 240; --titanium-300: 202 211 226; --titanium-400: 165 176 196;
+    --ember-300: 184 217 255; --ember-400: 130 190 255; --ember-500: 90 169 255; --ember-600: 54 140 240; --ember-700: 31 111 205;
+    --steel-300: 143 170 208; --steel-400: 92 122 170; --steel-500: 48 70 110; --steel-700: 30 44 74; --steel-900: 14 22 42;
+    --sand-100: 238 242 247; --sand-200: 230 235 243; --sand-300: 211 220 234;
+    --glow: 60 104 190; --surface-top: 17 26 46; --surface-bottom: 8 12 22; --accent-deep: 31 111 205;
+  }
+  [data-theme="natural"] {
+    --ink-950: 10 9 7; --ink-900: 18 16 13; --ink-800: 28 25 21; --ink-700: 42 38 32; --ink-600: 60 55 47; --ink-500: 92 86 76; --ink-400: 136 129 117; --ink-300: 176 169 156;
+    --titanium-50: 251 249 245; --titanium-100: 245 242 236; --titanium-200: 234 229 219; --titanium-300: 215 208 194; --titanium-400: 182 174 158;
+    --ember-300: 240 214 184; --ember-400: 232 194 148; --ember-500: 224 176 122; --ember-600: 196 144 88; --ember-700: 160 112 62;
+    --steel-300: 176 160 138; --steel-400: 130 116 96; --steel-500: 94 82 66; --steel-700: 56 48 38; --steel-900: 32 27 21;
+    --sand-100: 240 234 224; --sand-200: 230 220 204; --sand-300: 214 202 182;
+    --glow: 150 115 70; --surface-top: 36 31 25; --surface-bottom: 17 15 12; --accent-deep: 156 106 50;
+  }
+  [data-theme="green"] {
+    --ink-950: 4 8 6; --ink-900: 8 14 11; --ink-800: 14 22 18; --ink-700: 24 36 30; --ink-600: 38 56 46; --ink-500: 70 90 80; --ink-400: 116 134 124; --ink-300: 160 176 166;
+    --titanium-50: 247 250 248; --titanium-100: 241 246 243; --titanium-200: 226 235 230; --titanium-300: 204 217 210; --titanium-400: 168 184 175;
+    --ember-300: 176 241 207; --ember-400: 120 230 177; --ember-500: 80 220 150; --ember-600: 38 190 116; --ember-700: 22 150 90;
+    --steel-300: 140 184 162; --steel-400: 84 130 106; --steel-500: 40 78 62; --steel-700: 26 52 41; --steel-900: 12 26 20;
+    --sand-100: 238 244 240; --sand-200: 227 235 229; --sand-300: 207 220 211;
+    --glow: 40 130 92; --surface-top: 17 32 25; --surface-bottom: 8 14 11; --accent-deep: 14 132 78;
+  }
   :root {
-    --ink: 17 17 19;
-    --titanium: 245 245 247;
     color-scheme: light;
   }
   html {
@@ -19,12 +54,12 @@
     font-feature-settings: "ss01", "cv11";
   }
   ::selection {
-    background: #ff6a3d;
+    background: rgb(var(--ember-500));
     color: #111113;
   }
   /* Accent phrases: a warm ember gradient on black, a deeper ember on light. Nearest context wins. */
-  .text-titanium { --accent-fill: transparent; --accent-grad: linear-gradient(100deg, #ffc9ae 0%, #ff8a5c 45%, #ff6a3d 100%); }
-  .text-ink { --accent-fill: #e2481a; --accent-grad: none; }
+  .text-titanium { --accent-fill: transparent; --accent-grad: linear-gradient(100deg, rgb(var(--ember-300)) 0%, rgb(var(--ember-400)) 45%, rgb(var(--ember-500)) 100%); }
+  .text-ink { --accent-fill: rgb(var(--accent-deep)); --accent-grad: none; }
   :focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 3px;
@@ -125,9 +160,9 @@
   /* Dark sections: blue-titanium depth in the corner, a breath of ember opposite — never flat black */
   .ink-glow {
     background-image:
-      radial-gradient(60% 55% at 100% 0%, rgba(255, 106, 61, 0.13), transparent 62%),
-      radial-gradient(70% 60% at 0% 100%, rgba(77, 99, 140, 0.32), transparent 68%),
-      linear-gradient(180deg, #151a26 0%, #0d0e12 100%);
+      radial-gradient(60% 55% at 100% 0%, rgb(var(--ember-500) / 0.13), transparent 62%),
+      radial-gradient(70% 60% at 0% 100%, rgb(var(--glow) / 0.32), transparent 68%),
+      linear-gradient(180deg, rgb(var(--surface-top)) 0%, rgb(var(--surface-bottom)) 100%);
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { scrollbar-width: none; }
@@ -392,4 +427,9 @@
   content: ""; position: absolute; top: -15%; bottom: -15%; left: 0; width: 22%; opacity: 0;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.06), transparent);
   animation: gloss-sweep 11s cubic-bezier(0.4, 0, 0.2, 1) 1.6s infinite;
+}
+
+/* A short, soft cross-fade while the visitor switches theme (class added/removed by ThemeSwitcher) */
+html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease, fill 0.45s ease !important;
 }

@@ -56,7 +56,7 @@ export function WatchFilm({
         className={clsx(
           "group inline-flex h-12 items-center gap-3 rounded-full pl-1.5 pr-5 text-sm font-medium transition-all duration-300",
           variant === "ember"
-            ? "bg-ember text-ink shadow-[0_10px_30px_-10px_rgba(255,106,61,0.6)] hover:bg-ember-400"
+            ? "bg-ember text-ink shadow-[0_10px_30px_-10px_rgb(var(--ember-500)_/_0.6)] hover:bg-ember-400"
             : variant === "titanium"
               ? "bg-titanium text-ink shadow-[0_14px_40px_-12px_rgba(0,0,0,0.6)] hover:bg-white"
               : "glass text-titanium hover:bg-titanium/15",

@@ -239,7 +239,7 @@ export function ProgramFinder() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href={`/contact?program=${result.prog.slug}#trial`}
-                  className="group inline-flex h-12 items-center gap-2 rounded-full bg-ember px-6 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(255,106,61,0.6)] transition-colors hover:bg-ember-400"
+                  className="group inline-flex h-12 items-center gap-2 rounded-full bg-ember px-6 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgb(var(--ember-500)_/_0.6)] transition-colors hover:bg-ember-400"
                 >
                   <span className="roll" data-text="Book my free trial">
                     <span>Book my free trial</span>

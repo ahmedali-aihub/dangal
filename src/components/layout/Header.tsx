@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { NAV, SITE } from "@/lib/site";
 import { Logo } from "./Logo";
 import { PrimaryNav } from "./PrimaryNav";
+import { ThemeButton, ThemeSwatches } from "./ThemeSwitcher";
 
 
 export function Header() {
@@ -60,9 +61,10 @@ export function Header() {
           </div>
 
           <div className="flex shrink-0 items-center gap-1.5">
+            <ThemeButton className="hidden lg:block" />
             <a
               href={`tel:${SITE.phoneRaw}`}
-              className="hidden h-11 items-center gap-2 rounded-full bg-titanium px-5 text-[13px] font-medium text-ink transition-colors duration-300 hover:bg-white lg:inline-flex"
+              className="hidden h-11 items-center gap-2 rounded-full bg-titanium px-5 text-[13px] font-medium text-ink transition-colors duration-300 hover:bg-white xl:inline-flex"
             >
               <Phone className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
               {SITE.phone}
@@ -151,6 +153,7 @@ export function Header() {
                       ))}
                     </ul>
                   </div>
+                  <ThemeSwatches />
                   <Link
                     href="/contact#trial"
                     className="inline-flex h-12 items-center rounded-full bg-ember px-6 text-sm font-semibold text-ink"
