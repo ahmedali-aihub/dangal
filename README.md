@@ -89,15 +89,15 @@ src/
   content/             fallback/demo content, programs, blog
   lib/
     data.ts            cached public reads (tag-revalidated) with demo fallback
-    video.ts           what plays where: schedule > playlist > active
+    video.ts           picks the one live home video (else the built-in film)
     auth.ts            requireStaff / requireRole (session + profile + AAL2)
     admin/uploads.ts   signed uploads + server-side magic-byte & size verification
 supabase/schema.sql    tables, RLS, storage bucket limits, triggers
 ```
 
-**How "changes go live instantly" works:** public pages read data through `unstable_cache` with tags. Every admin mutation calls `revalidateTag(...)`, so the next visitor sees the change, with no redeploy. Video state also re-evaluates every 60 seconds, so scheduled videos switch on time.
+**How "changes go live instantly" works:** public pages read data through `unstable_cache` with tags. Every admin mutation calls `revalidateTag(...)`, so the next visitor sees the change, with no redeploy.
 
-**Video precedence (per placement):** a scheduled video inside its time window comes first, then the playlist (if enabled), then the active video, then the fallback image. The player autoplays muted and inline with a poster and loop. It waits until the player is near the viewport before loading, and pauses when off-screen. On data-saver or 2G connections, and for reduced-motion users, it falls back to the image with a "Play video" opt-in. If the video errors, it falls back to the image. Visitors get pause and mute controls.
+**Home video:** the site has a single video, in the home hero. The newest published, live video is used; with none set, the built-in film plays. The player autoplays muted and inline with a poster and loop. It mounts after page load and pauses when off-screen. On data-saver or 2G connections, and for reduced-motion users, it falls back to the image with a "Play video" opt-in. If the video errors, it falls back to the image. Visitors get a sound toggle.
 
 ## 6. Security checklist (implemented)
 

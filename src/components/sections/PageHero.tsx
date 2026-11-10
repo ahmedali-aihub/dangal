@@ -43,7 +43,7 @@ export function PageHero({
         <div aria-hidden className="fluted absolute inset-0 -z-10 opacity-50" />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950/90 via-navy-950/40 to-navy-950/30" />
 
-        <div className="container-x flex min-h-[460px] flex-col justify-end pb-12 pt-36 sm:min-h-[540px] sm:pb-16">
+        <div className="container-x flex min-h-[460px] flex-col justify-end pb-12 pt-28 sm:min-h-[540px] sm:pb-16 sm:pt-36">
           <nav aria-label="Breadcrumb" className="mb-8 text-[12px] text-cream/60">
             <ol className="flex flex-wrap items-center gap-2">
               {trail.map((c, i) => (

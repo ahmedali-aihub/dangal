@@ -38,7 +38,7 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
           className="hero-media"
           // Sharp, slightly richer picture: a touch more contrast/saturation so the footage looks graded, not washed.
           mediaClassName="scale-[1.02] contrast-[1.06] saturate-[1.1]"
-          controlsClassName="right-4 top-[130px] sm:right-6 sm:top-[148px] lg:bottom-8 lg:right-10 lg:top-auto"
+          controlsClassName="right-4 top-[84px] sm:right-6 sm:top-[104px] lg:bottom-8 lg:right-10 lg:top-auto"
         >
           {/* Colour grade: the footage stays crisp; navy multiplied in for brand cohesion */}
           <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-navy-700/35 mix-blend-multiply" />
@@ -65,7 +65,7 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
         {/* Glass bezel: hairline edge + top highlight, like a polished display */}
         <div aria-hidden className="gloss-bezel pointer-events-none absolute inset-0 z-[15] rounded-[inherit]" />
 
-        <div className="hero-content pointer-events-none container-x relative z-20 flex flex-1 flex-col pb-[88px] pt-[9.5rem] sm:pb-6 sm:pt-[10.5rem] lg:pt-32">
+        <div className="hero-content pointer-events-none container-x relative z-20 flex flex-1 flex-col pb-[88px] pt-28 sm:pb-6 sm:pt-32">
           <div className="pointer-events-auto hidden justify-end lg:flex">
             <TodayCard />
           </div>

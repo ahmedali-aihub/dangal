@@ -1,7 +1,7 @@
 import { DemoNotice } from "@/components/admin/ui";
 import { Sidebar, type NavItem } from "@/components/admin/Sidebar";
 import { can, isAdminDemo, requireStaff } from "@/lib/auth";
-import { getLeadStats } from "@/lib/admin/queries";
+import { getNewLeadCount } from "@/lib/admin/queries";
 import { hasServiceRole } from "@/lib/env";
 
 export const dynamic = "force-dynamic";
@@ -26,18 +26,18 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     );
   }
 
-  const stats = await getLeadStats().catch(() => null);
+  const newLeads = await getNewLeadCount().catch(() => 0);
 
   const items: NavItem[] = [
-    { href: "/admin", label: "Dashboard", icon: "LayoutDashboard" as const },
-    can(session.role, "videos") && { href: "/admin/videos", label: "Video projection", icon: "Clapperboard" as const },
-    { href: "/admin/leads", label: "Leads", icon: "Inbox" as const, badge: stats?.newCount },
-    can(session.role, "pricing") && { href: "/admin/pricing", label: "Pricing", icon: "BadgeIndianRupee" as const },
-    can(session.role, "trainers") && { href: "/admin/trainers", label: "Trainers", icon: "Users" as const },
-    { href: "/admin/testimonials", label: "Testimonials", icon: "MessageSquareQuote" as const },
-    { href: "/admin/gallery", label: "Gallery", icon: "ImageIcon" as const },
-    can(session.role, "banner") && { href: "/admin/offer", label: "Offer banner", icon: "Megaphone" as const },
-    can(session.role, "team") && { href: "/admin/team", label: "Team & access", icon: "UserCog" as const },
+    { href: "/admin", label: "Overview", icon: "LayoutDashboard" as const, section: "Today" },
+    { href: "/admin/leads", label: "Enquiries", icon: "Inbox" as const, badge: newLeads, section: "Today" },
+    can(session.role, "videos") && { href: "/admin/videos", label: "Home video", icon: "Clapperboard" as const, section: "Website" },
+    can(session.role, "pricing") && { href: "/admin/pricing", label: "Prices", icon: "BadgeIndianRupee" as const, section: "Website" },
+    can(session.role, "trainers") && { href: "/admin/trainers", label: "Trainers", icon: "Users" as const, section: "Website" },
+    { href: "/admin/testimonials", label: "Reviews", icon: "MessageSquareQuote" as const, section: "Website" },
+    { href: "/admin/gallery", label: "Gallery", icon: "ImageIcon" as const, section: "Website" },
+    can(session.role, "banner") && { href: "/admin/offer", label: "Offer banner", icon: "Megaphone" as const, section: "Website" },
+    can(session.role, "team") && { href: "/admin/team", label: "Team & access", icon: "UserCog" as const, section: "Settings" },
   ].filter(Boolean) as NavItem[];
 
   return (

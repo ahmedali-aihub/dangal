@@ -1,8 +1,9 @@
 import "server-only";
+import { cache } from "react";
 import { BANNER, GALLERY, PLANS, TESTIMONIALS, TRAINERS } from "@/content/data";
 import { isAdminDemo } from "@/lib/auth";
 import { createAdminClient } from "@/lib/supabase/admin";
-import type { Banner, Lead, LeadStatus, VideoRow, VideoSettings } from "@/lib/types";
+import type { Banner, Lead, LeadStatus, VideoRow } from "@/lib/types";
 
 /** Admin reads use the service role AFTER the page has called requireRole(). */
 
@@ -41,35 +42,42 @@ export async function getLeads(opts: { status?: LeadStatus | "all"; q?: string; 
   return (data ?? []) as Lead[];
 }
 
+/** Cheap count (no rows transferred) — used by the sidebar badge on every admin page. */
+export const getNewLeadCount = cache(async (): Promise<number> => {
+  if (isAdminDemo) return DEMO_LEADS.filter((l) => l.status === "new").length;
+  const { count } = await createAdminClient().from("leads").select("id", { count: "exact", head: true }).eq("status", "new");
+  return count ?? 0;
+});
+
+/** Dashboard numbers: a handful of head-only counts + the 6 latest rows, all in parallel (never the whole table). */
 export async function getLeadStats() {
-  const leads = isAdminDemo ? DEMO_LEADS : await getLeads({ limit: 2000 });
-  const now = Date.now();
-  const byStatus = leads.reduce<Record<string, number>>((a, l) => ((a[l.status] = (a[l.status] ?? 0) + 1), a), {});
-  return {
-    total: leads.length,
-    last7: leads.filter((l) => now - new Date(l.created_at).getTime() < 7 * 864e5).length,
-    newCount: byStatus.new ?? 0,
-    converted: byStatus.converted ?? 0,
-    trials: byStatus.trial_booked ?? 0,
-    recent: leads.slice(0, 6),
+  if (isAdminDemo) {
+    return { total: DEMO_LEADS.length, last7: DEMO_LEADS.length, newCount: 1, converted: 0, trials: 1, recent: DEMO_LEADS };
+  }
+  const sb = createAdminClient();
+  const count = (status?: LeadStatus, since?: string) => {
+    let q = sb.from("leads").select("id", { count: "exact", head: true });
+    if (status) q = q.eq("status", status);
+    if (since) q = q.gte("created_at", since);
+    return q.then((r) => r.count ?? 0);
   };
+  const since7 = new Date(Date.now() - 7 * 864e5).toISOString();
+  const [total, last7, newCount, trials, converted, recent] = await Promise.all([
+    count(),
+    count(undefined, since7),
+    count("new"),
+    count("trial_booked"),
+    count("converted"),
+    sb.from("leads").select("*").order("created_at", { ascending: false }).limit(6).then((r) => (r.data ?? []) as Lead[]),
+  ]);
+  return { total, last7, newCount, converted, trials, recent };
 }
 
-export async function getVideoAdmin(): Promise<{ rows: VideoRow[]; settings: VideoSettings; canRevert: boolean }> {
-  const fallback: VideoSettings = { id: 1, playlist_enabled: false, rotate_seconds: 20 };
-  if (isAdminDemo) return { rows: [], settings: fallback, canRevert: false };
-  const sb = createAdminClient();
-  const [{ data: rows }, { data: settings }, { data: hist }] = await Promise.all([
-    sb.from("videos").select("*").order("created_at", { ascending: false }),
-    sb.from("video_settings").select("*").eq("id", 1).maybeSingle(),
-    sb.from("video_activations").select("video_id").order("created_at", { ascending: false }).limit(30),
-  ]);
-  const ids = (hist ?? []).map((h: { video_id: string | null }) => h.video_id);
-  return {
-    rows: (rows ?? []) as VideoRow[],
-    settings: (settings as VideoSettings) ?? fallback,
-    canRevert: ids.some((id) => id && id !== ids[0]),
-  };
+/** The video currently on the home page (null → the built-in film is playing). */
+export async function getHeroVideoRow(): Promise<VideoRow | null> {
+  if (isAdminDemo) return null;
+  const { data } = await createAdminClient().from("videos").select("*").eq("is_active", true).order("created_at", { ascending: false }).limit(1).maybeSingle();
+  return (data as VideoRow | null) ?? null;
 }
 
 export type TeamMember = { id: string; email: string; name: string | null; role: "owner" | "staff"; is_active: boolean; mfa: boolean; last_sign_in: string | null };

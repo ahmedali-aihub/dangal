@@ -45,48 +45,43 @@ export function Header() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 text-cream">
       <div
         className={clsx(
-          "container-x pointer-events-auto flex flex-wrap items-center justify-between gap-y-3 transition-[padding] lg:flex-nowrap lg:gap-y-0 duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)]",
-          scrolled ? "pt-3" : "pt-5 sm:pt-7",
+          "container-x pointer-events-auto transition-[padding] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)]",
+          scrolled ? "pt-2 sm:pt-3" : "pt-3 sm:pt-5",
         )}
       >
-        <Link
-          href="/"
-          className={clsx(
-            "rounded-full transition-all duration-500",
-            scrolled && "glass-strong px-4 py-2",
-          )}
-        >
-          <Logo />
-        </Link>
+        {/* One capsule: logo · navigation · actions */}
+        <div className="glass-strong flex items-center gap-1 rounded-full p-1 sm:gap-3 sm:p-1.5">
+          <Link href="/" aria-label="Dangal Gym — home" className="shrink-0 rounded-full pl-0.5 pr-1 sm:pl-2 sm:pr-3">
+            <Logo responsive />
+          </Link>
 
-        <PrimaryNav />
+          <div className="flex min-w-0 flex-1 items-center justify-center">
+            <PrimaryNav />
+          </div>
 
-        <div className="flex items-center gap-2">
-          <a
-            href={`tel:${SITE.phoneRaw}`}
-            className={clsx(
-              "hidden h-11 items-center gap-2 rounded-full px-5 text-[13px] font-medium transition-colors duration-300 sm:inline-flex",
-              // Cream on the dark hero; solid navy once scrolled so it never dissolves into cream sections.
-              scrolled ? "border border-cream/15 bg-navy-900/[0.93] text-cream shadow-glass hover:bg-navy-700" : "bg-cream text-navy hover:bg-white",
-            )}
-          >
-            <Phone className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
-            {SITE.phone}
-          </a>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-expanded={open}
-            aria-controls="site-menu"
-            className="glass-strong relative inline-flex h-11 w-14 items-center justify-center rounded-full transition-transform duration-300 hover:scale-105"
-          >
-            {/* Scroll progress ring traced around the button (CSS scroll-driven) */}
-            <svg aria-hidden viewBox="0 0 56 44" className="pointer-events-none absolute inset-0 h-full w-full overflow-visible">
-              <rect className="scroll-ring" x="0.75" y="0.75" width="54.5" height="42.5" rx="21.25" pathLength={100} fill="none" stroke="#FF6B5B" strokeWidth="1.5" />
-            </svg>
-            <Menu className="h-5 w-5" strokeWidth={1.5} aria-hidden />
-            <span className="sr-only">Open menu</span>
-          </button>
+          <div className="flex shrink-0 items-center gap-1.5">
+            <a
+              href={`tel:${SITE.phoneRaw}`}
+              className="hidden h-11 items-center gap-2 rounded-full bg-cream px-5 text-[13px] font-medium text-navy transition-colors duration-300 hover:bg-white lg:inline-flex"
+            >
+              <Phone className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
+              {SITE.phone}
+            </a>
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-expanded={open}
+              aria-controls="site-menu"
+              className="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-cream/15 bg-cream/[0.08] transition-colors duration-300 hover:bg-cream/15 sm:h-11 sm:w-11"
+            >
+              {/* Scroll progress ring traced around the button (CSS scroll-driven) */}
+              <svg aria-hidden viewBox="0 0 44 44" className="pointer-events-none absolute inset-0 h-full w-full -rotate-90 overflow-visible">
+                <circle className="scroll-ring" cx="22" cy="22" r="21" pathLength={100} fill="none" stroke="#FF6B5B" strokeWidth="1.5" />
+              </svg>
+              <Menu className="h-[18px] w-[18px]" strokeWidth={1.6} aria-hidden />
+              <span className="sr-only">Open menu</span>
+            </button>
+          </div>
         </div>
       </div>
 

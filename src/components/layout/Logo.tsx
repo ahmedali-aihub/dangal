@@ -55,17 +55,17 @@ export function LogoDefs() {
   );
 }
 
-export function Logo({ className, compact = false }: { className?: string; compact?: boolean }) {
+export function Logo({ className, compact = false, responsive = false }: { className?: string; compact?: boolean; responsive?: boolean }) {
   return (
     <span className={clsx("inline-flex items-center gap-3", className)}>
-      <LogoBadge className="h-10 w-10 drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)]" />
+      <LogoBadge className={clsx("drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)]", responsive ? "h-9 w-9 sm:h-10 sm:w-10" : "h-10 w-10")} />
       {!compact && (
-        <span className="flex flex-col leading-none">
+        <span className={clsx("flex-col leading-none", responsive ? "hidden sm:flex" : "flex")}>
           <span className="text-[17px] font-semibold tracking-[0.14em]">DANGAL</span>
           <span className="mt-1 text-[9px] font-medium uppercase tracking-[0.32em] opacity-70">Gym · Hyderabad</span>
         </span>
       )}
-      {compact && <span className="sr-only">Dangal Gym</span>}
+      {(compact || responsive) && <span className="sr-only">Dangal Gym</span>}
     </span>
   );
 }

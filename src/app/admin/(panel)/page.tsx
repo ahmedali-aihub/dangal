@@ -1,9 +1,8 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Badge, Card, PageHeader } from "@/components/admin/ui";
-import { getLeadStats, getVideoAdmin } from "@/lib/admin/queries";
+import { getHeroVideoRow, getLeadStats } from "@/lib/admin/queries";
 import { can, requireStaff } from "@/lib/auth";
-import { resolveSlot } from "@/lib/video";
 
 export const metadata = { title: "Dashboard" };
 
@@ -12,9 +11,8 @@ const STATUS: Record<string, string> = { new: "New", contacted: "Contacted", tri
 export default async function Dashboard({ searchParams }: { searchParams: Promise<{ denied?: string }> }) {
   const session = await requireStaff();
   const { denied } = await searchParams;
-  const [stats, video] = await Promise.all([getLeadStats(), can(session.role, "videos") ? getVideoAdmin() : null]);
-  const hero = video ? resolveSlot(video.rows, video.settings, "hero") : null;
-  const section = video ? resolveSlot(video.rows, video.settings, "section") : null;
+  const owner = can(session.role, "videos");
+  const [stats, video] = await Promise.all([getLeadStats(), owner ? getHeroVideoRow() : null]);
   const hour = Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", hour: "numeric" }).format(new Date()));
 
   return (
@@ -72,30 +70,16 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
           </ul>
         </Card>
 
-        {video && (
+        {owner && (
           <Card className="lg:col-span-2">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg tracking-[-0.02em]">On screen now</h2>
+              <h2 className="text-lg tracking-[-0.02em]">Home page video</h2>
               <Link href="/admin/videos" className="text-sm opacity-65 hover:opacity-100">
-                Manage →
+                Change →
               </Link>
             </div>
-            <dl className="mt-4 space-y-4 text-sm">
-              {[
-                ["Home hero", hero],
-                ["Now Showing section", section],
-              ].map(([label, slot]) => {
-                const s = slot as typeof hero;
-                return (
-                  <div key={label as string} className="rounded-xl bg-cream-100 p-4">
-                    <dt className="text-xs uppercase tracking-[0.08em] opacity-70">{label as string}</dt>
-                    <dd className="mt-1.5">
-                      {s && s.videos.length ? (s.videos.length > 1 ? `Playlist · ${s.videos.length} videos` : s.videos[0].title) : <span className="opacity-70">The Dangal film (built-in default)</span>}
-                    </dd>
-                  </div>
-                );
-              })}
-            </dl>
+            <p className="mt-4 rounded-xl bg-cream-100 p-4 text-sm">{video ? video.title : <span className="opacity-70">The Dangal film (built-in)</span>}</p>
+            <p className="mt-3 text-xs opacity-65">This is the only video on the website — it plays at the top of the home page.</p>
           </Card>
         )}
       </div>

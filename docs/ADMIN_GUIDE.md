@@ -18,54 +18,15 @@ This guide is for the gym owner and staff. You don't need any technical knowledg
 
 ---
 
-## Video projection (the big video on the home page)
+## Home video (the one video on the website)
 
-There are two places a video can appear:
-- **Home hero:** the full-screen video at the top of the home page.
-- **Now Showing section:** an optional video section further down the home page. It only appears when a video is set for it.
+The website has **one** video: it plays at the top of the home page. Open **Home video** in the sidebar.
 
-### Add a video
-Open **Video projection → Add a video**. You have three options:
+- **Replace it:** choose **Upload a file** (MP4 or WebM) or **YouTube / Vimeo link**, then press **Publish to home page**. It goes live straight away and replaces the old one.
+- **Words on the video:** type a headline such as `Diwali offer / 30% off annual plans` (the `/` starts a new line) and a sub-line, then **Save words**. Leave them blank to keep the standard headline.
+- **Go back to the built-in film:** press **Use built-in film**.
 
-| Option | When to use |
-|---|---|
-| **Upload file** | Your own MP4 or WebM file, up to 100 MB. A progress bar shows the upload, and a thumbnail is created automatically. |
-| **YouTube / Vimeo** | Paste the video link. Good for longer promo videos. |
-| **Mux** | Best quality on every connection. Use this if your developer has set up Mux. |
-
-Give it a title (for example "Diwali Offer 2026"), choose where it should appear, and add tags if you like. Click **Add to library**.
-
-**Tips for great hero videos:** 15–30 seconds, no important text in the video itself, landscape (16:9), 1080p. Keep the file under about 10 MB so phones load it quickly. The free tool HandBrake (preset "Fast 1080p30") does this well.
-
-### Put a video on screen
-In the **Video library**, use the **Go live…** dropdown on any video and choose **Home hero**, **Now Showing section** or **Both**. It's live on the website immediately.
-
-### Preview before publishing
-Click any thumbnail, or **Preview live** at the top, to see exactly how it will look with the text on top. Switch between desktop and mobile views.
-
-### Undo
-Click **Revert to previous video** to switch back to whatever was live before. It's one click.
-
-### Schedule a video (festival offers, new batch launch)
-1. Click **Edit** on a video.
-2. Under **Schedule**, set the start and end date/time (Hyderabad time) and give it a label such as "New batch launch".
-3. Save.
-
-During that window the scheduled video automatically replaces the normal one. When it ends, the normal video comes back by itself.
-
-### Rotate several videos (playlist)
-1. **Edit** each video you want, tick **Include in rotating playlist** and set its order.
-2. In **Playlist rotation**, tick **Use playlist** and save.
-
-Uploaded videos switch when they finish playing. YouTube and Vimeo videos switch after the number of seconds you set.
-
-### Change the text on top of the video
-**Edit → Text over the video.** Type a headline such as `Diwali offer / 30% off annual plans`. The `/` starts a new line. Leave it blank to keep the standard headline.
-
-### Take a video off air
-Click **Off air** on the live video. The home page then shows the backup photo.
-
----
+**Tips for a great video:** 15–45 seconds, landscape (16:9), 1080p, under about 10 MB so phones load it fast. The free tool HandBrake (preset "Fast 1080p30") does this well.
 
 ## Leads (enquiries and free-trial bookings)
 
@@ -112,4 +73,4 @@ A slim bar at the bottom of the website, for example "New batch starts 1st Dec �
 ---
 
 ## Need help?
-Every change is recorded in the system's audit log. If something looks wrong on the website, you can usually fix it by editing or hiding the item. For videos, use **Revert to previous video**.
+Every change is recorded in the system's audit log. If something looks wrong on the website, you can usually fix it by editing or hiding the item. For the home video, upload the previous one again or press **Use built-in film**.

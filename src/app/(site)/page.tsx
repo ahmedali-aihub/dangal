@@ -1,4 +1,3 @@
-import { FilmProjection } from "@/components/home/FilmProjection";
 import { Hero } from "@/components/home/Hero";
 import { Marquee } from "@/components/home/Marquee";
 import { ProgramFinder } from "@/components/home/ProgramFinder";
@@ -13,15 +12,14 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SplitText } from "@/components/ui/Motion";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { FAQS } from "@/content/data";
-import { getGallery, getInstagram, getPlans, getTestimonials, getTrainers, getVideoSlot } from "@/lib/data";
+import { getGallery, getInstagram, getPlans, getTestimonials, getTrainers, getHeroVideo } from "@/lib/data";
 
-// Admin changes revalidate instantly via cache tags; 60s keeps scheduled videos on time.
+// Admin changes revalidate instantly via cache tags.
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [heroSlot, sectionSlot, plans, trainers, testimonials, gallery, instagram] = await Promise.all([
-    getVideoSlot("hero"),
-    getVideoSlot("section"),
+  const [heroSlot, plans, trainers, testimonials, gallery, instagram] = await Promise.all([
+    getHeroVideo(),
     getPlans(),
     getTrainers(),
     getTestimonials(),
@@ -34,8 +32,6 @@ export default async function HomePage() {
       <Hero slot={heroSlot} isDefault={heroSlot.isDefault} />
       <Intro />
       <Marquee />
-      <div className="h-3 bg-cream sm:h-4" aria-hidden />
-      <FilmProjection slot={sectionSlot} isDefault={sectionSlot.isDefault} />
       <div className="h-3 bg-cream sm:h-4" aria-hidden />
 
       <Section tone="navy" label="Signature programs" className="mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px]">

@@ -19,8 +19,8 @@ export async function updateSession(request: NextRequest) {
       },
     },
   );
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  return { response, user };
+  // getClaims() checks the token signature locally (no round-trip to Supabase on every admin request)
+  // and refreshes an expired session; the admin layout re-checks the role + 2FA against the database.
+  const { data } = await supabase.auth.getClaims();
+  return { response, user: data?.claims?.sub ? { id: data.claims.sub } : null };
 }

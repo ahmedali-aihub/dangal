@@ -9,7 +9,7 @@ import { signOut } from "@/app/admin/actions/auth";
 import { Logo } from "@/components/layout/Logo";
 
 const ICONS = { LayoutDashboard, Clapperboard, Inbox, BadgeIndianRupee, Users, MessageSquareQuote, ImageIcon, Megaphone, UserCog };
-export type NavItem = { href: string; label: string; icon: keyof typeof ICONS; badge?: number };
+export type NavItem = { href: string; label: string; icon: keyof typeof ICONS; badge?: number; section?: string };
 
 export function Sidebar({ items, user }: { items: NavItem[]; user: { name: string; role: string } }) {
   const path = usePathname();
@@ -19,11 +19,13 @@ export function Sidebar({ items, user }: { items: NavItem[]; user: { name: strin
   const nav = (
     <nav aria-label="Admin" className="flex flex-1 flex-col">
       <ul className="space-y-0.5">
-        {items.map((it) => {
+        {items.map((it, i) => {
           const Icon = ICONS[it.icon];
+          const heading = it.section && it.section !== items[i - 1]?.section ? it.section : null;
           const active = it.href === "/admin" ? path === "/admin" : path.startsWith(it.href);
           return (
-            <li key={it.href}>
+            <li key={it.href} className={heading ? (i === 0 ? "" : "pt-5") : ""}>
+              {heading && <p className="mb-1.5 px-3 text-[11px] font-medium uppercase tracking-[0.12em] text-cream/65">{heading}</p>}
               <Link
                 href={it.href}
                 aria-current={active ? "page" : undefined}

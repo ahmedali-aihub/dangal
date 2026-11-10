@@ -5,7 +5,7 @@ import { getLeads } from "@/lib/admin/queries";
 import { can, requireRole } from "@/lib/auth";
 import type { LeadStatus } from "@/lib/types";
 
-export const metadata = { title: "Leads" };
+export const metadata = { title: "Enquiries" };
 
 export default async function LeadsPage({ searchParams }: { searchParams: Promise<{ status?: string; q?: string }> }) {
   const s = await requireRole("leads");
@@ -13,7 +13,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
   const leads = await getLeads({ status: (status as LeadStatus) ?? "all", q });
   return (
     <>
-      <PageHeader title="Leads" description="Enquiries and free-trial bookings from the website. You're also notified by email and WhatsApp the moment one arrives." />
+      <PageHeader title="Enquiries" description="Enquiries and free-trial bookings from the website. You are also notified by email and WhatsApp the moment one arrives." />
       <Suspense>
         <LeadsManager leads={leads} canDelete={can(s.role, "team")} />
       </Suspense>

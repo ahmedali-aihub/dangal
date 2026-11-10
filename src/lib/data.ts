@@ -3,8 +3,8 @@ import { unstable_cache } from "next/cache";
 import { BANNER, DEFAULT_FILM, GALLERY, PLANS, TESTIMONIALS, TRAINERS } from "@/content/data";
 import { isSupabaseConfigured } from "@/lib/env";
 import { createPublicClient } from "@/lib/supabase/public";
-import type { Banner, GalleryItem, Plan, Testimonial, Trainer, VideoRow, VideoSettings, VideoSlot } from "@/lib/types";
-import { resolveSlot, type Slot } from "@/lib/video";
+import type { Banner, GalleryItem, Plan, Testimonial, Trainer, VideoRow, VideoSlot } from "@/lib/types";
+import { pickHeroVideo } from "@/lib/video";
 
 /**
  * Public read layer. Every query is cached and tagged; admin mutations call revalidateTag(tag)
@@ -71,33 +71,31 @@ export const getBanner = resilient<Banner | null>(
   300,
 );
 
-type VideoState = { rows: VideoRow[]; settings: VideoSettings | null };
-
-/** Raw published video rows + settings, cached. Re-evaluated every 60s so schedules flip on time. */
-const getVideoState = resilient<VideoState>(
-  "video-state",
+/** The live hero video row (if the owner set one), cached; admin changes revalidate the tag instantly. */
+const getVideoRows = resilient<VideoRow[]>(
+  "hero-video",
   TAGS.videos,
   async () => {
-    const sb = createPublicClient();
-    const [rows, settings] = await Promise.all([
-      sb.from("videos").select("*").eq("is_published", true),
-      sb.from("video_settings").select("*").eq("id", 1).maybeSingle(),
-    ]);
-    if (rows.error) throw new Error(`videos: ${rows.error.message}`);
-    return { rows: (rows.data as VideoRow[]) ?? [], settings: (settings.data as VideoSettings) ?? null };
+    const { data, error } = await createPublicClient()
+      .from("videos")
+      .select("*")
+      .eq("is_published", true)
+      .eq("is_active", true)
+      .order("created_at", { ascending: false })
+      .limit(1);
+    if (error) throw new Error(`videos: ${error.message}`);
+    return (data as VideoRow[]) ?? [];
   },
-  { rows: [], settings: null },
-  60,
+  [],
+  300,
 );
 
-/** What plays in a slot right now. Falls back to the gym's own film when nothing is set in the admin panel. */
-export async function getVideoSlot(slot: Slot): Promise<VideoSlot & { isDefault: boolean }> {
-  const { rows, settings } = await getVideoState();
-  const resolved = resolveSlot(rows, settings, slot);
+/** The home-page hero video. Falls back to the gym's own film when nothing is set in the admin panel. */
+export async function getHeroVideo(): Promise<VideoSlot & { isDefault: boolean }> {
+  const resolved = pickHeroVideo(await getVideoRows());
   if (resolved.videos.length) return { ...resolved, isDefault: false };
   const { id, title, source, src, poster_url, headline, subline } = DEFAULT_FILM;
-  const poster = slot === "section" ? DEFAULT_FILM.cover_url : poster_url;
-  return { videos: [{ id, title, source, src, poster_url: poster, headline, subline }], rotateSeconds: resolved.rotateSeconds, isDefault: true };
+  return { videos: [{ id, title, source, src, poster_url, headline, subline }], rotateSeconds: resolved.rotateSeconds, isDefault: true };
 }
 
 /** Optional Instagram feed (Graph API long-lived token). Returns [] → UI shows styled fallback. Cached by fetch for 1h. */
