@@ -7,7 +7,6 @@ import { DEFAULT_FILM } from "@/content/data";
 import { IMG } from "@/lib/images";
 import type { PlayerVideo, VideoSlot } from "@/lib/types";
 import { HeroHeadline } from "./HeroHeadline";
-import { TodayCard } from "./TodayCard";
 
 // If an uploaded video can't be decoded by a visitor's browser, the built-in film plays instead.
 const BACKUP_FILM: PlayerVideo = {
@@ -78,10 +77,6 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
         <div aria-hidden className="gloss-bezel pointer-events-none absolute inset-0 z-[15] rounded-[inherit]" />
 
         <div className="hero-content pointer-events-none container-x relative z-20 flex flex-1 flex-col pb-[88px] pt-28 sm:pb-6 sm:pt-32">
-          <div className="pointer-events-auto hidden justify-end lg:flex">
-            <TodayCard />
-          </div>
-
           <div className="mt-auto">
             <HeroHeadline headline={headline} />
 
