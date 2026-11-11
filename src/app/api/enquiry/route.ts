@@ -1,4 +1,4 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, after, type NextRequest } from "next/server";
 import { hasServiceRole, isSupabaseConfigured } from "@/lib/env";
 import { notifyOwner, verifyTurnstile } from "@/lib/notify";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
@@ -68,6 +68,7 @@ export async function POST(req: NextRequest) {
     console.info("[enquiry] demo mode — lead not stored", { name: lead.name, kind: lead.kind });
   }
 
-  await notifyOwner({ ...lead, preferredTime: lead.preferred_time });
+  // The visitor gets their confirmation now; the email/WhatsApp to the owner is sent right after the response.
+  after(() => notifyOwner({ ...lead, preferredTime: lead.preferred_time }).catch((e) => console.error("[enquiry] notify failed", e)));
   return NextResponse.json({ ok: true });
 }

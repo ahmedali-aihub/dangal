@@ -8,8 +8,7 @@ import type { Testimonial } from "@/lib/types";
 export const metadata = { title: "Testimonials" };
 
 export default async function TestimonialsAdmin() {
-  const s = await requireRole("testimonials");
-  const rows = await getRows<Testimonial>("testimonials");
+  const [s, rows] = await Promise.all([requireRole("testimonials"), getRows<Testimonial>("testimonials")]);
   return (
     <>
       <PageHeader title="Testimonials" description="Member stories in the home page carousel. Only publish with the member's permission." />

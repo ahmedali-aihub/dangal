@@ -7,8 +7,7 @@ import type { Trainer } from "@/lib/types";
 export const metadata = { title: "Trainers" };
 
 export default async function TrainersAdmin() {
-  await requireRole("trainers");
-  const rows = await getRows<Trainer>("trainers");
+  const [, rows] = await Promise.all([requireRole("trainers"), getRows<Trainer>("trainers")]);
   return (
     <>
       <PageHeader title="Trainers" description="Coach profiles shown on the home page and the Trainers page. Use portrait photos (4:5), ideally 1200px tall." />

@@ -26,7 +26,7 @@ type Props = {
 };
 
 const base =
-  "group inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-[-0.01em] transition-[background-color,border-color,color,opacity,transform] duration-300 ease-out disabled:cursor-not-allowed disabled:opacity-50";
+  "group inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-[-0.01em] transition-[background-color,border-color,color,opacity,transform,box-shadow] duration-150 ease-out active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50";
 
 const sizes = { sm: "h-9 px-4 text-[13px]", md: "h-11 px-6 text-sm", lg: "h-[52px] px-7 text-[15px]" };
 

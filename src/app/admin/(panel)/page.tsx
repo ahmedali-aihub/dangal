@@ -9,10 +9,10 @@ export const metadata = { title: "Dashboard" };
 const STATUS: Record<string, string> = { new: "New", contacted: "Contacted", trial_booked: "Trial booked", converted: "Converted", lost: "Lost" };
 
 export default async function Dashboard({ searchParams }: { searchParams: Promise<{ denied?: string }> }) {
-  const session = await requireStaff();
   const { denied } = await searchParams;
+  // Everything starts at once (the session check, the numbers and the video) instead of one after another.
+  const [session, stats, video] = await Promise.all([requireStaff(), getLeadStats(), getHeroVideoRow().catch(() => null)]);
   const owner = can(session.role, "videos");
-  const [stats, video] = await Promise.all([getLeadStats(), owner ? getHeroVideoRow() : null]);
   const hour = Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", hour: "numeric" }).format(new Date()));
 
   return (

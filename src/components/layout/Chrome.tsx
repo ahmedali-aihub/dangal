@@ -18,7 +18,7 @@ export function SmoothScroll() {
     // Loaded on demand (desktop only) so phones never download it.
     import("lenis").then(({ default: Lenis }) => {
       if (cancelled) return;
-      lenis = new Lenis({ duration: 1.15, smoothWheel: true, anchors: { offset: -24 } });
+      lenis = new Lenis({ duration: 0.85, smoothWheel: true, anchors: { offset: -24 } });
       const loop = (t: number) => {
         lenis?.raf(t);
         raf = requestAnimationFrame(loop);

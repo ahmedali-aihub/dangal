@@ -7,8 +7,7 @@ import type { GalleryItem } from "@/lib/types";
 export const metadata = { title: "Gallery" };
 
 export default async function GalleryAdmin() {
-  const s = await requireRole("gallery");
-  const rows = await getRows<GalleryItem>("gallery");
+  const [s, rows] = await Promise.all([requireRole("gallery"), getRows<GalleryItem>("gallery")]);
   return (
     <>
       <PageHeader title="Gallery" description="Photos for the Gallery page and home page preview. The first 5 (by order) appear on the home page." />

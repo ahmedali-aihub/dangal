@@ -14,7 +14,13 @@ export type NavItem = { href: string; label: string; icon: keyof typeof ICONS; b
 export function Sidebar({ items, user }: { items: NavItem[]; user: { name: string; role: string } }) {
   const path = usePathname();
   const [open, setOpen] = useState(false);
-  useEffect(() => setOpen(false), [path]);
+  // The clicked item lights up immediately; the page streams in behind it.
+  const [going, setGoing] = useState<string | null>(null);
+  useEffect(() => {
+    setOpen(false);
+    setGoing(null);
+  }, [path]);
+  const here = going ?? path;
 
   const nav = (
     <nav aria-label="Admin" className="flex flex-1 flex-col">
@@ -22,12 +28,13 @@ export function Sidebar({ items, user }: { items: NavItem[]; user: { name: strin
         {items.map((it, i) => {
           const Icon = ICONS[it.icon];
           const heading = it.section && it.section !== items[i - 1]?.section ? it.section : null;
-          const active = it.href === "/admin" ? path === "/admin" : path.startsWith(it.href);
+          const active = it.href === "/admin" ? here === "/admin" : here.startsWith(it.href);
           return (
             <li key={it.href} className={heading ? (i === 0 ? "" : "pt-5") : ""}>
               {heading && <p className="mb-1.5 px-3 text-[11px] font-medium uppercase tracking-[0.12em] text-titanium/65">{heading}</p>}
               <Link
                 href={it.href}
+                onClick={() => setGoing(it.href)}
                 aria-current={active ? "page" : undefined}
                 className={clsx("flex h-10 items-center gap-3 rounded-xl px-3 text-sm transition-colors", active ? "bg-titanium/[0.12] text-titanium" : "text-titanium/65 hover:bg-titanium/[0.06] hover:text-titanium")}
               >

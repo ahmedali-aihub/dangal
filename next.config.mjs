@@ -56,7 +56,13 @@ const nextConfig = {
   distDir: process.env.NEXT_DIST_DIR || ".next",
   allowedDevOrigins: lanIps,
   // Tree-shake icon/animation packages so each page ships (and the dev server compiles) only what it uses.
-  experimental: { optimizePackageImports: ["lucide-react"], serverActions: { bodySizeLimit: "2mb" } },
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+    serverActions: { bodySizeLimit: "2mb" },
+    // Keep visited pages in the browser's router cache for a short while, so going back to a page you just left
+    // (or hopping between admin tabs) is instant instead of waiting for the server again. Saving anything refreshes it.
+    staleTimes: { dynamic: 30, static: 300 },
+  },
   images: {
     // Dev only: skip the image optimiser (each first view otherwise waits on a server-side fetch + resize).
     // Production still serves optimised AVIF/WebP.

@@ -49,11 +49,11 @@ export function Hero({ slot, isDefault = false }: { slot: VideoSlot; isDefault?:
           backup={isDefault ? undefined : BACKUP_FILM}
           className="hero-media"
           // Sharp, slightly richer picture: a touch more contrast/saturation so the footage looks graded, not washed.
-          mediaClassName="scale-[1.02] contrast-[1.06] saturate-[1.05]"
+          mediaClassName="scale-[1.02]"
           controlsClassName="right-4 top-[84px] sm:right-6 sm:top-[104px] lg:bottom-8 lg:right-10 lg:top-auto"
         >
           {/* Colour grade: footage kept crisp, pulled toward space black */}
-          <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-steel-700/40 mix-blend-multiply" />
+          <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-steel-900/35" />
           {/* Cinematic vignette */}
           <div
             aria-hidden

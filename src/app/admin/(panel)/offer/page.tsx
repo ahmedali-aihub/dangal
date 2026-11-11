@@ -7,8 +7,7 @@ import type { Banner } from "@/lib/types";
 export const metadata = { title: "Offer banner" };
 
 export default async function OfferAdmin() {
-  await requireRole("banner");
-  const rows = await getRows<Banner>("banners");
+  const [, rows] = await Promise.all([requireRole("banner"), getRows<Banner>("banners")]);
   return (
     <>
       <PageHeader

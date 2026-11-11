@@ -7,6 +7,7 @@ import { hasServiceRole } from "@/lib/env";
 export const dynamic = "force-dynamic";
 
 export default async function PanelLayout({ children }: { children: React.ReactNode }) {
+  const leadCount = getNewLeadCount().catch(() => 0); // starts now, in parallel with the session check
   const session = await requireStaff();
 
   // Signed in, but the server-side secret key isn't configured yet: explain instead of crashing.
@@ -26,7 +27,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     );
   }
 
-  const newLeads = await getNewLeadCount().catch(() => 0);
+  const newLeads = await leadCount;
 
   const items: NavItem[] = [
     { href: "/admin", label: "Overview", icon: "LayoutDashboard" as const, section: "Today" },

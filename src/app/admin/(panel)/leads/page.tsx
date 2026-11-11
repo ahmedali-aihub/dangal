@@ -8,9 +8,8 @@ import type { LeadStatus } from "@/lib/types";
 export const metadata = { title: "Enquiries" };
 
 export default async function LeadsPage({ searchParams }: { searchParams: Promise<{ status?: string; q?: string }> }) {
-  const s = await requireRole("leads");
   const { status, q } = await searchParams;
-  const leads = await getLeads({ status: (status as LeadStatus) ?? "all", q });
+  const [s, leads] = await Promise.all([requireRole("leads"), getLeads({ status: (status as LeadStatus) ?? "all", q })]);
   return (
     <>
       <PageHeader title="Enquiries" description="Enquiries and free-trial bookings from the website. You are also notified by email and WhatsApp the moment one arrives." />

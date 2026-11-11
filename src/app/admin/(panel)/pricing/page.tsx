@@ -7,8 +7,7 @@ import type { Plan } from "@/lib/types";
 export const metadata = { title: "Pricing" };
 
 export default async function PricingAdmin() {
-  await requireRole("pricing");
-  const rows = await getRows<Plan>("plans");
+  const [, rows] = await Promise.all([requireRole("pricing"), getRows<Plan>("plans")]);
   return (
     <>
       <PageHeader title="Membership pricing" description="Edit plans shown on the home page and Membership page. Prices are in rupees." />

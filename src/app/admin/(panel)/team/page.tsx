@@ -6,8 +6,7 @@ import { requireRole } from "@/lib/auth";
 export const metadata = { title: "Team & access" };
 
 export default async function TeamPage() {
-  const s = await requireRole("team");
-  const team = await getTeam();
+  const [s, team] = await Promise.all([requireRole("team"), getTeam()]);
   return (
     <>
       <PageHeader
